@@ -1,4 +1,6 @@
-package com.example.spring_security.model;
+package com.example.spring_security.service;
+import com.example.spring_security.model.User;
+import com.example.spring_security.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
