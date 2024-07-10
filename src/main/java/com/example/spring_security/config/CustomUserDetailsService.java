@@ -1,4 +1,4 @@
-package com.example.spring_security.service;
+package com.example.spring_security.config;
 import com.example.spring_security.model.User;
 import com.example.spring_security.repository.UserRepository;
 import lombok.AllArgsConstructor;
