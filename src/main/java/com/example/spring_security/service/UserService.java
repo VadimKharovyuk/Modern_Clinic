@@ -24,16 +24,5 @@ public class UserService {
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
 
-    public User getUserById(Long id) {
-    return   userRepository.findById(id).orElseThrow();
-    }
-
-
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
-    }
 }

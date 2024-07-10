@@ -1,4 +1,5 @@
 package com.example.spring_security.model;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +14,6 @@ import java.util.List;
 @Setter
 @Getter
 @Table(name = "medical_records")
-
 public class MedicalRecord {
 
     @Id
@@ -22,7 +22,7 @@ public class MedicalRecord {
 
     @ManyToOne
     @JoinColumn(name = "patient_id", nullable = false)
-    private User patient;
+    private Patient patient;
 
     @ManyToOne
     @JoinColumn(name = "doctor_id", nullable = false)
@@ -39,6 +39,4 @@ public class MedicalRecord {
 
     @OneToMany(mappedBy = "medicalRecord", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<AnalysisResult> analysisResults;
-
-
 }

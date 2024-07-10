@@ -3,30 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-    <link rel="stylesheet" href="/css/styles.css"> <!-- Подключение CSS файла, если он есть -->
+    <title>Моя Клиника</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Подключение внешнего CSS-файла для стилей -->
+    <style>
+        /* Внутренние стили для демонстрации */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .hero {
+            background-image: url('/pic/Default_modern_clinic_0.jpg'); /* Замените на путь к вашему фоновому изображению */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .services {
+            padding: 4rem 0;
+            background-color: #ffffff;
+            text-align: center;
+        }
+        .services h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .services ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .services li {
+            margin: 0 1rem;
+        }
+        .contact {
+            background-color: #f0f0f0;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .contact form {
+            max-width: 600px;
+            margin: auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .contact form input, .contact form textarea, .contact form button {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+        .contact form button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .contact form button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+        }
+    </style>
 </head>
 <body>
-<header>
-    <h1>Welcome to the Home Page</h1>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
-        </ul>
-    </nav>
-</header>
+<section class="hero">
+    <h1>Добро пожаловать в нашу клинику</h1>
+    <p>Мы заботимся о вашем здоровье</p>
+</section>
 
-<main>
-    <section>
-        <h2>Main Content</h2>
-        <p>This is the main content of the home page.</p>
-    </section>
-</main>
+<section class="services">
+    <div class="container">
+        <h2>Наши услуги</h2>
+        <ul>
+            <li>Диагностика и лечение</li>
+            <li>Хирургические операции</li>
+            <li>Стоматология</li>
+            <li>Детская педиатрия</li>
+            <li>Медицинские консультации</li>
+        </ul>
+    </div>
+</section>
+
+<section class="contact">
+    <div class="container">
+        <h2>Свяжитесь с нами</h2>
+        <form action="/submit-form" method="post">
+            <input type="text" name="name" placeholder="Ваше имя" required>
+            <input type="email" name="email" placeholder="Ваш email" required>
+            <textarea name="message" placeholder="Ваше сообщение" rows="4" required></textarea>
+            <button type="submit">Отправить</button>
+        </form>
+    </div>
+</section>
 
 <footer>
-    <p>&copy; 2024 Your Company. All rights reserved.</p>
+    <p>&copy; 2024 Моя Клиника. Все права защищены.</p>
 </footer>
 </body>
 </html>

@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-//запись
 public class Appointment {
 
     @Id
@@ -25,15 +24,8 @@ public class Appointment {
     private Doctor doctor;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User patient;
+    @JoinColumn(name = "patient_id", nullable = false)
+    private Patient patient;
 
     private LocalDateTime appointmentDateTime;
-
-
-
-
-
-
 }
-

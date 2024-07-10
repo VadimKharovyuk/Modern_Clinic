@@ -1,0 +1,34 @@
+package com.example.spring_security.service;
+
+import com.example.spring_security.model.Patient;
+import com.example.spring_security.repository.PatientRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+@AllArgsConstructor
+public class PatientService {
+
+    private final PatientRepository patientRepository;
+
+
+    public List<Patient> getAllPatients() {
+        return patientRepository.findAll();
+    }
+
+    public Patient getPatientById(Long id) {
+        return patientRepository.findById(id).orElseThrow();
+    }
+
+    public Patient saveOrUpdatePatient(Patient patient) {
+        return patientRepository.save(patient);
+    }
+
+    public void deletePatient(Long id) {
+        patientRepository.deleteById(id);
+    }
+}
