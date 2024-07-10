@@ -1,3 +1,131 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Моя Клиника</title>-->
+<!--    <link rel="stylesheet" href="styles.css"> &lt;!&ndash; Подключение внешнего CSS-файла для стилей &ndash;&gt;-->
+<!--    <style>-->
+<!--        /* Внутренние стили для демонстрации */-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            background-color: #f0f0f0;-->
+<!--        }-->
+<!--        .hero {-->
+<!--            background-image: url('/pic/Default_modern_clinic_0.jpg'); /* Замените на путь к вашему фоновому изображению */-->
+<!--            background-size: cover;-->
+<!--            background-position: center;-->
+<!--            height: 100vh;-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            justify-content: center;-->
+<!--            align-items: center;-->
+<!--            text-align: center;-->
+<!--            color: white;-->
+<!--        }-->
+<!--        .hero h1 {-->
+<!--            font-size: 3.5rem;-->
+<!--            margin-bottom: 1rem;-->
+<!--        }-->
+<!--        .hero p {-->
+<!--            font-size: 1.5rem;-->
+<!--            margin-bottom: 1.5rem;-->
+<!--        }-->
+<!--        .services {-->
+<!--            padding: 4rem 0;-->
+<!--            background-color: #ffffff;-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--        .services h2 {-->
+<!--            font-size: 2.5rem;-->
+<!--            margin-bottom: 2rem;-->
+<!--        }-->
+<!--        .services ul {-->
+<!--            list-style: none;-->
+<!--            padding: 0;-->
+<!--            display: flex;-->
+<!--            justify-content: center;-->
+<!--            align-items: center;-->
+<!--        }-->
+<!--        .services li {-->
+<!--            margin: 0 1rem;-->
+<!--        }-->
+<!--        .contact {-->
+<!--            background-color: #f0f0f0;-->
+<!--            padding: 4rem 0;-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--        .contact form {-->
+<!--            max-width: 600px;-->
+<!--            margin: auto;-->
+<!--            padding: 2rem;-->
+<!--            background-color: #ffffff;-->
+<!--            box-shadow: 0 0 10px rgba(0,0,0,0.1);-->
+<!--        }-->
+<!--        .contact form input, .contact form textarea, .contact form button {-->
+<!--            display: block;-->
+<!--            width: 100%;-->
+<!--            padding: 0.75rem;-->
+<!--            margin-bottom: 1rem;-->
+<!--            border: 1px solid #ccc;-->
+<!--            font-size: 1rem;-->
+<!--        }-->
+<!--        .contact form button {-->
+<!--            background-color: #007bff;-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+<!--        .contact form button:hover {-->
+<!--            background-color: #0056b3;-->
+<!--        }-->
+<!--        footer {-->
+<!--            background-color: #333;-->
+<!--            color: #fff;-->
+<!--            text-align: center;-->
+<!--            padding: 1rem 0;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<section class="hero">-->
+<!--    <h1>Добро пожаловать в нашу клинику</h1>-->
+<!--    <p>Мы заботимся о вашем здоровье</p>-->
+<!--</section>-->
+
+<!--<section class="services">-->
+<!--    <div class="container">-->
+<!--        <h2>Наши услуги</h2>-->
+<!--        <ul>-->
+<!--            <li>Диагностика и лечение</li>-->
+<!--            <li>Хирургические операции</li>-->
+<!--            <li>Стоматология</li>-->
+<!--            <li>Детская педиатрия</li>-->
+<!--            <li>Медицинские консультации</li>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!--<section class="contact">-->
+<!--    <div class="container">-->
+<!--        <h2>Свяжитесь с нами</h2>-->
+<!--        <form action="/submit-form" method="post">-->
+<!--            <input type="text" name="name" placeholder="Ваше имя" required>-->
+<!--            <input type="email" name="email" placeholder="Ваш email" required>-->
+<!--            <textarea name="message" placeholder="Ваше сообщение" rows="4" required></textarea>-->
+<!--            <button type="submit">Отправить</button>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!--<footer>-->
+<!--    <p>&copy; 2024 Моя Клиника. Все права защищены.</p>-->
+<!--</footer>-->
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +140,30 @@
             margin: 0;
             padding: 0;
             background-color: #f0f0f0;
+        }
+        nav {
+            background-color: #007bff;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            margin: 0;
+        }
+        nav ul li {
+            margin: 0 1rem;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
         }
         .hero {
             background-image: url('/pic/Default_modern_clinic_0.jpg'); /* Замените на путь к вашему фоновому изображению */
@@ -87,9 +239,33 @@
             text-align: center;
             padding: 1rem 0;
         }
+        .account-info {
+            padding: 4rem 0;
+            background-color: #e9ecef;
+            text-align: center;
+        }
+        .account-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .account-info p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
+<nav>
+    <div>
+        <a href="#" style="color: white; text-decoration: none;">Главная</a>
+    </div>
+    <ul>
+        <li><a href="#">Услуги</a></li>
+        <li><a href="#">Контакты</a></li>
+        <li><a href="#">Личный аккаунт</a></li>
+    </ul>
+</nav>
+
 <section class="hero">
     <h1>Добро пожаловать в нашу клинику</h1>
     <p>Мы заботимся о вашем здоровье</p>
@@ -105,6 +281,16 @@
             <li>Детская педиатрия</li>
             <li>Медицинские консультации</li>
         </ul>
+    </div>
+</section>
+
+<section class="account-info">
+    <div class="container">
+        <h2>Личный аккаунт</h2>
+        <p>Имя пользователя: <span id="username" th:text="${user.username}">Иван Иванов</span></p>
+        <p>Email: <span id="useremail" th:text="${user.email}">ivanov@example.com</span></p>
+        <p>Роль: <span id="userrole" th:text="${user.role}">Клиент</span></p>
+
     </div>
 </section>
 

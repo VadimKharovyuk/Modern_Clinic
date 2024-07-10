@@ -7,10 +7,8 @@ import com.example.spring_security.service.PasswordGenerator;
 import com.example.spring_security.service.PasswordService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @AllArgsConstructor
@@ -24,12 +22,11 @@ public class PasswordResetController {
 
     @GetMapping("/forgot-password")
     public String showForgotPasswordForm() {
-        return "forgot-password"; // Возвращаем имя HTML файла без расширения
+        return "forgot-password";
     }
 
     @PostMapping("/forgot-password")
-    @ResponseBody
-    public String resetPassword(@RequestParam("email") String email) {
+    public String resetPassword(@RequestParam("email") String email, RedirectAttributes redirectAttributes) {
         User user = userRepository.findByEmail(email);
         if (user == null) {
             return "Пользователь с таким email не найден";
@@ -44,7 +41,9 @@ public class PasswordResetController {
 
         // Отправляем пользователю новый пароль по email
         emailService.sendPasswordReset(email, newPassword);
+        redirectAttributes.addFlashAttribute("password", "Новый пароль отправлен на указанный email");
 
-        return "Новый пароль отправлен на указанный email";
+        return "redirect:/forgot-password";
     }
+
 }

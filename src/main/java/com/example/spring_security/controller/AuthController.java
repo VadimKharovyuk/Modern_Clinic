@@ -16,7 +16,7 @@ public class AuthController {
 
     @GetMapping("/login")
     public String showLoginForm(Model model) {
-        model.addAttribute("user", new User()); // Добавляем пустого пользователя в модель
+        model.addAttribute("user", new User());
         return "LoginRegister";
     }
 
