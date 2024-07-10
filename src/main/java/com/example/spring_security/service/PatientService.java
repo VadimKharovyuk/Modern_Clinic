@@ -1,6 +1,7 @@
 package com.example.spring_security.service;
 
 import com.example.spring_security.model.Patient;
+import com.example.spring_security.model.User;
 import com.example.spring_security.repository.PatientRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,4 +32,8 @@ public class PatientService {
     public void deletePatient(Long id) {
         patientRepository.deleteById(id);
     }
-}
+
+    public Patient findByUser(User user) {
+        return patientRepository.findByUser(user);
+    }
+    }

@@ -22,24 +22,52 @@ public class SecurityConfig {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeHttpRequests((authz) -> authz
-                        .requestMatchers("/register", "/login", "/css/**", "/pic/**","/forgot-password","/").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .formLogin((form) -> form
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/", true)
-                        .permitAll()
-                )
-                .logout((logout) -> logout
-                        .permitAll()
-                );
 
-        return http.build();
-    }
+//@Bean
+//public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+//    httpSecurity
+//            .authorizeHttpRequests((req -> req
+//                    .requestMatchers( "/login", "/", "/pic/**","/forgot-password","/register","/patient/dashboard").permitAll() // Разрешение на открытый доступ
+//                    .requestMatchers("/account/**").authenticated() // Требование аутентификации
+//                    .anyRequest().authenticated() // Любые другие запросы также требуют аутентификации
+//            ))
+//            .formLogin((form -> form
+//                    .loginPage("/login") // Настройка страницы входа
+//                    .permitAll() // Разрешить доступ к странице входа
+//            ))
+//            .logout((log -> log
+//                    .logoutUrl("/logout") // URL для выхода из системы
+//                    .logoutSuccessUrl("/login") // Перенаправление после успешного выхода
+//                    .permitAll() // Разрешение на выход без аутентификации
+//            )).csrf().disable(); // Отключение CSRF, если это необходимо
+//
+//    return httpSecurity.build();
+//}
+@Bean
+public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+    httpSecurity
+            .authorizeHttpRequests((req -> req
+                    .requestMatchers("/login", "/", "/pic/**", "/forgot-password", "/register").permitAll()
+                    .requestMatchers("/patient/dashboard").authenticated()
+                    .requestMatchers("/account/**").authenticated()
+                    .anyRequest().authenticated()
+            ))
+            .formLogin((form -> form
+                    .loginPage("/login")
+                    .defaultSuccessUrl("/patient/dashboard", true) // URL после успешного входа
+                    .permitAll()
+                    .failureUrl("/login") // URL после неудачного входа
+            ))
+            .logout((log -> log
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/login?logout=true")
+                    .permitAll()
+            ))
+            .csrf().disable(); // Отключение CSRF, если это необходимо
+
+    return httpSecurity.build();
+}
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {

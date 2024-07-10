@@ -1,6 +1,7 @@
 package com.example.spring_security.service;
 
 import com.example.spring_security.model.Appointment;
+import com.example.spring_security.model.Patient;
 import com.example.spring_security.repository.AppointmentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,12 @@ import java.util.Optional;
 public class AppointmentService {
 
     private final AppointmentRepository appointmentRepository;
+
+
+
+    public List<Appointment> findByPatient(Patient patient) {
+        return appointmentRepository.findByPatient(patient);
+    }
 
 
     public List<Appointment> getAllAppointments() {

@@ -262,7 +262,7 @@
     <ul>
         <li><a href="#">Услуги</a></li>
         <li><a href="#">Контакты</a></li>
-        <li><a href="#">Личный аккаунт</a></li>
+        <li><a href="/patient/dashboard">Личный аккаунт</a></li>
     </ul>
 </nav>
 
@@ -284,15 +284,7 @@
     </div>
 </section>
 
-<section class="account-info">
-    <div class="container">
-        <h2>Личный аккаунт</h2>
-        <p>Имя пользователя: <span id="username" th:text="${user.username}">Иван Иванов</span></p>
-        <p>Email: <span id="useremail" th:text="${user.email}">ivanov@example.com</span></p>
-        <p>Роль: <span id="userrole" th:text="${user.role}">Клиент</span></p>
 
-    </div>
-</section>
 
 <section class="contact">
     <div class="container">

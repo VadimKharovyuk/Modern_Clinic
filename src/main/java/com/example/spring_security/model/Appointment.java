@@ -28,4 +28,5 @@ public class Appointment {
     private Patient patient;
 
     private LocalDateTime appointmentDateTime;
+    private String reason; //причина
 }

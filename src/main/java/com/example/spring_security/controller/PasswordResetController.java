@@ -24,26 +24,26 @@ public class PasswordResetController {
     public String showForgotPasswordForm() {
         return "forgot-password";
     }
-
-    @PostMapping("/forgot-password")
-    public String resetPassword(@RequestParam("email") String email, RedirectAttributes redirectAttributes) {
-        User user = userRepository.findByEmail(email);
-        if (user == null) {
-            return "Пользователь с таким email не найден";
-        }
-
-        // Генерируем новый пароль
-        String newPassword = PasswordGenerator.generateNewPassword(10); // Пример: генерация пароля длиной 10 символов
-
-        // Сохраняем новый пароль в базе данных (с использованием шифрования)
-        user.setPassword(passwordService.encodePassword(newPassword));
-        userRepository.save(user);
-
-        // Отправляем пользователю новый пароль по email
-        emailService.sendPasswordReset(email, newPassword);
-        redirectAttributes.addFlashAttribute("password", "Новый пароль отправлен на указанный email");
-
+@PostMapping("/forgot-password")
+public String resetPassword(@RequestParam("email") String email, RedirectAttributes redirectAttributes) {
+    User user = userRepository.findByEmail(email);
+    if (user == null) {
+        redirectAttributes.addFlashAttribute("errorMessage", "Пользователь с таким email не найден");
         return "redirect:/forgot-password";
     }
+
+    // Генерируем новый пароль
+    String newPassword = PasswordGenerator.generateNewPassword(5); // Пример: генерация пароля длиной 5 символов
+
+    // Сохраняем новый пароль в базе данных (с использованием шифрования)
+    user.setPassword(passwordService.encodePassword(newPassword));
+    userRepository.save(user);
+
+    // Отправляем пользователю новый пароль по email
+    emailService.sendPasswordReset(email, newPassword);
+    redirectAttributes.addFlashAttribute("successMessage", "Новый пароль отправлен на указанный email");
+
+    return "redirect:/forgot-password";
+}
 
 }

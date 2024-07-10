@@ -12,11 +12,10 @@ import java.security.Principal;
 @Controller
 @AllArgsConstructor
 public class HomeController {
-    private final UserService userService;
+
     @GetMapping("/")
-    public String home(Model model, Principal principal) {
-        User user = userService.findByUsername(principal.getName());
-        model.addAttribute("user", user);
+    public String home() {
+
         return "homePage";
     }
 }
