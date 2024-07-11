@@ -4,54 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Список Пациентов</title>
-    <link rel="stylesheet" href="/styles.css"> <!-- Подключение внешнего CSS-файла для стилей -->
+    <link rel="stylesheet" href="/styles.css">
     <style>
-        /* Внутренние стили для демонстрации */
+        /* Global Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
         }
+
         .container {
-            max-width: 1250px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background-color: #ffffff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
+
         h1 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            text-align: center;
+            margin-bottom: 20px;
         }
+
+        /* Table Styles */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 1rem;
+            font-size: 14px;
         }
-        table, th, td {
-            border: 1px solid #ccc;
-        }
+
         th, td {
-            padding: 1rem;
+            padding: 12px 15px;
             text-align: left;
+            border-bottom: 1px solid #ddd;
         }
+
         th {
-            background-color: #007bff;
-            color: white;
-        }
-        tr:nth-child(even) {
             background-color: #f2f2f2;
+            font-weight: bold;
         }
-        .delete-btn {
-            background-color: #dc3545;
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Button Styles */
+        .view-btn, .delete-btn {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .view-btn {
+            background-color: #4CAF50;
             color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
         }
+
+        .view-btn:hover {
+            background-color: #45a049;
+        }
+
+        .delete-btn {
+            background-color: #f44336;
+            color: white;
+        }
+
         .delete-btn:hover {
-            background-color: #c82333;
+            background-color: #d32f2f;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            th, td {
+                padding: 10px;
+            }
+
+            .view-btn, .delete-btn {
+                padding: 4px 8px;
+                font-size: 12px;
+            }
         }
     </style>
 </head>
@@ -89,7 +121,8 @@
             <td th:text="${patient.allergies}">Аллергии</td>
             <td th:text="${patient.emergencyContact}">Контакт для экстренных случаев</td>
             <td>
-                <form th:action="@{/patient/delete/{id}(id=${patient.id})}" method="post">
+                <a th:href="@{/patient/{id}(id=${patient.id})}" class="view-btn">Просмотр</a><br>
+                <form th:action="@{/patient/delete/{id}(id=${patient.id})}" method="post" style="display:inline;">
                     <button type="submit" class="delete-btn">Удалить</button>
                 </form>
             </td>

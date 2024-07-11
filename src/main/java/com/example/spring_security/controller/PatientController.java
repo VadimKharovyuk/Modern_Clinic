@@ -74,7 +74,13 @@ public class PatientController {
         model.addAttribute("patients", patients);
         return "Patient/patientList";
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/patient/{id}")
+    public String viewPatient(@PathVariable("id") Long id, Model model) {
+        Patient patient = patientService.getPatientById(id);
+        model.addAttribute("patient", patient);
+        return "Patient/patientDetail";
+    }
 
 
     @PreAuthorize("hasRole('ADMIN')")
