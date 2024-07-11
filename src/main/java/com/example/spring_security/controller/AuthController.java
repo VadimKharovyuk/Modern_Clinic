@@ -43,7 +43,7 @@ public String showLoginForm(Model model) {
     if (!model.containsAttribute("user")) {
         model.addAttribute("user", new User());
     }
-    return "Login";
+    return "Auth/Login";
 }
 
     @PostMapping("/login")
@@ -65,7 +65,7 @@ public String showLoginForm(Model model) {
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User()); // Добавляем пустого пользователя в модель
-        return "register";
+        return "Auth/register";
     }
 
     @PostMapping("/register")

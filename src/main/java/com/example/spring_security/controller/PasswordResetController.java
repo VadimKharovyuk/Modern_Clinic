@@ -22,7 +22,7 @@ public class PasswordResetController {
 
     @GetMapping("/forgot-password")
     public String showForgotPasswordForm() {
-        return "forgot-password";
+        return "Auth/forgot-password";
     }
 @PostMapping("/forgot-password")
 public String resetPassword(@RequestParam("email") String email, RedirectAttributes redirectAttributes) {
