@@ -1,13 +1,12 @@
 package com.example.spring_security.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -22,6 +21,9 @@ public class Doctor {
 
     private String name ;
     private String specialization;
+
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+    private List<Appointment> appointments;
 
 
 }

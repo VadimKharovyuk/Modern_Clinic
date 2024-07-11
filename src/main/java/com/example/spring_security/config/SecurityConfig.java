@@ -47,9 +47,11 @@ public class SecurityConfig {
 public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
     httpSecurity
             .authorizeHttpRequests((req -> req
-                    .requestMatchers("/login", "/", "/pic/**", "/forgot-password", "/register").permitAll()
+                    .requestMatchers("/login", "/", "/pic/**", "/forgot-password", "/register","/doctor/list").permitAll()
+                    .requestMatchers("/doctor/**").hasAnyRole("ADMIN")
                     .requestMatchers("/patient/dashboard").authenticated()
 //                    .requestMatchers("/account/**").authenticated()
+
                     .anyRequest().authenticated()
             ))
             .formLogin((form -> form
@@ -63,6 +65,7 @@ public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws
                     .logoutSuccessUrl("/login?logout=true")
                     .permitAll()
             ))
+
             .csrf().disable(); // Отключение CSRF, если это необходимо
 
     return httpSecurity.build();

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список Докторов</title>
+    <link rel="stylesheet" href="/styles.css"> <!-- Подключение внешнего CSS-файла для стилей -->
+    <style>
+        /* Внутренние стили для демонстрации */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .card {
+            background-color: #007bff;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 1rem;
+            padding: 1rem;
+            width: 250px;
+            text-align: center;
+        }
+        .card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .card p {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .delete-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Список Докторов</h1>
+    <div class="card" th:each="doctor : ${doctors}">
+        <h2 th:text="${doctor.name}">Доктор Имя</h2>
+        <p th:text="${doctor.specialization}">Специализация</p>
+        <!-- Кнопка удаления доктора -->
+        <form th:action="@{/doctor/delete/{id}(id=${doctor.id})}" method="post">
+            <button type="submit" class="delete-btn">Удалить</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

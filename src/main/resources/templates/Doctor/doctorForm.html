@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить Доктора</title>
+    <link rel="stylesheet" href="/styles.css"> <!-- Подключение внешнего CSS-файла для стилей -->
+    <style>
+        /* Внутренние стили для демонстрации */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin: 0.5rem 0 0.2rem;
+        }
+        input {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Добавить Доктора</h1>
+    <form th:action="@{/doctor/save}" method="post">
+        <label for="name">Имя</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="specialization">Специализация</label>
+        <input type="text" id="specialization" name="specialization" required>
+
+        <button type="submit">Сохранить</button>
+    </form>
+</div>
+</body>
+</html>
