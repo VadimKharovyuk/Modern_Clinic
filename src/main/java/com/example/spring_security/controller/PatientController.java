@@ -6,11 +6,14 @@ import com.example.spring_security.model.User;
 import com.example.spring_security.service.AppointmentService;
 import com.example.spring_security.service.PatientService;
 import com.example.spring_security.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,6 +66,7 @@ public class PatientController {
     }
 
 
+
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/patient/list")
     public String listPatients(Model model) {
@@ -70,6 +74,8 @@ public class PatientController {
         model.addAttribute("patients", patients);
         return "Patient/patientList";
     }
+
+
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/patient/delete/{id}")

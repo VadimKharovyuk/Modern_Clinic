@@ -54,8 +54,12 @@
 
     <div class="container">
         <h1>Личный кабинет пациента</h1>
-        <a href="/logout">Выйти</a>
+        <a href="/logout">Выйти</a><br><br>
+        <div th:if="${user.role.name() == 'ADMIN'}" class="admin-link">
+            <a th:href="@{/admin/dashboard}">Админ Панель</a>
+        </div>
     </div>
+
 </header>
 <div class="container">
     <h1>Серис клиники  </h1>
@@ -63,9 +67,7 @@
     <p><a href="/">На главную страницу</a></p>
     <p><a href="/doctor/list">Список Докторов</a></p>
     <p><a href="/patient/form">Заполнить  Мед Карту</a></p>
-    <div th:if="${user.role.name() == 'ADMIN'}" class="admin-link">
-        <a th:href="@{/admin/dashboard}">Админ Панель</a>
-    </div>
+
 
 </div>
 
