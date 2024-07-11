@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @AllArgsConstructor
+//@PreAuthorize("hasRole('ADMIN')")
 public class DoctorController {
     private  final  DoctorService doctorService;
 

@@ -49,6 +49,8 @@ public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws
             .authorizeHttpRequests((req -> req
                     .requestMatchers("/login", "/", "/pic/**", "/forgot-password", "/register","/doctor/list").permitAll()
                     .requestMatchers("/doctor/**").hasAnyRole("ADMIN")
+                    .requestMatchers("/patient/list").hasAnyRole("ADMIN")
+
                     .requestMatchers("/patient/dashboard").authenticated()
 //                    .requestMatchers("/account/**").authenticated()
 
