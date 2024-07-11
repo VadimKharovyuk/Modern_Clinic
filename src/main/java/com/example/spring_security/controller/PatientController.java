@@ -65,8 +65,6 @@ public class PatientController {
         return "redirect:/patient/dashboard";
     }
 
-
-
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/patient/list")
     public String listPatients(Model model) {
@@ -90,5 +88,14 @@ public class PatientController {
         return "redirect:/patient/list";
 
 
+    }
+
+    @GetMapping("/patient/appointments/{id}")
+    public String viewPatientAppointments(@PathVariable Long id, Model model) {
+        Patient patient = patientService.getPatientById(id);
+        List<Appointment> appointments = appointmentService.findByPatient(patient);
+        model.addAttribute("patient", patient);
+        model.addAttribute("appointments", appointments);
+        return "Patient/patientAppointments";
     }
 }

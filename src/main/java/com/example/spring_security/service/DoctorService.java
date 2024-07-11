@@ -1,6 +1,7 @@
 package com.example.spring_security.service;
 
 import com.example.spring_security.model.Doctor;
+import com.example.spring_security.model.User;
 import com.example.spring_security.repository.DoctorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,4 +33,10 @@ public class DoctorService {
     public void deleteDoctor(Long id) {
         doctorRepository.deleteById(id);
     }
+
+
+    public Doctor findByUser(User user) {
+        return (Doctor) doctorRepository.findByUser(user).orElseThrow(() -> new RuntimeException("Doctor not found"));
+    }
+
 }

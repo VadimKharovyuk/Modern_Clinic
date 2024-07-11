@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Записи Пациента</title>
+    <link rel="stylesheet" href="/styles.css"> <!-- Подключение внешнего CSS-файла для стилей -->
+    <style>
+        /* Ваши стили здесь */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .patient-info {
+            margin-bottom: 1rem;
+        }
+        .back-btn {
+            display: block;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Записи Пациента</h1>
+    <div class="patient-info">
+        <div><strong>ID:</strong> <span th:text="${patient.id}">1</span></div>
+        <div><strong>Имя:</strong> <span th:text="${patient.firstName}">Имя</span></div>
+        <div><strong>Фамилия:</strong> <span th:text="${patient.lastName}">Фамилия</span></div>
+        <div><strong>Дата рождения:</strong> <span th:text="${patient.dateOfBirth}">Дата рождения</span></div>
+        <div><strong>Пол:</strong> <span th:text="${patient.gender}">Пол</span></div>
+        <div><strong>Адрес:</strong> <span th:text="${patient.address}">Адрес</span></div>
+        <div><strong>Телефон:</strong> <span th:text="${patient.phoneNumber}">Телефон</span></div>
+        <div><strong>Вес:</strong> <span th:text="${patient.weight}">Вес</span></div>
+        <div><strong>Рост:</strong> <span th:text="${patient.height}">Рост</span></div>
+        <div><strong>Аллергии:</strong> <span th:text="${patient.allergies}">Аллергии</span></div>
+        <div><strong>Контакт для экстренных случаев:</strong> <span th:text="${patient.emergencyContact}">Контакт для экстренных случаев</span></div>
+    </div>
+    <!-- Здесь выводите записи пациента -->
+    <div th:each="appointment : ${appointments}">
+        <div><strong>ID записи:</strong> <span th:text="${appointment.id}">1</span></div>
+        <div><strong>Доктор:</strong> <span th:text="${appointment.doctor.name}">Имя Доктора</span></div>
+        <div><strong>Дата и время записи:</strong> <span th:text="${appointment.appointmentDateTime}">Дата и время записи</span></div>
+        <div><strong>Причина:</strong> <span th:text="${appointment.reason}">Причина</span></div>
+        <hr>
+    </div>
+    <a href="/patient/list" class="back-btn">Назад к списку пациентов</a>
+</div>
+</body>
+</html>

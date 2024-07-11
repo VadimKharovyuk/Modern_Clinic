@@ -105,6 +105,7 @@
             <th>Аллергии</th>
             <th>Контакт для экстренных случаев</th>
             <th>Действия</th>
+            <th>Записи</th>
         </tr>
         </thead>
         <tbody>
@@ -125,6 +126,9 @@
                 <form th:action="@{/patient/delete/{id}(id=${patient.id})}" method="post" style="display:inline;">
                     <button type="submit" class="delete-btn">Удалить</button>
                 </form>
+            </td>
+            <td>
+                <a th:href="@{/patient/appointments/{id}(id=${patient.id})}" class="view-btn">Смотреть записи</a>
             </td>
         </tr>
         </tbody>

@@ -49,7 +49,9 @@
 package com.example.spring_security.controller;
 
 import com.example.spring_security.model.Doctor;
+import com.example.spring_security.model.User;
 import com.example.spring_security.service.DoctorService;
+import com.example.spring_security.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -58,11 +60,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.security.Principal;
+
 @Controller
 @AllArgsConstructor
-@PreAuthorize("hasRole('ADMIN')")
+//@PreAuthorize("hasRole('ADMIN')")
 public class DoctorController {
     private final DoctorService doctorService;
+    private final UserService userService;
 
     @GetMapping("/doctor/form")
     public String showDoctorForm(Model model) {
@@ -92,4 +97,15 @@ public class DoctorController {
     public String showAdminDashboard() {
         return "Admin/adminDashboard";
     }
+
+@PreAuthorize("hasRole('DOCTOR')")
+@GetMapping("/doctor/account")
+public String viewDoctorAccount(Model model, Principal principal) {
+    User user = userService.findByUsername(principal.getName());
+    Doctor doctor = doctorService.findByUser(user);
+    model.addAttribute("doctor", doctor);
+    return "Doctor/doctorAccount";
+}
+
+
 }

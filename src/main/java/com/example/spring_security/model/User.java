@@ -66,9 +66,12 @@ public class User {
     private Role role;
 
     public enum Role {
-        USER, ADMIN
+        USER, ADMIN, DOCTOR,
     }
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Patient> patients;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Doctor doctor;
 }

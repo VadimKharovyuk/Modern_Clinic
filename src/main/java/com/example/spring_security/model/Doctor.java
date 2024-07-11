@@ -25,5 +25,9 @@ public class Doctor {
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
     private List<Appointment> appointments;
 
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
 
 }

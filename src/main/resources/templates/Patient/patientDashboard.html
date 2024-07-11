@@ -58,6 +58,10 @@
         <div th:if="${user.role.name() == 'ADMIN'}" class="admin-link">
             <a th:href="@{/admin/dashboard}">Админ Панель</a>
         </div>
+        <div th:if="${user.role.name()=='DOCTOR'}" class="admin-link">
+            <a th:href="@{/doctor/account}"> Доктор Панель</a>
+        </div>
+
     </div>
 
 </header>
@@ -66,10 +70,16 @@
 
     <p><a href="/">На главную страницу</a></p>
     <p><a href="/doctor/list">Список Докторов</a></p>
+    <p><a href="/appointment/form">записаться к доктору</a></p>
 <!--    <p><a href="/patient/form">Заполнить  Мед Карту</a></p>-->
 
 
 </div>
+<!--<div class="dashboard-actions">-->
+<!--    -->
+<!--    <a class="btn btn-primary" th:href="@{/doctor/account/{id}(id=${loggedInDoctorId})}">Мой аккаунт</a>-->
+<!--    &lt;!&ndash; Другие действия на дашборде &ndash;&gt;-->
+<!--</div>-->
 
 <div class="container">
     <div class="profile">

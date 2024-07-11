@@ -128,6 +128,14 @@
 </head>
 <body>
 <nav>
+    <!-- navbar.html -->
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/doctor/account/{id}(id=${loggedInDoctorId})}">Мой аккаунт</a>
+        </li>
+        <!-- Другие ссылки в меню -->
+    </ul>
+
     <div>
         <a href="#" style="color: white; text-decoration: none;">Главная</a>
     </div>
@@ -135,6 +143,9 @@
         <li><a href="#">Услуги</a></li>
         <li><a href="/patient/form">Заполнить форму</a></li>
         <li><a href="/patient/dashboard">Личный аккаунт</a></li>
+<!--        <li><a href="/patient/dashboard">Личный аккаунт</a></li>-->
+
+
 <!--        <li>  <a href="/logout">Выйти</a></li>-->
     </ul>
 </nav>
@@ -156,6 +167,7 @@
         </ul>
     </div>
 </section>
+
 
 <!--<section class="account-info">-->
 <!--    <div class="container">-->

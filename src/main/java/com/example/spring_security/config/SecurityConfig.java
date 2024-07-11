@@ -24,31 +24,57 @@ public class SecurityConfig {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
+//@Bean
+//public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+//    httpSecurity
+//            .authorizeHttpRequests((req -> req
+//                    .requestMatchers("/login", "/", "/pic/**", "/forgot-password", "/register","/doctor/list").permitAll()
+//                    .requestMatchers("/doctor/**").hasAnyRole("ADMIN")
+//                    .requestMatchers("/patient/list").hasAnyRole("ADMIN")
+//                    .requestMatchers("/doctor/account/**").hasRole("DOCTOR")
+//
+//                    .requestMatchers("/patient/dashboard").authenticated()
+////                    .requestMatchers("/account/**").authenticated()
+//
+//                    .anyRequest().authenticated()
+//            ))
+//            .formLogin((form -> form
+//                    .loginPage("/login")
+//                    .defaultSuccessUrl("/", true) // URL после успешного входа
+//                    .permitAll()
+////                    .failureUrl("/register") // URL после неудачного входа
+//            ))
+//            .logout((log -> log
+//                    .logoutUrl("/logout")
+//                    .logoutSuccessUrl("/login?logout=true")
+//                    .permitAll()
+//            ))
+//
+//            .csrf().disable(); // Отключение CSRF, если это необходимо
+//
+//    return httpSecurity.build();
+//}
 @Bean
 public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
     httpSecurity
             .authorizeHttpRequests((req -> req
-                    .requestMatchers("/login", "/", "/pic/**", "/forgot-password", "/register","/doctor/list").permitAll()
-                    .requestMatchers("/doctor/**").hasAnyRole("ADMIN")
-                    .requestMatchers("/patient/list").hasAnyRole("ADMIN")
-
+                    .requestMatchers("/login", "/", "/pic/**", "/forgot-password", "/register", "/doctor/list").permitAll()
+                    .requestMatchers("/doctor/account/**").hasRole("DOCTOR")
+                    .requestMatchers("/doctor/**").hasRole("ADMIN")
+                    .requestMatchers("/patient/list").hasRole("ADMIN")
                     .requestMatchers("/patient/dashboard").authenticated()
-//                    .requestMatchers("/account/**").authenticated()
-
                     .anyRequest().authenticated()
             ))
             .formLogin((form -> form
                     .loginPage("/login")
                     .defaultSuccessUrl("/", true) // URL после успешного входа
                     .permitAll()
-//                    .failureUrl("/register") // URL после неудачного входа
             ))
             .logout((log -> log
                     .logoutUrl("/logout")
                     .logoutSuccessUrl("/login?logout=true")
                     .permitAll()
             ))
-
             .csrf().disable(); // Отключение CSRF, если это необходимо
 
     return httpSecurity.build();

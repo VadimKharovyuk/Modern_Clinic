@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Докторский аккаунт</title>
+</head>
+<body>
+<div class="container">
+    <h1>Докторский аккаунт</h1>
+    <h2>Профиль доктора</h2>
+    <div>
+        <strong>ID:</strong> <span th:text="${doctor.id}"></span><br>
+        <strong>Имя:</strong> <span th:text="${doctor.name}"></span><br>
+        <strong>Специализация:</strong> <span th:text="${doctor.specialization}"></span><br>
+        <!-- Добавьте другие детали о докторе при необходимости -->
+    </div>
+
+    <h2>Список пациентов</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID пациента</th>
+            <th>Имя пациента</th>
+            <th>Фамилия пациента</th>
+            <!-- Добавьте другие атрибуты пациента при необходимости -->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="appointment : ${doctor.appointments}">
+            <td th:text="${appointment.patient.id}"></td>
+            <td th:text="${appointment.patient.firstName}"></td>
+            <td th:text="${appointment.patient.lastName}"></td>
+            <!-- Добавьте другие атрибуты пациента при необходимости -->
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
