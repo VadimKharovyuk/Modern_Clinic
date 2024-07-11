@@ -63,13 +63,12 @@
     <p><a href="/">На главную страницу</a></p>
     <p><a href="/doctor/list">Список Докторов</a></p>
     <p><a href="/patient/form">Заполнить  Мед Карту</a></p>
+    <div th:if="${user.role.name() == 'ADMIN'}" class="admin-link">
+        <a th:href="@{/admin/dashboard}">Админ Панель</a>
+    </div>
 
 </div>
-<div class="container">
-    <h1>Админ панель </h1>
-    <p><a href="/doctor/form">Добавить доктора </a></p>
-    <p><a href="/patient/list">Список пацыентов</a></p>
-</div>
+
 <div class="container">
     <div class="profile">
         <h2>Профиль</h2>
