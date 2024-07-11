@@ -62,9 +62,6 @@ public String showLoginForm(Model model) {
 
 
 
-
-
-
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User()); // Добавляем пустого пользователя в модель
@@ -75,7 +72,7 @@ public String showLoginForm(Model model) {
     public String register(@ModelAttribute User user ,RedirectAttributes redirectAttributes) {
         if (userService.existsByEmail(user.getEmail())) {
             redirectAttributes.addFlashAttribute("error", "Эта почта уже  используется ");
-            return "redirect:/login";
+            return "redirect:/register";
         }
      userService.registerUser(user);
         return "redirect:/login";

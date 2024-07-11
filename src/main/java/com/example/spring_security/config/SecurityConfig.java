@@ -49,14 +49,14 @@ public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws
             .authorizeHttpRequests((req -> req
                     .requestMatchers("/login", "/", "/pic/**", "/forgot-password", "/register").permitAll()
                     .requestMatchers("/patient/dashboard").authenticated()
-                    .requestMatchers("/account/**").authenticated()
+//                    .requestMatchers("/account/**").authenticated()
                     .anyRequest().authenticated()
             ))
             .formLogin((form -> form
                     .loginPage("/login")
-                    .defaultSuccessUrl("/patient/dashboard", true) // URL после успешного входа
+                    .defaultSuccessUrl("/", true) // URL после успешного входа
                     .permitAll()
-                    .failureUrl("/login") // URL после неудачного входа
+//                    .failureUrl("/register") // URL после неудачного входа
             ))
             .logout((log -> log
                     .logoutUrl("/logout")

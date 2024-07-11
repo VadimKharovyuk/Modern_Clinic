@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -39,5 +40,22 @@ public class PatientController {
         model.addAttribute("appointments", appointments);
 
         return "Patient/patientDashboard";
+    }
+
+    @GetMapping("/patient/form")
+    public String showForm(Model model) {
+        model.addAttribute("patient", new Patient());
+        return "Patient/patientForm";
+    }
+
+    @PostMapping("/patient/save")
+    public String savePatient(Patient patient, Authentication authentication) {
+        // Получение текущего пользователя
+        User currentUser = userService.findByUsername(authentication.getName());
+        patient.setUser(currentUser);
+
+        // Сохранение пациента
+        patientService.saveOrUpdatePatient(patient);
+        return "redirect:/patient/dashboard";
     }
 }
