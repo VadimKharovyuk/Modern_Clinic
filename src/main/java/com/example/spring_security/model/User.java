@@ -65,6 +65,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @Column(name = "blocked")
+    private boolean blocked = false;
+
+
     public enum Role {
         USER, ADMIN, DOCTOR,
     }

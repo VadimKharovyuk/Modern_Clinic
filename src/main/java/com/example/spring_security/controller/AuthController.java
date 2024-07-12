@@ -136,6 +136,12 @@ public class AuthController {
             return "redirect:/login";
         }
 
+        // Проверка, заблокирован ли пользователь
+        if (existingUser.isBlocked()) {
+            // Редирект или обработка блокировки
+            return "redirect:/blocked"; // Направляем на страницу с сообщением о блокировке
+        }
+
         // Логика входа
         return "redirect:/";
     }
@@ -149,14 +155,37 @@ public class AuthController {
         return "Auth/register";
     }
 
-    @PostMapping("/register")
-    public String register(@ModelAttribute User user ,RedirectAttributes redirectAttributes) {
-        if (userService.existsByEmail(user.getEmail())) {
-            redirectAttributes.addFlashAttribute("error", "Эта почта уже  используется ");
-            return "redirect:/register";
-        }
-        user.setRole(User.Role.USER);
-        userService.registerUser(user);
-        return "redirect:/login";
+//    @PostMapping("/register")
+//    public String register(@ModelAttribute User user ,RedirectAttributes redirectAttributes) {
+//        if (userService.existsByEmail(user.getEmail())) {
+//            redirectAttributes.addFlashAttribute("error", "Эта почта уже  используется ");
+//            return "redirect:/register";
+//        }
+//        user.setRole(User.Role.USER);
+//        userService.registerUser(user);
+//        return "redirect:/login";
+//    }
+@PostMapping("/register")
+public String register(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
+    // Проверка, существует ли пользователь с таким email
+    if (userService.existsByEmail(user.getEmail())) {
+        redirectAttributes.addFlashAttribute("error", "Эта почта уже используется");
+        return "redirect:/register";
     }
+
+    // Установка роли пользователя и регистрация
+    user.setRole(User.Role.USER);
+    userService.registerUser(user);
+
+    // Проверка, заблокирован ли пользователь
+    if (userService.isBlocked(user.getUsername())) {
+        redirectAttributes.addFlashAttribute("error", "Этот аккаунт заблокирован. Обратитесь к администратору для разблокировки.");
+        // Разлогинить пользователя и вернуть его на страницу регистрации или другую страницу
+        return "redirect:/register";
+    }
+
+    return "redirect:/login";
+}
+
+
 }

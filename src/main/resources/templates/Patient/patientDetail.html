@@ -61,6 +61,12 @@
         <div><strong>Контакт для экстренных случаев:</strong> <span th:text="${patient.emergencyContact}">Контакт для экстренных случаев</span></div>
     </div>
     <a href="/patient/list" class="back-btn">Назад к списку</a>
+    <form th:action="@{/unblock-user/{userId}(userId=${patient.id})}" method="post" style="display:inline;">
+        <button type="submit" class="btn btn-danger">Розблокировать</button>
+    </form>
+    <form th:action="@{/block-user/{userId}(userId=${patient.id})}" method="post" style="display:inline;">
+        <button type="submit" class="btn btn-success">Заблокировать</button>
+    </form>
 </div>
 </body>
 </html>

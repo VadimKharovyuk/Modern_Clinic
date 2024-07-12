@@ -1,6 +1,8 @@
 package com.example.spring_security.service;
 import com.example.spring_security.model.User;
 import com.example.spring_security.repository.UserRepository;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,6 +17,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final EntityManager entityManager;
 
     public User registerUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -49,5 +52,31 @@ public class UserService {
         userRepository.save(user);
 
         return true;
+    }
+
+    @Transactional
+    public void blockUser(Long userId) {
+        Optional<User> optionalUser = userRepository.findById(userId);
+        optionalUser.ifPresent(user -> {
+            user.setBlocked(true);
+            userRepository.save(user);
+            entityManager.clear(); // Очистка кэша сущностей Hibernate
+
+        });
+    }
+
+
+    @Transactional
+    public void unblockUser(Long userId) {
+        Optional<User> optionalUser = userRepository.findById(userId);
+        optionalUser.ifPresent(user -> {
+            user.setBlocked(false);
+            userRepository.save(user);
+        });
+    }
+
+    public boolean isBlocked(String username) {
+        User user = findByUsername(username);
+        return user != null && user.isBlocked();
     }
 }
