@@ -63,16 +63,17 @@
 
 </header>
 <div class="container">
-    <h1>Серис клиники  </h1>
+    <h1>Сервис клиники</h1>
 
     <p><a href="/">На главную страницу</a></p>
     <p><a href="/doctor/list">Список Докторов</a></p>
-    <p><a href="/appointment/form">записаться к доктору</a></p>
-    <p><a href="/change-password">изменить пароль </a></p>
-<!--    <p><a href="/patient/form">Заполнить  Мед Карту</a></p>-->
+    <p><a href="/appointment/form">Записаться к доктору</a></p>
+    <p><a href="/change-password">Изменить пароль</a></p>
+    <p><a th:href="@{/edit/{id}(id=${patient.id})}">Редактировать данные пациента</a></p>
 
 
 </div>
+
 
 <div class="container">
     <div class="profile">

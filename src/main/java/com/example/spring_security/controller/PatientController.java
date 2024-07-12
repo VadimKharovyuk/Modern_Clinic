@@ -11,12 +11,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -97,5 +95,30 @@ public class PatientController {
         model.addAttribute("patient", patient);
         model.addAttribute("appointments", appointments);
         return "Patient/patientAppointments";
+    }
+
+
+
+
+
+    // Метод для отображения формы обновления данных пациента
+
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable("id") Long id, Model model) {
+        Patient patient = patientService.getPatientById(id);
+        model.addAttribute("patient", patient);
+        return "Patient/patientEditForm";
+    }
+
+    // Метод для сохранения изменений данных пациента
+    @PostMapping("/update")
+    public String updatePatient(@ModelAttribute("patient") Patient updatedPatient ,Authentication authentication) {
+//         Получение текущего пользователя можно добавить, если нужно
+         User currentUser = userService.findByUsername(authentication.getName());
+         updatedPatient.setUser(currentUser);
+
+        // Обновление данных пациента
+        patientService.saveOrUpdatePatient(updatedPatient);
+        return "redirect:/patient/dashboard";
     }
 }
