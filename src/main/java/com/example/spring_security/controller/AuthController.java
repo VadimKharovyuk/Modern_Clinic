@@ -165,6 +165,25 @@ public class AuthController {
 //        userService.registerUser(user);
 //        return "redirect:/login";
 //    }
+//@PostMapping("/register")
+//public String register(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
+//    // Проверка, существует ли пользователь с таким email
+//    if (userService.existsByEmail(user.getEmail())) {
+//        redirectAttributes.addFlashAttribute("error", "Эта почта уже используется");
+//        return "redirect:/register";
+//    }
+//
+//    userService.registerUser(user);
+//
+//    // Проверка, заблокирован ли пользователь
+//    if (userService.isBlocked(user.getUsername())) {
+//        redirectAttributes.addFlashAttribute("error", "Этот аккаунт заблокирован. Обратитесь к администратору для разблокировки.");
+//        // Разлогинить пользователя и вернуть его на страницу регистрации или другую страницу
+//        return "redirect:/register";
+//    }
+//
+//    return "redirect:/login";
+//}
 @PostMapping("/register")
 public String register(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
     // Проверка, существует ли пользователь с таким email
@@ -173,19 +192,17 @@ public String register(@ModelAttribute User user, RedirectAttributes redirectAtt
         return "redirect:/register";
     }
 
-    // Установка роли пользователя и регистрация
-    user.setRole(User.Role.USER);
     userService.registerUser(user);
 
     // Проверка, заблокирован ли пользователь
     if (userService.isBlocked(user.getUsername())) {
         redirectAttributes.addFlashAttribute("error", "Этот аккаунт заблокирован. Обратитесь к администратору для разблокировки.");
-        // Разлогинить пользователя и вернуть его на страницу регистрации или другую страницу
         return "redirect:/register";
     }
 
     return "redirect:/login";
 }
+
 
 
 }

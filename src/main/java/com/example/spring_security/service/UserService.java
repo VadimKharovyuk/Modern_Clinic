@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,12 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final EntityManager entityManager;
+
+
+
+    public List<User> findAll(){
+       return userRepository.findAll();
+    }
 
     public User registerUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -60,8 +67,6 @@ public class UserService {
         optionalUser.ifPresent(user -> {
             user.setBlocked(true);
             userRepository.save(user);
-            entityManager.clear(); // Очистка кэша сущностей Hibernate
-
         });
     }
 
@@ -71,12 +76,16 @@ public class UserService {
         Optional<User> optionalUser = userRepository.findById(userId);
         optionalUser.ifPresent(user -> {
             user.setBlocked(false);
-            userRepository.save(user);
+            userRepository.save(user); // Убедитесь, что сохранение происходит внутри транзакции
         });
     }
+
 
     public boolean isBlocked(String username) {
         User user = findByUsername(username);
         return user != null && user.isBlocked();
     }
+
+
+
 }

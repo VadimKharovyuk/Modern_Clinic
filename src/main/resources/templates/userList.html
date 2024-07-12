@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+    <!-- Ваши стили и скрипты могут быть подключены здесь -->
+</head>
+<body>
+<h1>User List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Blocked</th>
+        <th>Actions</th>
+        <!-- Другие заголовки столбцов, если необходимо -->
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Используем Thymeleaf для итерации по списку пользователей -->
+    <tr th:each="user : ${user}">
+        <td th:text="${user.id}">1</td>
+        <td th:text="${user.username}">Username</td>
+        <td th:text="${user.email}">email@example.com</td>
+        <td th:text="${user.role}">ROLE_USER</td>
+        <td th:text="${user.blocked} ? 'Blocked' : 'Active'">Active</td>
+        <td>
+            <form th:action="@{/unblock-user/{userId}(userId=${user.id})}" method="post" style="display:inline;">
+                <button type="submit" class="btn btn-danger">Unblock</button>
+            </form>
+            <form th:action="@{/block-user/{userId}(userId=${user.id})}" method="post" style="display:inline;">
+                <button type="submit" class="btn btn-success">Block</button>
+            </form>
+        </td>
+        <!-- Другие ячейки данных, если необходимо -->
+    </tr>
+    </tbody>
+</table>
+<a href="/">Back to Home</a>
+<!-- Другие элементы страницы, если необходимо -->
+</body>
+</html>

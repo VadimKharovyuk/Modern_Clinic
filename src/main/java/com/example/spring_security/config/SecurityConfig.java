@@ -64,6 +64,7 @@ public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws
                     .requestMatchers("/patient/list").hasRole("ADMIN")
                     .requestMatchers("/block-user/**").hasRole("ADMIN")
                     .requestMatchers("/unblock-user/**").hasRole("ADMIN")
+                    .requestMatchers("/userList").hasRole("ADMIN")
 
                     .requestMatchers("/change-password").authenticated()
                     .requestMatchers("/patient/dashboard").authenticated()

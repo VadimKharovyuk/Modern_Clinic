@@ -1,5 +1,6 @@
 package com.example.spring_security.controller;
 
+import com.example.spring_security.model.User;
 import com.example.spring_security.service.UserService;
 import jakarta.persistence.EntityManager;
 import lombok.AllArgsConstructor;
@@ -7,11 +8,12 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
+
 @Controller
 @AllArgsConstructor
 public class UserController {
@@ -47,13 +49,23 @@ public class UserController {
     public String blockUser(@PathVariable Long userId) {
         userService.blockUser(userId);
         entityManager.clear(); // Очистка кэша сущностей Hibernate
-        return "redirect:/patient/list"; // Перенаправление на страницу администратора после блокировки
+        System.out.println("Пользователь  заблокирован с  id" + userId);
+        return "redirect:/userList"; // Перенаправление на страницу администратора после блокировки
     }
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/unblock-user/{userId}")
     public String unblockUser(@PathVariable Long userId) {
         userService.unblockUser(userId);
         entityManager.clear(); // Очистка кэша сущностей Hibernate
-        return "redirect:/patient/list"; // Перенаправление на страницу администратора после разблокировки
+        return "redirect:/userList"; // Перенаправление на страницу администратора после разблокировки
     }
+
+@PreAuthorize("hasRole('ADMIN')")
+@GetMapping("/userList")
+public String findAll(Model model) {
+    List<User> userList = userService.findAll();
+    model.addAttribute("user", userList);
+    return "userList";
+}
+
 }
