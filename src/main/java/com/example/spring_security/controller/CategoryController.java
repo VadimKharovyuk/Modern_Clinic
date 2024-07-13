@@ -61,4 +61,9 @@ public class CategoryController {
         model.addAttribute("category", new Category());
         return "category/create-category";
     }
+    @PostMapping("/{categoryId}/doctors/{doctorId}")
+    public String removeDoctorFromCategory(@PathVariable Long categoryId, @PathVariable Long doctorId) {
+        categoryService.removeDoctorFromCategory(categoryId, doctorId);
+        return "redirect:/categories";
+    }
 }

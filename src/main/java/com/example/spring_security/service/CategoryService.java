@@ -5,11 +5,13 @@ import com.example.spring_security.model.Category;
 import com.example.spring_security.model.Doctor;
 import com.example.spring_security.repository.CategoryRepository;
 import com.example.spring_security.repository.DoctorRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -47,6 +49,19 @@ public class CategoryService {
     }
 
 
+    public void removeDoctorFromCategory(Long categoryId, Long doctorId) {
+        Optional<Category> categoryOptional = categoryRepository.findById(categoryId);
+        Optional<Doctor> doctorOptional = doctorRepository.findById(doctorId);
 
+        if (categoryOptional.isPresent() && doctorOptional.isPresent()) {
+            Category category = categoryOptional.get();
+            Doctor doctor = doctorOptional.get();
 
+            // Удаляем доктора из категории
+            category.getDoctors().remove(doctor);
+            categoryRepository.save(category);
+        } else {
+            throw new EntityNotFoundException("Category or Doctor not found");
+        }
+    }
 }
