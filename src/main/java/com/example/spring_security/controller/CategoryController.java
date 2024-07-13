@@ -6,6 +6,7 @@ import com.example.spring_security.service.CategoryService;
 import com.example.spring_security.service.DoctorService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -61,6 +62,8 @@ public class CategoryController {
         model.addAttribute("category", new Category());
         return "category/create-category";
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/{categoryId}/doctors/{doctorId}")
     public String removeDoctorFromCategory(@PathVariable Long categoryId, @PathVariable Long doctorId) {
         categoryService.removeDoctorFromCategory(categoryId, doctorId);

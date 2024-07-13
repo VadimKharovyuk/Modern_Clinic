@@ -1,5 +1,97 @@
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html xmlns:th="http://www.thymeleaf.org">&ndash;&gt;-->
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;    <title>Doctors in Category</title>&ndash;&gt;-->
+<!--&lt;!&ndash;    <style>&ndash;&gt;-->
+<!--&lt;!&ndash;        body {&ndash;&gt;-->
+<!--&lt;!&ndash;            font-family: Arial, sans-serif;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin: 0;&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 0;&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #f8f9fa;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        h1, h2 {&ndash;&gt;-->
+<!--&lt;!&ndash;            color: #343a40;&ndash;&gt;-->
+<!--&lt;!&ndash;            text-align: center;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        p {&ndash;&gt;-->
+<!--&lt;!&ndash;            text-align: center;&ndash;&gt;-->
+<!--&lt;!&ndash;            font-size: 1.1em;&ndash;&gt;-->
+<!--&lt;!&ndash;            color: #6c757d;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        ul {&ndash;&gt;-->
+<!--&lt;!&ndash;            list-style-type: none;&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 0;&ndash;&gt;-->
+<!--&lt;!&ndash;            width: 50%;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin: 0 auto;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        li {&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #ffffff;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin: 10px 0;&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 10px;&ndash;&gt;-->
+<!--&lt;!&ndash;            border: 1px solid #ced4da;&ndash;&gt;-->
+<!--&lt;!&ndash;            border-radius: 4px;&ndash;&gt;-->
+<!--&lt;!&ndash;            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        form {&ndash;&gt;-->
+<!--&lt;!&ndash;            display: flex;&ndash;&gt;-->
+<!--&lt;!&ndash;            flex-direction: column;&ndash;&gt;-->
+<!--&lt;!&ndash;            align-items: center;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin-top: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        label, select, button {&ndash;&gt;-->
+<!--&lt;!&ndash;            margin: 10px 0;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        select {&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 5px;&ndash;&gt;-->
+<!--&lt;!&ndash;            font-size: 1em;&ndash;&gt;-->
+<!--&lt;!&ndash;            width: 200px;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        button {&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 10px 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;            font-size: 1em;&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #007bff;&ndash;&gt;-->
+<!--&lt;!&ndash;            color: #ffffff;&ndash;&gt;-->
+<!--&lt;!&ndash;            border: none;&ndash;&gt;-->
+<!--&lt;!&ndash;            border-radius: 4px;&ndash;&gt;-->
+<!--&lt;!&ndash;            cursor: pointer;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        button:hover {&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #0056b3;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        a {&ndash;&gt;-->
+<!--&lt;!&ndash;            display: block;&ndash;&gt;-->
+<!--&lt;!&ndash;            text-align: center;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin-top: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;            color: #007bff;&ndash;&gt;-->
+<!--&lt;!&ndash;            text-decoration: none;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        a:hover {&ndash;&gt;-->
+<!--&lt;!&ndash;            text-decoration: underline;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;    </style>&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<body>&ndash;&gt;-->
+<!--&lt;!&ndash;<h1 th:text="${category.name}">Category Name</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;<p th:text="${category.description}">Category Description</p>&ndash;&gt;-->
+<!--&lt;!&ndash;<h2>Doctors in this Category</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;<ul>&ndash;&gt;-->
+<!--&lt;!&ndash;    <li th:each="doctor : ${doctors}">&ndash;&gt;-->
+<!--&lt;!&ndash;        <a th:href="@{/doctors/profile/{doctorId}(doctorId=${doctor.id})}" th:text="${doctor.name}">Doctor Name</a>&ndash;&gt;-->
+<!--&lt;!&ndash;    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;</ul>&ndash;&gt;-->
+<!--&lt;!&ndash;<h2>Add Doctor to this Category</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;<form action="#" th:action="@{/categories/{categoryId}/doctors(categoryId=${category.id})}" method="post">&ndash;&gt;-->
+<!--&lt;!&ndash;    <label for="doctorId">Select Doctor:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <select id="doctorId" name="doctorId">&ndash;&gt;-->
+<!--&lt;!&ndash;        <option th:each="doctor : ${allDoctors}" th:value="${doctor.id}" th:text="${doctor.name}">Doctor Name</option>&ndash;&gt;-->
+<!--&lt;!&ndash;    </select>&ndash;&gt;-->
+<!--&lt;!&ndash;    <button type="submit">Add Doctor</button>&ndash;&gt;-->
+<!--&lt;!&ndash;</form>&ndash;&gt;-->
+<!--&lt;!&ndash;<a href="/categories">Back to Categories</a>&ndash;&gt;-->
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->
 <!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">-->
 <!--<head>-->
 <!--    <title>Doctors in Category</title>-->
 <!--    <style>-->
@@ -49,14 +141,14 @@
 <!--        button {-->
 <!--            padding: 10px 20px;-->
 <!--            font-size: 1em;-->
-<!--            background-color: #007bff;-->
+<!--            background-color: #dc3545; /* Red color for delete button */-->
 <!--            color: #ffffff;-->
 <!--            border: none;-->
 <!--            border-radius: 4px;-->
 <!--            cursor: pointer;-->
 <!--        }-->
 <!--        button:hover {-->
-<!--            background-color: #0056b3;-->
+<!--            background-color: #c82333; /* Darker red color on hover */-->
 <!--        }-->
 <!--        a {-->
 <!--            display: block;-->
@@ -77,6 +169,10 @@
 <!--<ul>-->
 <!--    <li th:each="doctor : ${doctors}">-->
 <!--        <a th:href="@{/doctors/profile/{doctorId}(doctorId=${doctor.id})}" th:text="${doctor.name}">Doctor Name</a>-->
+<!--       <div sec:authorize="hasRole('ROLE_ADMIN')">-->
+<!--        <form th:action="@{/categories/{categoryId}/doctors/{doctorId}(categoryId=${category.id}, doctorId=${doctor.id})}" method="post">-->
+<!--            <button type="submit">Remove from Category</button>-->
+<!--        </form>-->
 <!--    </li>-->
 <!--</ul>-->
 <!--<h2>Add Doctor to this Category</h2>-->
@@ -91,8 +187,9 @@
 <!--</body>-->
 <!--</html>-->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
+    <meta charset="UTF-8">
     <title>Doctors in Category</title>
     <style>
         body {
@@ -169,20 +266,26 @@
 <ul>
     <li th:each="doctor : ${doctors}">
         <a th:href="@{/doctors/profile/{doctorId}(doctorId=${doctor.id})}" th:text="${doctor.name}">Doctor Name</a>
-        <!-- Форма для удаления доктора из категории -->
-        <form th:action="@{/categories/{categoryId}/doctors/{doctorId}(categoryId=${category.id}, doctorId=${doctor.id})}" method="post">
-            <button type="submit">Remove from Category</button>
-        </form>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <form th:action="@{/categories/{categoryId}/doctors/{doctorId}(categoryId=${category.id}, doctorId=${doctor.id})}" method="post">
+                <button type="submit">Remove from Category</button>
+            </form>
+        </div>
     </li>
 </ul>
-<h2>Add Doctor to this Category</h2>
-<form action="#" th:action="@{/categories/{categoryId}/doctors(categoryId=${category.id})}" method="post">
-    <label for="doctorId">Select Doctor:</label>
-    <select id="doctorId" name="doctorId">
-        <option th:each="doctor : ${allDoctors}" th:value="${doctor.id}" th:text="${doctor.name}">Doctor Name</option>
-    </select>
-    <button type="submit">Add Doctor</button>
-</form>
+
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+    <h2>Add Doctor to this Category</h2>
+    <form action="#" th:action="@{/categories/{categoryId}/doctors(categoryId=${category.id})}" method="post">
+        <label for="doctorId">Select Doctor:</label>
+        <select id="doctorId" name="doctorId">
+            <option th:each="doctor : ${allDoctors}" th:value="${doctor.id}" th:text="${doctor.name}">Doctor Name</option>
+        </select>
+        <button type="submit">Add Doctor</button>
+    </form>
+
+</div>
+
 <a href="/categories">Back to Categories</a>
 </body>
 </html>
