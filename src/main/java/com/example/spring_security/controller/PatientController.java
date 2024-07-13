@@ -27,7 +27,7 @@ public class PatientController {
     private final AppointmentService appointmentService;
 
 
-    @GetMapping("/patient/dashboard")
+    @GetMapping("/patient/dashboard/account")
     public String showPatientDashboard(Model model, Authentication authentication) {
         // Получение текущего пользователя
         User user = userService.findByUsername(authentication.getName());
@@ -42,6 +42,21 @@ public class PatientController {
         model.addAttribute("user", user);
         model.addAttribute("patient", patient);
         model.addAttribute("appointments", appointments);
+
+//        return "Patient/patientDashboard";
+        return "Patient/showPatientDashboard";
+    }
+    @GetMapping("/patient/dashboard")
+    public String PatientDashboard(Model model, Authentication authentication) {
+        // Получение текущего пользователя
+        User user = userService.findByUsername(authentication.getName());
+
+        // Получение информации о пациенте
+        Patient patient = patientService.findByUser(user);
+
+        // Добавление данных в модель
+        model.addAttribute("user", user);
+        model.addAttribute("patient", patient);
 
         return "Patient/patientDashboard";
     }

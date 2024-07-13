@@ -1,0 +1,249 @@
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html xmlns:th="http://www.thymeleaf.org">&ndash;&gt;-->
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta charset="UTF-8">&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta name="viewport" content="width=device-width, initial-scale=1.0">&ndash;&gt;-->
+<!--&lt;!&ndash;    <title>Панель пациента</title>&ndash;&gt;-->
+<!--&lt;!&ndash;    <link rel="stylesheet" href="/styles.css"> &lt;!&ndash; Подключение внешнего CSS-файла для стилей &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    <style>&ndash;&gt;-->
+<!--&lt;!&ndash;        /* Внутренние стили для демонстрации */&ndash;&gt;-->
+<!--&lt;!&ndash;        body {&ndash;&gt;-->
+<!--&lt;!&ndash;            font-family: Arial, sans-serif;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin: 0;&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 0;&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #f0f0f0;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        .container {&ndash;&gt;-->
+<!--&lt;!&ndash;            max-width: 800px;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin: 2rem auto;&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 2rem;&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #ffffff;&ndash;&gt;-->
+<!--&lt;!&ndash;            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        h1 {&ndash;&gt;-->
+<!--&lt;!&ndash;            font-size: 2rem;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin-bottom: 1rem;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        .info, .appointments {&ndash;&gt;-->
+<!--&lt;!&ndash;            margin-bottom: 2rem;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        table {&ndash;&gt;-->
+<!--&lt;!&ndash;            width: 100%;&ndash;&gt;-->
+<!--&lt;!&ndash;            border-collapse: collapse;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin-bottom: 1rem;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        table, th, td {&ndash;&gt;-->
+<!--&lt;!&ndash;            border: 1px solid #ccc;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        th, td {&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 0.5rem;&ndash;&gt;-->
+<!--&lt;!&ndash;            text-align: left;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        .back-btn {&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #007bff;&ndash;&gt;-->
+<!--&lt;!&ndash;            color: white;&ndash;&gt;-->
+<!--&lt;!&ndash;            border: none;&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 0.5rem 1rem;&ndash;&gt;-->
+<!--&lt;!&ndash;            cursor: pointer;&ndash;&gt;-->
+<!--&lt;!&ndash;            border-radius: 4px;&ndash;&gt;-->
+<!--&lt;!&ndash;            text-decoration: none;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        .back-btn:hover {&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #0056b3;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;    </style>&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<body>&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="container">&ndash;&gt;-->
+<!--&lt;!&ndash;    <h1>Панель пациента</h1>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <div class="profile">&ndash;&gt;-->
+<!--&lt;!&ndash;            <h2>Профиль</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;            <p><strong>Имя:</strong> <span th:text="${patient.firstName} + ' ' + ${patient.lastName}"></span></p>&ndash;&gt;-->
+<!--&lt;!&ndash;            <p><strong>Дата рождения:</strong> <span th:text="${patient.dateOfBirth}"></span></p>&ndash;&gt;-->
+<!--&lt;!&ndash;            <p><strong>Пол:</strong> <span th:text="${patient.gender}"></span></p>&ndash;&gt;-->
+<!--&lt;!&ndash;            <p><strong>Адрес:</strong> <span th:text="${patient.address}"></span></p>&ndash;&gt;-->
+<!--&lt;!&ndash;            <p><strong>Телефон:</strong> <span th:text="${patient.phoneNumber}"></span></p>&ndash;&gt;-->
+<!--&lt;!&ndash;            <p><strong>Аллергии:</strong> <span th:text="${patient.allergies}"></span></p>&ndash;&gt;-->
+<!--&lt;!&ndash;            <p><strong>Контакт для экстренных случаев:</strong> <span th:text="${patient.emergencyContact}"></span></p>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <div class="appointments">&ndash;&gt;-->
+<!--&lt;!&ndash;            <h2>Записи к докторам</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div th:each="appointment : ${appointments}" class="appointment-item">&ndash;&gt;-->
+<!--&lt;!&ndash;                <p><strong>Дата:</strong> <span th:text="${appointment.appointmentDateTime}"></span></p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p><strong>Доктор:</strong> <span th:text="${appointment.doctor.name}"></span></p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p><strong>Специализация:</strong> <span th:text="${appointment.doctor.specialization}"></span></p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p><strong>Причина:</strong> <span th:text="${appointment.reason}"></span></p>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    <a href="/" class="back-btn">На главную страницу</a>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Панель пациента</title>-->
+<!--    <link rel="stylesheet" href="/styles.css"> &lt;!&ndash; Подключение внешнего CSS-файла для стилей &ndash;&gt;-->
+<!--    <style>-->
+<!--        /* Внутренние стили для демонстрации */-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            background-color: #f0f0f0;-->
+<!--        }-->
+<!--        .container {-->
+<!--            max-width: 800px;-->
+<!--            margin: 2rem auto;-->
+<!--            padding: 2rem;-->
+<!--            background-color: #ffffff;-->
+<!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--        }-->
+<!--        h1 {-->
+<!--            font-size: 2rem;-->
+<!--            margin-bottom: 1rem;-->
+<!--        }-->
+<!--        .profile, .appointments {-->
+<!--            margin-bottom: 2rem;-->
+<!--        }-->
+<!--        .appointment-item {-->
+<!--            margin-bottom: 1rem;-->
+<!--            padding: 1rem;-->
+<!--            background-color: #f9f9f9;-->
+<!--            border: 1px solid #ccc;-->
+<!--            border-radius: 4px;-->
+<!--        }-->
+<!--        .back-btn {-->
+<!--            background-color: #007bff;-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--            padding: 0.5rem 1rem;-->
+<!--            cursor: pointer;-->
+<!--            border-radius: 4px;-->
+<!--            text-decoration: none;-->
+<!--            display: inline-block;-->
+<!--        }-->
+<!--        .back-btn:hover {-->
+<!--            background-color: #0056b3;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="container">-->
+<!--    <h1>Панель пациента</h1>-->
+
+<!--    <div class="profile">-->
+<!--        <h2>Профиль</h2>-->
+<!--        <p><strong>Имя:</strong> <span th:text="${patient.firstName} + ' ' + ${patient.lastName}"></span></p>-->
+<!--        <p><strong>Дата рождения:</strong> <span th:text="${patient.dateOfBirth}"></span></p>-->
+<!--        <p><strong>Пол:</strong> <span th:text="${patient.gender}"></span></p>-->
+<!--        <p><strong>Адрес:</strong> <span th:text="${patient.address}"></span></p>-->
+<!--        <p><strong>Телефон:</strong> <span th:text="${patient.phoneNumber}"></span></p>-->
+<!--        <p><strong>Аллергии:</strong> <span th:text="${patient.allergies}"></span></p>-->
+<!--        <p><strong>Контакт для экстренных случаев:</strong> <span th:text="${patient.emergencyContact}"></span></p>-->
+<!--    </div>-->
+
+<!--    <div class="appointments">-->
+<!--        <h2>Записи к докторам</h2>-->
+<!--        <div th:each="appointment : ${appointments}" class="appointment-item">-->
+<!--            <p><strong>Дата:</strong> <span th:text="${appointment.appointmentDateTime}"></span></p>-->
+<!--            <p><strong>Доктор:</strong> <span th:text="${appointment.doctor.name}"></span></p>-->
+<!--            <p><strong>Специализация:</strong> <span th:text="${appointment.doctor.specialization}"></span></p>-->
+<!--            <p><strong>Причина:</strong> <span th:text="${appointment.reason}"></span></p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <a href="/" class="back-btn">На главную страницу</a>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель пациента</title>
+    <link rel="stylesheet" href="/styles.css"> <!-- Подключение внешнего CSS-файла для стилей -->
+    <style>
+        /* Внутренние стили для демонстрации */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .profile, .appointments {
+            margin-bottom: 2rem;
+        }
+        .appointment-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .back-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .back-btn:hover {
+            background-color: #4ca5cb;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Панель пациента</h1>
+
+    <div class="profile">
+        <h2>Профиль</h2>
+        <div>
+            <a class="back-btn" th:href="@{/edit/{id}(id=${patient.id})}">Редактировать данные пациента</a>
+        </div>
+        <p><strong>Имя:</strong> <span th:text="${patient.firstName} + ' ' + ${patient.lastName}"></span></p>
+        <p><strong>Дата рождения:</strong> <span th:text="${patient.dateOfBirth}"></span></p>
+        <p><strong>Пол:</strong> <span th:text="${patient.gender}"></span></p>
+        <p><strong>Адрес:</strong> <span th:text="${patient.address}"></span></p>
+        <p><strong>Телефон:</strong> <span th:text="${patient.phoneNumber}"></span></p>
+        <p><strong>Аллергии:</strong> <span th:text="${patient.allergies}"></span></p>
+        <p><strong>Контакт для экстренных случаев:</strong> <span th:text="${patient.emergencyContact}"></span></p>
+
+    </div>
+
+    <div class="appointments">
+        <h2>Записи к докторам</h2>
+        <div th:each="appointment : ${appointments}" class="appointment-item">
+            <p><strong>Дата:</strong> <span th:text="${appointment.appointmentDateTime}"></span></p>
+            <p><strong>Доктор:</strong> <span th:text="${appointment.doctor.name}"></span></p>
+            <p><strong>Специализация:</strong> <span th:text="${appointment.doctor.specialization}"></span></p>
+            <p><strong>Причина:</strong> <span th:text="${appointment.reason}"></span></p>
+        </div>
+    </div>
+
+    <a href="/" class="back-btn">На главную страницу</a>
+</div>
+</body>
+</html>

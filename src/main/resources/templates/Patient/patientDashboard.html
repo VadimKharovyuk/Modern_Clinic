@@ -5,95 +5,99 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
         }
         .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
         header {
-            background: #333;
-            color: #fff;
-            padding-top: 30px;
-            min-height: 70px;
-            border-bottom: #0779e4 3px solid;
-        }
-        header a, header h1 {
-            text-decoration: none;
-            color: #fff;
+            background-color: #3cadad;
+            color: white;
+            padding: 1rem;
             text-align: center;
+            border-radius: 8px 8px 0 0;
         }
-        .profile {
-            background: #fff;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        header h1 {
+            margin: 0;
         }
-        .appointments {
-            background: #fff;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        header a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid white;
+            border-radius: 4px;
         }
-        .appointment-item {
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
+        header a:hover {
+            background-color: white;
+            color: #007bff;
         }
-        .appointment-item:last-child {
-            border-bottom: none;
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .card {
+            flex: 1 1 calc(50% - 1rem);
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            padding: 1rem;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card a {
+            display: block;
+            padding: 1rem;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .card a:hover {
+            color: #0056b3;
         }
     </style>
 </head>
 <body>
 <header>
-
-    <div class="container">
-        <h1>Личный кабинет пациента</h1>
-        <a href="/logout">Выйти</a><br><br>
-        <div th:if="${user.role.name() == 'ADMIN'}" class="admin-link">
-            <a th:href="@{/admin/dashboard}">Админ Панель</a>
-        </div>
-
+    <h1>Личный кабинет пациента</h1>
+    <a href="/logout">Выйти</a><br><br>
+    <div th:if="${user.role.name() == 'ADMIN'}" class="admin-link">
+        <a th:href="@{/admin/dashboard}">Админ Панель</a>
     </div>
-
+    <div th:if="${user.role.name() == 'DOCTOR'}" class="admin-link">
+        <a th:href="@{/doctor/account}">Doctor account</a>
+    </div>
 </header>
 <div class="container">
-    <h1>Сервис клиники</h1>
-
-    <p><a href="/">На главную страницу</a></p>
-    <p><a href="/doctor/list">Список Докторов</a></p>
-    <p><a href="/appointment/form">Записаться к доктору</a></p>
-    <p><a href="/change-password">Изменить пароль</a></p>
-    <p><a th:href="@{/edit/{id}(id=${patient.id})}">Редактировать данные пациента</a></p>
-
-
-</div>
-
-
-<div class="container">
-    <div class="profile">
-        <h2>Профиль</h2>
-        <p><strong>Имя:</strong> <span th:text="${patient.firstName} + ' ' + ${patient.lastName}"></span></p>
-        <p><strong>Дата рождения:</strong> <span th:text="${patient.dateOfBirth}"></span></p>
-        <p><strong>Пол:</strong> <span th:text="${patient.gender}"></span></p>
-        <p><strong>Адрес:</strong> <span th:text="${patient.address}"></span></p>
-        <p><strong>Телефон:</strong> <span th:text="${patient.phoneNumber}"></span></p>
-        <p><strong>Аллергии:</strong> <span th:text="${patient.allergies}"></span></p>
-        <p><strong>Контакт для экстренных случаев:</strong> <span th:text="${patient.emergencyContact}"></span></p>
-    </div>
-
-    <div class="appointments">
-        <h2>Записи к докторам</h2>
-        <div th:each="appointment : ${appointments}" class="appointment-item">
-            <p><strong>Дата:</strong> <span th:text="${appointment.appointmentDateTime}"></span></p>
-            <p><strong>Доктор:</strong> <span th:text="${appointment.doctor.name}"></span></p>
-            <p><strong>Специализация:</strong> <span th:text="${appointment.doctor.specialization}"></span></p>
-            <p><strong>Причина:</strong> <span th:text="${appointment.reason}"></span></p>
+    <h1 style="text-align: center">Сервис клиники</h1>
+    <div class="card-container">
+        <div class="card">
+            <a href="/">На главную страницу</a>
+        </div>
+        <div class="card">
+            <a href="/patient/form">Заполнить форму Пациента</a>
+        </div>
+        <div class="card">
+            <a href="/doctor/list">Список Докторов</a>
+        </div>
+        <div class="card">
+            <a href="/appointment/form">Записаться к доктору</a>
+        </div>
+        <div class="card">
+            <a href="/change-password">Изменить пароль</a>
+        </div>
+        <div class="card">
+            <a href="/patient/dashboard/account">Панель пациента</a>
         </div>
     </div>
 </div>

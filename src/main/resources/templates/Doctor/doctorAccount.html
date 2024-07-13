@@ -4,12 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Докторский аккаунт</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <style>
+        /* Стили для страницы */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        a {
+            display: block;
+            text-align: right;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #45a049;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
     <h1>Докторский аккаунт</h1>
     <h2>Профиль доктора</h2>
+    <a href="/">Главная </a><br>
     <a href="/logout">Выйти</a><br><br>
+
     <div>
         <strong>ID:</strong> <span th:text="${doctor.id}"></span><br>
         <strong>Имя:</strong> <span th:text="${doctor.name}"></span><br>
@@ -24,6 +66,9 @@
             <th>ID пациента</th>
             <th>Имя пациента</th>
             <th>Фамилия пациента</th>
+            <th>Time</th>
+            <th>PhoneNumber</th>
+            <th>Gender</th>
             <!-- Добавьте другие атрибуты пациента при необходимости -->
         </tr>
         </thead>
@@ -32,6 +77,10 @@
             <td th:text="${appointment.patient.id}"></td>
             <td th:text="${appointment.patient.firstName}"></td>
             <td th:text="${appointment.patient.lastName}"></td>
+            <td th:text="${appointment.appointmentDateTime}"></td>
+            <td th:text="${appointment.patient.phoneNumber}"></td>
+            <td th:text="${appointment.patient.gender}"></td>
+
             <!-- Добавьте другие атрибуты пациента при необходимости -->
         </tr>
         </tbody>

@@ -1,3 +1,59 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Админ Панель</title>-->
+<!--    <link rel="stylesheet" href="/styles.css">-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            background-color: #f0f0f0;-->
+<!--        }-->
+<!--        .container {-->
+<!--            max-width: 800px;-->
+<!--            margin: 2rem auto;-->
+<!--            padding: 2rem;-->
+<!--            background-color: #ffffff;-->
+<!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--        }-->
+<!--        h1 {-->
+<!--            font-size: 2rem;-->
+<!--            margin-bottom: 1rem;-->
+<!--        }-->
+<!--        .admin-options {-->
+<!--            margin-top: 2rem;-->
+<!--        }-->
+<!--        .admin-options a {-->
+<!--            display: inline-block;-->
+<!--            margin-right: 1rem;-->
+<!--            padding: 0.5rem 1rem;-->
+<!--            background-color: #007bff;-->
+<!--            color: white;-->
+<!--            text-decoration: none;-->
+<!--            border-radius: 4px;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="container">-->
+<!--    <h1>Личный кабинет Admina</h1>-->
+<!--    <a href="/logout">Выйти</a><br><br>-->
+<!--    <p><a href="/">На главную страницу</a></p>-->
+<!--</div>-->
+<!--<div class="container">-->
+<!--    <h1>Админ Панель</h1>-->
+<!--    <div class="admin-options">-->
+<!--        <a th:href="@{/doctor/form}">Добавить Доктора</a>-->
+<!--        <a th:href="@{/doctor/list}">Список Докторов</a>-->
+<!--        <a th:href="@{/patient/list}">Список клиентов</a>-->
+<!--        <a th:href="@{/userList}">Список Юзеров</a>-->
+<!--    </div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -10,7 +66,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #f4f4f9;
         }
         .container {
             max-width: 800px;
@@ -18,38 +74,87 @@
             padding: 2rem;
             background-color: #ffffff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
         h1 {
             font-size: 2rem;
             margin-bottom: 1rem;
+            text-align: center;
         }
-        .admin-options {
-            margin-top: 2rem;
-        }
-        .admin-options a {
-            display: inline-block;
-            margin-right: 1rem;
-            padding: 0.5rem 1rem;
+        header {
             background-color: #007bff;
             color: white;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        header h1 {
+            margin: 0;
+        }
+        header a {
+            color: white;
             text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid white;
             border-radius: 4px;
+        }
+        header a:hover {
+            background-color: white;
+            color: #007bff;
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .card {
+            flex: 1 1 calc(50% - 1rem);
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            padding: 1rem;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card a {
+            display: block;
+            padding: 1rem;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .card a:hover {
+            color: #0056b3;
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>Личный кабинет Admina</h1>
-    <a href="/logout">Выйти</a><br><br>
-    <p><a href="/">На главную страницу</a></p>
-</div>
+<header>
+    <div class="container">
+        <h1>Личный кабинет Admina</h1>
+        <a href="/logout">Выйти</a><br><br>
+        <a href="/">На главную страницу</a>
+    </div>
+</header>
 <div class="container">
     <h1>Админ Панель</h1>
-    <div class="admin-options">
-        <a th:href="@{/doctor/form}">Добавить Доктора</a>
-        <a th:href="@{/doctor/list}">Список Докторов</a>
-        <a th:href="@{/patient/list}">Список клиентов</a>
-        <a th:href="@{/userList}">Список Юзеров</a>
+    <div class="card-container">
+        <div class="card">
+            <a th:href="@{/doctor/form}">Добавить Доктора</a>
+        </div>
+        <div class="card">
+            <a th:href="@{/doctor/list}">Список Докторов</a>
+        </div>
+        <div class="card">
+            <a th:href="@{/patient/list}">Список клиентов</a>
+        </div>
+        <div class="card">
+            <a th:href="@{/userList}">Список Юзеров</a>
+        </div>
     </div>
 </div>
 </body>
