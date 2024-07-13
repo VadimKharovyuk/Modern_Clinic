@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Результаты поиска</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .card {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Результаты поиска</h1>
+            <p>Пациенты в возрасте от <span th:text="${minAge}"></span> до <span th:text="${maxAge}"></span>:</p>
+
+            <!-- Если есть результаты поиска -->
+            <div th:if="${patients != null and not #lists.isEmpty(patients)}">
+                <div class="row">
+                    <div class="col-md-6 mb-4" th:each="patient : ${patients}">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title" th:text="${patient.firstName} + ' ' + ${patient.lastName}"></h3>
+                                <p class="card-text">Дата рождения: <span th:text="${patient.dateOfBirth}"></span></p>
+                                <p class="card-text">Пол: <span th:text="${patient.gender}"></span></p>
+                                <p class="card-text">Адрес: <span th:text="${patient.address}"></span></p>
+                                <p class="card-text">Телефон: <span th:text="${patient.phoneNumber}"></span></p>
+                                <p class="card-text">Вес: <span th:text="${patient.weight}"></span></p>
+                                <p class="card-text">Рост: <span th:text="${patient.height}"></span></p>
+                                <p class="card-text">Аллергии: <span th:text="${patient.allergies}"></span></p>
+                                <p class="card-text">Контакт в случае чрезвычайной ситуации: <span th:text="${patient.emergencyContact}"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Если результаты поиска отсутствуют -->
+            <div th:if="${patients == null or #lists.isEmpty(patients)}">
+                <p>Пациенты в данном возрастном диапазоне не найдены.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

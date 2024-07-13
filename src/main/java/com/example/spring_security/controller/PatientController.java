@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -147,5 +148,18 @@ public class PatientController {
         List<Patient> patients = patientService.findPatientByName(firstName);
         model.addAttribute("patients", patients);
         return "Patient/search";
+    }
+
+    @GetMapping("/patients/search-age")
+    public String Search(){
+        return "Patient/search-form.age";
+    }
+    @GetMapping("patients/age-range")
+    public String getPatientsByAgeRange(@RequestParam int minAge, @RequestParam int maxAge, Model model) {
+        List<Patient> patients = patientService.getPatientsByAgeRange(minAge, maxAge);
+        model.addAttribute("patients", patients);
+        model.addAttribute("minAge", minAge);
+        model.addAttribute("maxAge", maxAge);
+        return "Patient/Search_Patients";
     }
 }

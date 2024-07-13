@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,4 +41,11 @@ public class PatientService {
     public List<Patient> findPatientByName(String name){
        return patientRepository.findByFirstNameContainingIgnoreCase(name);
     }
+
+//    public List<Patient> findPatientsOlderThan(LocalDate maxDate) {
+//        return patientRepository.findPatientsOlderThan(maxDate);
+//    }
+public List<Patient> getPatientsByAgeRange(int minAge, int maxAge) {
+    return patientRepository.findPatientsByAgeRange(minAge, maxAge);
+}
     }
