@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #44dce1;
+            color: #fff;
+            margin: 0;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            width: 50%;
+            margin: 20px auto;
+            background-color: #fff;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        li {
+            padding: 10px 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        li:last-child {
+            border-bottom: none;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #0056b3;
+        }
+        .create-link {
+            display: block;
+            text-align: center;
+            margin: 20px auto;
+            width: fit-content;
+            padding: 10px 20px;
+            background-color: #29b5c2;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .create-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h1>Categories</h1>
+<ul>
+    <li th:each="category : ${categories}">
+        <a th:href="@{/categories/{id}/doctors(id=${category.id})}" th:text="${category.name}">Category Name</a>
+    </li>
+</ul>
+<a href="/categories/new" class="create-link">Create New Category</a>
+</body>
+</html>

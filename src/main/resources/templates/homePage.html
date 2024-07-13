@@ -124,6 +124,24 @@
             font-size: 1.2rem;
             margin-bottom: 1rem;
         }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-menu a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-menu a:hover {background-color: #f1f1f1}
+        li:hover .dropdown-menu {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -132,7 +150,15 @@
 
     </ul>
     <ul>
-        <li><a href="#">Услуги</a></li>
+        <li>
+            <a href="/categories"> Услуги</a>
+            <ul class="dropdown-menu">
+                <!-- Динамически добавляем категории -->
+                <li th:each="category : ${categories}">
+                    <a th:href="@{/categories/{id}/doctors(id=${category.id})}" th:text="${category.name}">Category Name</a>
+                </li>
+            </ul>
+        </li>
         <li><a href="/patient/dashboard">Личный аккаунт</a></li>
         <li><a href="/logout">Выйти</a></li>
     </ul>
