@@ -73,6 +73,8 @@
     <div class="card" th:each="doctor : ${doctors}">
         <h2 th:text="${doctor.name}">Доктор Имя</h2>
         <p th:text="${doctor.specialization}">Специализация</p>
+        <p th:text="${doctor.workingHours}">Время работы</p>
+
 
         <!-- Кнопка редактирования доктора, видимая только для пользователей с ролью ADMIN -->
         <div sec:authorize="hasRole('ROLE_ADMIN')">

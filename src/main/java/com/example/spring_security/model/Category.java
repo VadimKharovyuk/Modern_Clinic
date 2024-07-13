@@ -1,5 +1,9 @@
 package com.example.spring_security.model;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,20 +12,12 @@ import lombok.Setter;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
 @Getter
-@Table(name = "diagnoses")
-public class Diagnosis {
-
+@Setter
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "medical_record_id", nullable = false)
-    private MedicalRecord medicalRecord;
-
-    private String diagnosis;
-
+    private String descriptoin ;
 
 }

@@ -56,6 +56,6 @@ public class AppointmentController {
 
         appointmentService.saveAppointment(appointment);
 
-        return "redirect:/patient/dashboard"; // Перенаправление на страницу пациента или другую страницу
+        return "redirect:/patient/dashboard";
     }
 }
