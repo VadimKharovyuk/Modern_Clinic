@@ -69,6 +69,7 @@
             <th>Time</th>
             <th>PhoneNumber</th>
             <th>Gender</th>
+            <th>Reason</th>
             <!-- Добавьте другие атрибуты пациента при необходимости -->
         </tr>
         </thead>
@@ -80,6 +81,7 @@
             <td th:text="${appointment.appointmentDateTime}"></td>
             <td th:text="${appointment.patient.phoneNumber}"></td>
             <td th:text="${appointment.patient.gender}"></td>
+            <td th:text="${appointment.reason}"></td>
 
             <!-- Добавьте другие атрибуты пациента при необходимости -->
         </tr>

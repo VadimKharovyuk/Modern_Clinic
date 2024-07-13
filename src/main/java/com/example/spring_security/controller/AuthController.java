@@ -118,16 +118,15 @@ public class AuthController {
     private final UserRepository userRepository;
     private final PasswordService passwordService;
 
+
     @GetMapping("/login")
     public String showLoginForm(Model model) {
-        // Проверка, если в модели нет атрибута "user", добавить новый
         if (!model.containsAttribute("user")) {
             model.addAttribute("user", new User());
         }
         return "Auth/Login";
-    }
 
-    @PostMapping("/login")
+    }    @PostMapping("/login")
     public String login(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
         User existingUser = userRepository.findByUsername(user.getUsername());
 
@@ -138,14 +137,18 @@ public class AuthController {
 
         // Проверка, заблокирован ли пользователь
         if (existingUser.isBlocked()) {
-            // Редирект или обработка блокировки
-            return "redirect:/blocked"; // Направляем на страницу с сообщением о блокировке
+            // Редирект на страницу с сообщением о блокировке
+            return "redirect:/blocked";
         }
 
         // Логика входа
         return "redirect:/";
     }
 
+    @GetMapping("/blocked")
+    public String showBlockedPage() {
+        return "error/blocked";
+    }
 
 
 
@@ -154,36 +157,6 @@ public class AuthController {
         model.addAttribute("user", new User());
         return "Auth/register";
     }
-
-//    @PostMapping("/register")
-//    public String register(@ModelAttribute User user ,RedirectAttributes redirectAttributes) {
-//        if (userService.existsByEmail(user.getEmail())) {
-//            redirectAttributes.addFlashAttribute("error", "Эта почта уже  используется ");
-//            return "redirect:/register";
-//        }
-//        user.setRole(User.Role.USER);
-//        userService.registerUser(user);
-//        return "redirect:/login";
-//    }
-//@PostMapping("/register")
-//public String register(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
-//    // Проверка, существует ли пользователь с таким email
-//    if (userService.existsByEmail(user.getEmail())) {
-//        redirectAttributes.addFlashAttribute("error", "Эта почта уже используется");
-//        return "redirect:/register";
-//    }
-//
-//    userService.registerUser(user);
-//
-//    // Проверка, заблокирован ли пользователь
-//    if (userService.isBlocked(user.getUsername())) {
-//        redirectAttributes.addFlashAttribute("error", "Этот аккаунт заблокирован. Обратитесь к администратору для разблокировки.");
-//        // Разлогинить пользователя и вернуть его на страницу регистрации или другую страницу
-//        return "redirect:/register";
-//    }
-//
-//    return "redirect:/login";
-//}
 @PostMapping("/register")
 public String register(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
     // Проверка, существует ли пользователь с таким email

@@ -58,7 +58,7 @@ public class SecurityConfig {
 public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
     httpSecurity
             .authorizeHttpRequests((req -> req
-                    .requestMatchers("/login", "/", "/pic/**", "/forgot-password", "/register", "/doctor/list").permitAll()
+                    .requestMatchers("/login", "/", "/pic/**", "/forgot-password", "/register", "/doctor/list","/blocked").permitAll()
                     .requestMatchers("/doctor/account/**").hasRole("DOCTOR")
                     .requestMatchers("/doctor/**").hasRole("ADMIN")
                     .requestMatchers("/patient/list").hasRole("ADMIN")
@@ -73,6 +73,7 @@ public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws
             .formLogin((form -> form
                     .loginPage("/login")
                     .defaultSuccessUrl("/", true) // URL после успешного входа
+
                     .permitAll()
             ))
             .logout((log -> log
@@ -80,8 +81,10 @@ public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws
                     .logoutSuccessUrl("/login?logout=true")
                     .permitAll()
             ))
+            .exceptionHandling((ex) -> ex
+                    .accessDeniedPage("/blocked") // Перенаправление на страницу для заблокированных пользователей
+            )
             .csrf().disable(); // Отключение CSRF, если это необходимо
-
     return httpSecurity.build();
 }
 
