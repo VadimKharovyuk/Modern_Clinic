@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список Диагнозов</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="container">
+    <h1>Список Диагнозов</h1>
+    <a href="/diagnoses/new" class="view-btn">Добавить Новый Диагноз</a>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Медицинская карта</th>
+            <th>Диагноз</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="diagnosis : ${diagnoses}">
+            <td th:text="${diagnosis.id}">1</td>
+            <td th:text="${diagnosis.medicalRecord.id}">1</td>
+            <td th:text="${diagnosis.diagnosis}">Диагноз</td>
+            <td>
+                <a th:href="@{/diagnoses/{id}(id=${diagnosis.id})}" class="view-btn">Просмотр</a>
+                <a th:href="@{/diagnoses/edit/{id}(id=${diagnosis.id})}" class="view-btn">Редактировать</a>
+                <a th:href="@{/diagnoses/delete/{id}(id=${diagnosis.id})}" class="delete-btn">Удалить</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

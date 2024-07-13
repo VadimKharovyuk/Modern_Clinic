@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Создать/Редактировать Рецепт</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${prescription.id != null ? 'Редактировать Рецепт' : 'Создать Рецепт'}"></h1>
+    <form th:action="@{${prescription.id != null ? '/prescriptions/update/' + ${prescription.id} : '/prescriptions'}}" th:object="${prescription}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <label for="medicalRecord">Медицинская карта:</label>
+        <input type="text" id="medicalRecord" th:field="*{medicalRecord.id}" required />
+        <label for="medication">Лекарство:</label>
+        <input type="text" id="medication" th:field="*{medication}" required />
+        <button type="submit" th:text="${prescription.id != null ? 'Обновить' : 'Создать'}"></button>
+    </form>
+    <a href="/prescriptions" class="view-btn">Назад к списку</a>
+</div>
+</body>
+</html>

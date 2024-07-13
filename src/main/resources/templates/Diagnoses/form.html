@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Создать/Редактировать Диагноз</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${diagnosis.id != null ? 'Редактировать Диагноз' : 'Создать Диагноз'}"></h1>
+    <form th:action="@{${diagnosis.id != null ? '/diagnoses/update/' + ${diagnosis.id} : '/diagnoses'}}" th:object="${diagnosis}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <label for="medicalRecord">Медицинская карта:</label>
+        <input type="text" id="medicalRecord" th:field="*{medicalRecord.id}" required />
+        <label for="diagnosis">Диагноз:</label>
+        <input type="text" id="diagnosis" th:field="*{diagnosis}" required />
+        <button type="submit" th:text="${diagnosis.id != null ? 'Обновить' : 'Создать'}"></button>
+    </form>
+    <a href="/diagnoses" class="view-btn">Назад к списку</a>
+</div>
+</body>
+</html>

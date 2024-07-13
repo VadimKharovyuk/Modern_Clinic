@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Создать/Редактировать Результат Анализа</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${analysisResult.id != null ? 'Редактировать Результат Анализа' : 'Создать Результат Анализа'}"></h1>
+    <form th:action="@{${analysisResult.id != null ? '/analysis-results/update/' + ${analysisResult.id} : '/analysis-results'}}" th:object="${analysisResult}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <label for="medicalRecord">Медицинская Запись:</label>
+        <input type="text" id="medicalRecord" th:field="*{medicalRecord.id}" required />
+        <label for="result">Результат:</label>
+        <textarea id="result" th:field="*{result}" required></textarea>
+        <button type="submit" th:text="${analysisResult.id != null ? 'Обновить' : 'Создать'}"></button>
+    </form>
+    <a href="/analysis-results" class="view-btn">Назад к списку</a>
+</div>
+</body>
+</html>

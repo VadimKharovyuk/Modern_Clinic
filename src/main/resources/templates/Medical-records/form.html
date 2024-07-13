@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Создать/Редактировать Медицинскую Запись</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${medicalRecord.id != null ? 'Редактировать Медицинскую Запись' : 'Создать Медицинскую Запись'}"></h1>
+    <form th:action="@{${medicalRecord.id != null ? '/medical-records/update/' + ${medicalRecord.id} : '/medical-records'}}" th:object="${medicalRecord}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <label for="patient">Пациент:</label>
+        <input type="text" id="patient" th:field="*{patient.id}" required />
+        <label for="doctor">Доктор:</label>
+        <input type="text" id="doctor" th:field="*{doctor.id}" required />
+        <label for="diagnoses">Диагнозы:</label>
+        <textarea id="diagnoses" th:field="*{diagnoses}" required></textarea>
+        <label for="treatments">Лечения:</label>
+        <textarea id="treatments" th:field="*{treatments}" required></textarea>
+        <label for="prescriptions">Рецепты:</label>
+        <textarea id="prescriptions" th:field="*{prescriptions}" required></textarea>
+        <label for="analysisResults">Результаты Анализов:</label>
+        <textarea id="analysisResults" th:field="*{analysisResults}" required></textarea>
+        <button type="submit" th:text="${medicalRecord.id != null ? 'Обновить' : 'Создать'}"></button>
+    </form>
+    <a href="/medical-records" class="view-btn">Назад к списку</a>
+</div>
+</body>
+</html>
