@@ -36,4 +36,8 @@ public class PatientService {
     public Patient findByUser(User user) {
         return patientRepository.findByUser(user);
     }
+
+    public List<Patient> findPatientByName(String name){
+       return patientRepository.findByFirstNameContainingIgnoreCase(name);
+    }
     }

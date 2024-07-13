@@ -60,6 +60,7 @@ public class UserController {
         return "redirect:/userList"; // Перенаправление на страницу администратора после разблокировки
     }
 
+
 @PreAuthorize("hasRole('ADMIN')")
 @GetMapping("/userList")
 public String findAll(Model model) {

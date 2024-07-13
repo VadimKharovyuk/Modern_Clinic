@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Patients</title>
+    <!-- Ваши стили и скрипты могут быть подключены здесь -->
+</head>
+<body>
+<div class="container">
+    <h1>Search Patients</h1>
+    <form th:action="@{/patients/search}" method="post">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required />
+        <button type="submit">Search</button>
+    </form>
+
+    <div th:if="${patients}">
+        <h2>Search Results:</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date of Birth</th>
+                <th>Gender</th>
+                <th>Address</th>
+                <th>Phone Number</th>
+                <th>Weight</th>
+                <th>Height</th>
+                <th>Allergies</th>
+                <th>Emergency Contact</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="patient : ${patients}">
+                <td th:text="${patient.id}">1</td>
+                <td th:text="${patient.firstName}">John</td>
+                <td th:text="${patient.lastName}">Doe</td>
+                <td th:text="${patient.dateOfBirth}">2000-01-01</td>
+                <td th:text="${patient.gender}">Male</td>
+                <td th:text="${patient.address}">123 Main St</td>
+                <td th:text="${patient.phoneNumber}">123-456-7890</td>
+                <td th:text="${patient.weight}">70.5</td>
+                <td th:text="${patient.height}">180.0</td>
+                <td th:text="${patient.allergies}">None</td>
+                <td th:text="${patient.emergencyContact}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -82,7 +82,7 @@
     </thead>
     <tbody>
     <!-- Thymeleaf iteration over user list -->
-    <tr th:each="user : ${users}">
+    <tr th:each="user : ${user}">
         <td th:text="${user.id}">1</td>
         <td th:text="${user.username}">Username</td>
         <td th:text="${user.email}">email@example.com</td>

@@ -136,4 +136,16 @@ public class PatientController {
         patientService.saveOrUpdatePatient(updatedPatient);
         return "redirect:/patient/dashboard";
     }
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/patients/search")
+    public String showSearchForm() {
+        return "Patient/search";
+    }
+    @PostMapping("/patients/search")
+    public String searchPatients(@RequestParam("firstName") String firstName,
+                                 Model model) {
+        List<Patient> patients = patientService.findPatientByName(firstName);
+        model.addAttribute("patients", patients);
+        return "Patient/search";
+    }
 }

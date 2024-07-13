@@ -65,6 +65,7 @@ public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws
                     .requestMatchers("/block-user/**").hasRole("ADMIN")
                     .requestMatchers("/unblock-user/**").hasRole("ADMIN")
                     .requestMatchers("/userList").hasRole("ADMIN")
+                    .requestMatchers("/patients/search").hasRole("ADMIN")
 
                     .requestMatchers("/change-password").authenticated()
                     .requestMatchers("/patient/dashboard").authenticated()
@@ -82,7 +83,8 @@ public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws
                     .permitAll()
             ))
             .exceptionHandling((ex) -> ex
-                    .accessDeniedPage("/blocked") // Перенаправление на страницу для заблокированных пользователей
+                    .accessDeniedPage("/access-denied") // Перенаправление на страницу для заблокированных пользователей
+
             )
             .csrf().disable(); // Отключение CSRF, если это необходимо
     return httpSecurity.build();
