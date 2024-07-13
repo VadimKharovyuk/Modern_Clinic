@@ -57,6 +57,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -106,6 +107,25 @@ public String viewDoctorAccount(Model model, Principal principal) {
     model.addAttribute("doctor", doctor);
     return "Doctor/doctorAccount";
 }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/doctor/edit/{id}")
+    public String showEditForm(@PathVariable("id") Long id, Model model) {
+        Doctor doctor = doctorService.getDoctorById(id);
+        model.addAttribute("doctor", doctor);
+        return "Doctor/edit";
+    }
+
+    @PostMapping("/doctor/update/{id}")
+    public String updateDoctor(@PathVariable("id") Long id, @ModelAttribute("doctor") Doctor updatedDoctor) {
+        Doctor doctor = doctorService.getDoctorById(id);
+        // Update fields from updatedDoctor
+        doctor.setName(updatedDoctor.getName());
+        doctor.setSpecialization(updatedDoctor.getSpecialization());
+
+        doctorService.saveDoctor(doctor);
+        return "redirect:/doctor/list";
+    }
 
 
 }
