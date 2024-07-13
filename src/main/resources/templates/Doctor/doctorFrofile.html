@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${doctor.name} + ' '">Doctor </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        h1 {
+            color: #343a40;
+            text-align: center;
+        }
+        .doctor-info {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .doctor-info p {
+            margin: 10px 0;
+        }
+        .doctor-info label {
+            font-weight: bold;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<h1 th:text="${doctor.name} + ' Account'">Doctor Account</h1>
+<div class="doctor-info">
+    <p><label>Name:</label> <span th:text="${doctor.name}">Doctor Name</span></p>
+    <p><label>Specialization:</label> <span th:text="${doctor.specialization}">Specialization</span></p>
+    <p><label>Working Hours:</label> <span th:text="${doctor.workingHours}">Working Hours</span></p>
+</div>
+<a class="back-link" href="/doctor/list">Back to Doctor List</a>
+</body>
+</html>

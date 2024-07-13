@@ -75,7 +75,9 @@
 <p th:text="${category.description}">Category Description</p>
 <h2>Doctors in this Category</h2>
 <ul>
-    <li th:each="doctor : ${doctors}" th:text="${doctor.name}">Doctor Name</li>
+    <li th:each="doctor : ${doctors}">
+        <a th:href="@{/doctors/profile/{doctorId}(doctorId=${doctor.id})}" th:text="${doctor.name}">Doctor Name</a>
+    </li>
 </ul>
 <h2>Add Doctor to this Category</h2>
 <form action="#" th:action="@{/categories/{categoryId}/doctors(categoryId=${category.id})}" method="post">

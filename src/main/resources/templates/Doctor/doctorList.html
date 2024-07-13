@@ -1,4 +1,92 @@
 
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Список Докторов</title>-->
+<!--    <link rel="stylesheet" href="/styles.css"> &lt;!&ndash; Подключение внешнего CSS-файла для стилей &ndash;&gt;-->
+<!--    <style>-->
+<!--        /* Внутренние стили для демонстрации */-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            background-color: #f0f0f0;-->
+<!--        }-->
+<!--        .container {-->
+<!--            max-width: 1200px;-->
+<!--            margin: 2rem auto;-->
+<!--            padding: 2rem;-->
+<!--            background-color: #ffffff;-->
+<!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--            display: flex;-->
+<!--            flex-wrap: wrap;-->
+<!--            justify-content: space-around;-->
+<!--        }-->
+<!--        .card {-->
+<!--            background-color: #007bff;-->
+<!--            color: white;-->
+<!--            border-radius: 8px;-->
+<!--            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);-->
+<!--            margin: 1rem;-->
+<!--            padding: 1rem;-->
+<!--            width: 250px;-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--        .card h2 {-->
+<!--            font-size: 1.5rem;-->
+<!--            margin-bottom: 0.5rem;-->
+<!--        }-->
+<!--        .card p {-->
+<!--            font-size: 1rem;-->
+<!--            margin-bottom: 0.5rem;-->
+<!--        }-->
+<!--        .edit-btn {-->
+<!--            background-color: #28a745;-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--            padding: 0.5rem 1rem;-->
+<!--            border-radius: 4px;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+<!--        .edit-btn:hover {-->
+<!--            background-color: #218838;-->
+<!--        }-->
+<!--        .delete-btn {-->
+<!--            background-color: #dc3545;-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--            padding: 0.5rem 1rem;-->
+<!--            border-radius: 4px;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+<!--        .delete-btn:hover {-->
+<!--            background-color: #c82333;-->
+<!--        }-->
+
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="container">-->
+<!--    <h1>Список Докторов</h1>-->
+<!--    <div class="card" th:each="doctor : ${doctors}">-->
+<!--        <h2 th:text="${doctor.name}">Доктор Имя</h2>-->
+<!--        <p th:text="${doctor.specialization}">Специализация</p>-->
+<!--        <p th:text="${doctor.workingHours}">Время работы</p>-->
+
+
+<!--        &lt;!&ndash; Кнопка редактирования доктора, видимая только для пользователей с ролью ADMIN &ndash;&gt;-->
+<!--        <div sec:authorize="hasRole('ROLE_ADMIN')">-->
+<!--            <a th:href="@{/doctor/edit/{id}(id=${doctor.id})}" class="edit-btn">Редактировать</a><br><br>-->
+<!--            <form th:action="@{/doctor/delete/{id}(id=${doctor.id})}" method="post">-->
+<!--                <button type="submit" class="delete-btn">Удалить</button>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
@@ -49,6 +137,7 @@
             padding: 0.5rem 1rem;
             border-radius: 4px;
             cursor: pointer;
+            text-decoration: none;
         }
         .edit-btn:hover {
             background-color: #218838;
@@ -64,7 +153,15 @@
         .delete-btn:hover {
             background-color: #c82333;
         }
-
+        .profile-link {
+            display: block;
+            margin-top: 1rem;
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .profile-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -75,8 +172,10 @@
         <p th:text="${doctor.specialization}">Специализация</p>
         <p th:text="${doctor.workingHours}">Время работы</p>
 
+        <!-- Ссылка на профиль доктора -->
+        <a th:href="@{/doctors/profile/{doctorId}(doctorId=${doctor.id})}" class="profile-link">Посмотреть профиль</a>
 
-        <!-- Кнопка редактирования доктора, видимая только для пользователей с ролью ADMIN -->
+        <!-- Кнопки редактирования и удаления, видимые только для пользователей с ролью ADMIN -->
         <div sec:authorize="hasRole('ROLE_ADMIN')">
             <a th:href="@{/doctor/edit/{id}(id=${doctor.id})}" class="edit-btn">Редактировать</a><br><br>
             <form th:action="@{/doctor/delete/{id}(id=${doctor.id})}" method="post">

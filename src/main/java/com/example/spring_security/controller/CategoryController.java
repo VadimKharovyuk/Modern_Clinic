@@ -23,8 +23,12 @@ public class CategoryController {
     @PostMapping("/{categoryId}/doctors")
     public String addDoctorToCategory(@PathVariable Long categoryId, @RequestParam Long doctorId, Model model) {
         categoryService.addDoctorToCategory(categoryId, doctorId);
-        return "redirect:/categories/" + categoryId + "/Doctor/edit";
+        model.addAttribute("doctors", doctorService.getAllDoctors());
+        return "redirect:/categories" ;
     }
+
+
+
 
     @GetMapping("/{categoryId}/doctors")
     public String getDoctorsForCategory(@PathVariable Long categoryId, Model model) {
