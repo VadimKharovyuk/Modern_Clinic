@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,6 +69,9 @@
         <a th:href="@{/categories/{id}/doctors(id=${category.id})}" th:text="${category.name}">Category Name</a>
     </li>
 </ul>
-<a href="/categories/new" class="create-link">Create New Category</a>
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+    <a href="/categories/new" class="create-link">Create New Category</a>
+</div>
+
 </body>
 </html>

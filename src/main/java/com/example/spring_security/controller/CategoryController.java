@@ -50,7 +50,7 @@ public class CategoryController {
         model.addAttribute("categories", categories);
         return "category/categories";
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public String createCategory(@ModelAttribute Category category) {
         categoryService.saveCategory(category);
