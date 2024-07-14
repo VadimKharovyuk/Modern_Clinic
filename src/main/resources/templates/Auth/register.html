@@ -1,31 +1,149 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--  <title>Register</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Register</h1>-->
+
+<!--<form th:action="@{/register}" th:object="${user}" method="post">-->
+<!--  <div th:if="${error}" class="error-message">-->
+<!--    <p th:text="${error}"></p>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <label>Username:</label>-->
+<!--    <input type="text" th:field="*{username}" />-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <label>Password:</label>-->
+<!--    <input type="password" th:field="*{password}" />-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <label>Email:</label>-->
+<!--    <input type="email" th:field="*{email}" />-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <button type="submit">Register</button>-->
+<!--  </div>-->
+<!--</form>-->
+<!--<a href="/login"> Войти </a>-->
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Register</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('/pic/refist.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgb(15, 224, 191);
+      width: 400px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #f3ecec;
+    }
+
+    .alert {
+      margin-bottom: 15px;
+      padding: 10px;
+      color: #fff;
+      background-color: #e74c3c;
+      border-radius: 5px;
+    }
+
+    form div {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #e8e6e6;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background-color: #34dbdb;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    p {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    a {
+      color: #3498db;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-<h1>Register</h1>
-
-<form th:action="@{/register}" th:object="${user}" method="post">
-  <div th:if="${error}" class="error-message">
-    <p th:text="${error}"></p>
+<div class="container">
+  <div id="registerForm">
+    <h1>Register</h1>
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+    <form th:action="@{/register}" th:object="${user}" method="post">
+      <div>
+        <label>Логин:</label>
+        <input type="text" th:field="*{username}" required />
+      </div>
+      <div>
+        <label>Пароль:</label>
+        <input type="password" th:field="*{password}" required />
+      </div>
+      <div>
+        <label>Email:</label>
+        <input type="email" th:field="*{email}" required />
+      </div>
+      <div>
+        <button type="submit">Зарегистрироваться</button>
+      </div>
+    </form>
+    <p>Уже есть аккаунт? <a th:href="@{/login}">Войти</a></p>
+    <p><a href="/">На главную страницу</a></p>
   </div>
-  <div>
-    <label>Username:</label>
-    <input type="text" th:field="*{username}" />
-  </div>
-  <div>
-    <label>Password:</label>
-    <input type="password" th:field="*{password}" />
-  </div>
-  <div>
-    <label>Email:</label>
-    <input type="email" th:field="*{email}" />
-  </div>
-  <div>
-    <button type="submit">Register</button>
-  </div>
-</form>
-<a href="/login"> Войти </a>
+</div>
 </body>
 </html>

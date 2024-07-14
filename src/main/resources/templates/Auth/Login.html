@@ -1,38 +1,92 @@
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--    <title>Login</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<div class="container">-->
-<!--    <div id="loginForm">-->
-<!--        <h1>Login</h1>-->
-<!--        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div> &lt;!&ndash; Добавлено для отображения ошибки &ndash;&gt;-->
-<!--        <form th:action="@{/login}" method="post">-->
-<!--            <div>-->
-<!--                <label>Логин:</label>-->
-<!--                <input type="text" name="username" required />-->
-<!--            </div>-->
-<!--            <div>-->
-<!--                <label>Пароль:</label>-->
-<!--                <input type="password" name="password" required />-->
-<!--            </div>-->
-<!--            <div>-->
-<!--                <button type="submit">Войти</button>-->
-<!--            </div>-->
-<!--        </form>-->
-<!--        <p>Забыли пароль? <a th:href="@{/forgot-password}">Сбросить пароль</a></p>-->
-<!--        <p>Нет аккаунта? <a th:href="@{/register}">Зарегистрироваться</a></p>-->
-<!--    </div>-->
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('/pic/regPic.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
+        .container {
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgb(15, 224, 191);
+            width: 400px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #e8e1e1;
+        }
+
+        .alert {
+            margin-bottom: 15px;
+            padding: 10px;
+            color: #fff;
+            background-color: #e74c3c;
+            border-radius: 5px;
+        }
+
+        form div {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #e8e6e6;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #34dbdb;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        p {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
 <body>
 <div class="container">
     <div id="loginForm">
@@ -54,7 +108,6 @@
         <p>Забыли пароль? <a th:href="@{/forgot-password}">Сбросить пароль</a></p>
         <p>Нет аккаунта? <a th:href="@{/register}">Зарегистрироваться</a></p>
         <p><a href="/">На главную страницу</a></p>
-
     </div>
 </div>
 </body>

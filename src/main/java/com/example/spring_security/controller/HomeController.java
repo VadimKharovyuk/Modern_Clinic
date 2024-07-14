@@ -1,5 +1,6 @@
 package com.example.spring_security.controller;
 import com.example.spring_security.model.Category;
+import com.example.spring_security.model.Contact;
 import com.example.spring_security.service.CategoryService;
 import org.springframework.security.access.prepost.PreAuthorize;
 
@@ -26,6 +27,7 @@ public class HomeController {
 
         // Передача списка категорий в модель для отображения на странице
         model.addAttribute("categories", categories);
+        model.addAttribute("contact",new Contact());
 
         return "homePage"; // Название вашего шаблона Thymeleaf
     }
