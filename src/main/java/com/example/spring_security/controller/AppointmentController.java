@@ -15,6 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,6 +23,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Locale;
 
 @Controller
@@ -68,5 +70,18 @@ public class AppointmentController {
 
         return "redirect:/patient/dashboard";
     }
+
+
+    @GetMapping("/patient/{patientId}/appointments")
+    public String getAppointmentsByPatient(@PathVariable Long patientId, Model model) {
+        Patient patient = patientService.getPatientById(patientId);
+        List<Appointment> appointments = appointmentService.getAppointmentsByPatient(patient);
+        model.addAttribute("appointments", appointments);
+        model.addAttribute("patient", patient); // Добавляем пациента в модель для использования в шаблоне
+        return "Appointment/appointments"; // Имя HTML-шаблона для отображения
+    }
+
+
+
 }
 

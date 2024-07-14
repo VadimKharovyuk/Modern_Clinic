@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список записей пациента к докторам</title>
+    <link rel="stylesheet" href="/styles.css"> <!-- Подключение внешнего CSS-файла для стилей -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            /*background-image: url("/pic/Default_modern_clinic_0-3.jpg");*/
+            background-image: url('/pic/Default_modern_clinic_0-3.jpg') ;
+        }
+        .container {
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgb(15, 224, 191);
+            width: 800px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: white;
+        }
+        table {
+            width: 100%;
+            margin-top: 1rem;
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #52bcd3;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Список записей к докторам</h1>
+    <h2 th:text="'Пациент: ' + ${patient.firstName} + ' ' + ${patient.lastName}"></h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Doctor</th>
+            <th>Doctor specialization</th>
+            <th>Дата и время</th>
+            <th>Причина</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Использование Thymeleaf для итерации по списку appointments -->
+        <tr th:each="appointment : ${appointments}">
+            <td th:text="${appointment.id}"></td>
+            <td th:text="${appointment.doctor.name}"></td>
+            <td th:text="${appointment.doctor.specialization}"></td>
+            <td th:text="${#temporals.format(appointment.appointmentDateTime, 'dd.MM.yyyy HH:mm')}"></td>
+            <td th:text="${appointment.reason}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
