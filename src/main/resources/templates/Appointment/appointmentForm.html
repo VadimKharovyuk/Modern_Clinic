@@ -2,20 +2,66 @@
 <!--<html lang="en">-->
 <!--<head>-->
 <!--    <meta charset="UTF-8">-->
-<!--    <title>Title</title>-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Запись к доктору</title>-->
+<!--    <link rel="stylesheet" href="/styles.css"> &lt;!&ndash; Подключение внешнего CSS-файла для стилей &ndash;&gt;-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            background-color: #f4f4f9;-->
+<!--        }-->
+<!--        .container {-->
+<!--            max-width: 600px;-->
+<!--            margin: 3rem auto;-->
+<!--            padding: 2rem;-->
+<!--            background-color: #ffffff;-->
+<!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--            border-radius: 8px;-->
+<!--        }-->
+<!--        h1 {-->
+<!--            font-size: 1.5rem;-->
+<!--            margin-bottom: 1rem;-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--        form {-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            gap: 1rem;-->
+<!--        }-->
+<!--        select, input[type="datetime-local"], input[type="text"], button {-->
+<!--            padding: 0.5rem;-->
+<!--            border: 1px solid #ccc;-->
+<!--            border-radius: 5px;-->
+<!--            font-size: 1rem;-->
+<!--        }-->
+<!--        button {-->
+<!--            background-color: #52bcd3;-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+<!--        button:hover {-->
+<!--            background-color: #0056b3;-->
+<!--        }-->
+<!--    </style>-->
 <!--</head>-->
 <!--<body>-->
-<!--&lt;!&ndash; Ваше представление для создания записи пациента к доктору &ndash;&gt;-->
-<!--<form th:action="@{/appointment/save}" method="post">-->
-<!--    <select name="doctorId">-->
-<!--        <option th:each="doctor : ${doctors}" th:value="${doctor.id}" th:text="${doctor.name}"></option>-->
-<!--    </select>-->
-<!--    <input type="datetime-local" name="appointmentDateTime" required>-->
-<!--    <input type="text" name="reason" placeholder="Причина записи" required>-->
-<!--    <button type="submit">Записать к доктору</button>-->
-<!--</form>-->
-
-
+<!--<div class="container">-->
+<!--    <h1>Запись к доктору</h1>-->
+<!--    <form th:action="@{/appointment/save}" method="post">-->
+<!--        <label for="doctorId">Выберите доктора:</label>-->
+<!--        <select name="doctorId" id="doctorId" required>-->
+<!--            <option th:each="doctor : ${doctors}" th:value="${doctor.id}" th:text="${doctor.name}"></option>-->
+<!--        </select>-->
+<!--        <label for="appointmentDateTime">Дата и время записи:</label>-->
+<!--        <input type="datetime-local" name="appointmentDateTime" id="appointmentDateTime" required>-->
+<!--        <label for="reason">Причина записи:</label>-->
+<!--        <input type="text" name="reason" id="reason" placeholder="Причина записи" required>-->
+<!--        <button type="submit">Записать к доктору</button>-->
+<!--    </form>-->
+<!--</div>-->
 <!--</body>-->
 <!--</html>-->
 <!DOCTYPE html>
@@ -50,7 +96,7 @@
             flex-direction: column;
             gap: 1rem;
         }
-        select, input[type="datetime-local"], input[type="text"], button {
+        select, input[type="text"], button {
             padding: 0.5rem;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -76,11 +122,25 @@
             <option th:each="doctor : ${doctors}" th:value="${doctor.id}" th:text="${doctor.name}"></option>
         </select>
         <label for="appointmentDateTime">Дата и время записи:</label>
-        <input type="datetime-local" name="appointmentDateTime" id="appointmentDateTime" required>
+        <select name="appointmentDateTime" id="appointmentDateTime" required>
+            <option value="">Выберите время</option>
+            <option value="08:00">08:00</option>
+            <option value="09:00">09:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
+            <option value="18:00">18:00</option>
+        </select>
         <label for="reason">Причина записи:</label>
         <input type="text" name="reason" id="reason" placeholder="Причина записи" required>
         <button type="submit">Записать к доктору</button>
     </form>
 </div>
+
 </body>
 </html>

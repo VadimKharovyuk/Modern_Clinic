@@ -1,3 +1,156 @@
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">&ndash;&gt;-->
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta charset="UTF-8">&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta name="viewport" content="width=device-width, initial-scale=1.0">&ndash;&gt;-->
+<!--&lt;!&ndash;    <title>Categories</title>&ndash;&gt;-->
+<!--&lt;!&ndash;    <style>&ndash;&gt;-->
+<!--&lt;!&ndash;        body {&ndash;&gt;-->
+<!--&lt;!&ndash;            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin: 0;&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 0;&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #f8f9fa;&ndash;&gt;-->
+<!--&lt;!&ndash;            color: #333;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        h1 {&ndash;&gt;-->
+<!--&lt;!&ndash;            text-align: center;&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 20px 0;&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #44dce1;&ndash;&gt;-->
+<!--&lt;!&ndash;            color: #fff;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin: 0;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        ul {&ndash;&gt;-->
+<!--&lt;!&ndash;            list-style-type: none;&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 0;&ndash;&gt;-->
+<!--&lt;!&ndash;            width: 50%;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin: 20px auto;&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #fff;&ndash;&gt;-->
+<!--&lt;!&ndash;            border: 1px solid #ced4da;&ndash;&gt;-->
+<!--&lt;!&ndash;            border-radius: 4px;&ndash;&gt;-->
+<!--&lt;!&ndash;            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        li {&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 10px 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;            border-bottom: 1px solid #e9ecef;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        li:last-child {&ndash;&gt;-->
+<!--&lt;!&ndash;            border-bottom: none;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        a {&ndash;&gt;-->
+<!--&lt;!&ndash;            color: #007bff;&ndash;&gt;-->
+<!--&lt;!&ndash;            text-decoration: none;&ndash;&gt;-->
+<!--&lt;!&ndash;            transition: color 0.3s;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        a:hover {&ndash;&gt;-->
+<!--&lt;!&ndash;            color: #0056b3;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        .create-link {&ndash;&gt;-->
+<!--&lt;!&ndash;            display: block;&ndash;&gt;-->
+<!--&lt;!&ndash;            text-align: center;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin: 20px auto;&ndash;&gt;-->
+<!--&lt;!&ndash;            width: fit-content;&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 10px 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #29b5c2;&ndash;&gt;-->
+<!--&lt;!&ndash;            color: #fff;&ndash;&gt;-->
+<!--&lt;!&ndash;            text-decoration: none;&ndash;&gt;-->
+<!--&lt;!&ndash;            border: none;&ndash;&gt;-->
+<!--&lt;!&ndash;            border-radius: 4px;&ndash;&gt;-->
+<!--&lt;!&ndash;            transition: background-color 0.3s;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        .create-link:hover {&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #0056b3;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;    </style>&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<body>&ndash;&gt;-->
+<!--&lt;!&ndash;<h1>Categories</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;<ul>&ndash;&gt;-->
+<!--&lt;!&ndash;    <li th:each="category : ${categories}">&ndash;&gt;-->
+<!--&lt;!&ndash;        <a th:href="@{/categories/{id}/doctors(id=${category.id})}" th:text="${category.name}">Category Name</a>&ndash;&gt;-->
+<!--&lt;!&ndash;    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;</ul>&ndash;&gt;-->
+<!--&lt;!&ndash;<div sec:authorize="hasRole('ROLE_ADMIN')">&ndash;&gt;-->
+<!--&lt;!&ndash;    <a href="/categories/new" class="create-link">Create New Category</a>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Categories</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            background-color: #f8f9fa;-->
+<!--            color: #333;-->
+<!--        }-->
+<!--        h1 {-->
+<!--            text-align: center;-->
+<!--            padding: 20px 0;-->
+<!--            background-color: #44dce1;-->
+<!--            color: #fff;-->
+<!--            margin: 0;-->
+<!--        }-->
+<!--        .container {-->
+<!--            display: flex;-->
+<!--            flex-wrap: wrap;-->
+<!--            justify-content: space-around;-->
+<!--            padding: 20px;-->
+<!--        }-->
+<!--        .card {-->
+<!--            width: calc(20% - 20px);-->
+<!--            background-color: #fff;-->
+<!--            border: 1px solid #ced4da;-->
+<!--            border-radius: 4px;-->
+<!--            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);-->
+<!--            margin-bottom: 20px;-->
+<!--            padding: 10px;-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--        .card a {-->
+<!--            color: #007bff;-->
+<!--            text-decoration: none;-->
+<!--            transition: color 0.3s;-->
+<!--        }-->
+<!--        .card a:hover {-->
+<!--            color: #0056b3;-->
+<!--        }-->
+<!--        .create-link {-->
+<!--            display: block;-->
+<!--            text-align: center;-->
+<!--            margin: 20px auto;-->
+<!--            width: fit-content;-->
+<!--            padding: 10px 20px;-->
+<!--            background-color: #29b5c2;-->
+<!--            color: #fff;-->
+<!--            text-decoration: none;-->
+<!--            border: none;-->
+<!--            border-radius: 4px;-->
+<!--            transition: background-color 0.3s;-->
+<!--        }-->
+<!--        .create-link:hover {-->
+<!--            background-color: #0056b3;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Categories</h1>-->
+<!--<div class="container">-->
+<!--    <div class="card" th:each="category, iterStat : ${categories}" th:classappend="${iterStat.index % 5 == 0} ? 'first' : ''">-->
+<!--        <a th:href="@{/categories/{id}/doctors(id=${category.id})}" th:text="${category.name}">Category Name</a>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div sec:authorize="hasRole('ROLE_ADMIN')">-->
+<!--    <a href="/categories/new" class="create-link">Create New Category</a>-->
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
@@ -6,72 +159,82 @@
     <title>Categories</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
             margin: 0;
             padding: 0;
-            background-color: #f8f9fa;
-            color: #333;
         }
-        h1 {
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        header {
+            background-color: #3cadad;
+            color: white;
+            padding: 1rem;
             text-align: center;
-            padding: 20px 0;
-            background-color: #44dce1;
-            color: #fff;
+            border-radius: 8px 8px 0 0;
+        }
+        header h1 {
             margin: 0;
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
-            width: 50%;
-            margin: 20px auto;
-            background-color: #fff;
-            border: 1px solid #ced4da;
+        header a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid white;
             border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        li {
-            padding: 10px 20px;
-            border-bottom: 1px solid #e9ecef;
+        header a:hover {
+            background-color: white;
+            color: #007bff;
         }
-        li:last-child {
-            border-bottom: none;
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
         }
-        a {
+        .card {
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            padding: 1rem;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card a {
+            display: block;
+            padding: 1rem;
             color: #007bff;
             text-decoration: none;
-            transition: color 0.3s;
+            font-weight: bold;
         }
-        a:hover {
+        .card a:hover {
             color: #0056b3;
-        }
-        .create-link {
-            display: block;
-            text-align: center;
-            margin: 20px auto;
-            width: fit-content;
-            padding: 10px 20px;
-            background-color: #29b5c2;
-            color: #fff;
-            text-decoration: none;
-            border: none;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-        .create-link:hover {
-            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-<h1>Categories</h1>
-<ul>
-    <li th:each="category : ${categories}">
-        <a th:href="@{/categories/{id}/doctors(id=${category.id})}" th:text="${category.name}">Category Name</a>
-    </li>
-</ul>
-<div sec:authorize="hasRole('ROLE_ADMIN')">
-    <a href="/categories/new" class="create-link">Create New Category</a>
+<div class="container">
+    <header>
+        <h1>Categories</h1>
+    </header>
+    <div class="card-container">
+        <div class="card" th:each="category : ${categories}">
+            <a th:href="@{/categories/{id}/doctors(id=${category.id})}" th:text="${category.name}">Category Name</a>
+        </div>
+    </div>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <a href="/categories/new" class="create-link">Create New Category</a>
+    </div>
 </div>
-
 </body>
 </html>
