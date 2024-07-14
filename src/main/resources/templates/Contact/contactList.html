@@ -1,39 +1,128 @@
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html lang="en" xmlns:th="http://www.thymeleaf.org">&ndash;&gt;-->
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta charset="UTF-8">&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta name="viewport" content="width=device-width, initial-scale=1.0">&ndash;&gt;-->
+<!--&lt;!&ndash;    <title>Contact List</title>&ndash;&gt;-->
+<!--&lt;!&ndash;    <link rel="stylesheet" href="/styles.css"> &lt;!&ndash; Подключение ваших стилей &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<body>&ndash;&gt;-->
+<!--&lt;!&ndash;<h1>Contact List</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;<table>&ndash;&gt;-->
+<!--&lt;!&ndash;    <thead>&ndash;&gt;-->
+<!--&lt;!&ndash;    <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;        <th>ID</th>&ndash;&gt;-->
+<!--&lt;!&ndash;        <th>Name</th>&ndash;&gt;-->
+<!--&lt;!&ndash;        <th>Email</th>&ndash;&gt;-->
+<!--&lt;!&ndash;        <th>massage</th>&ndash;&gt;-->
+<!--&lt;!&ndash;        <th>Actions</th>&ndash;&gt;-->
+<!--&lt;!&ndash;    </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;    </thead>&ndash;&gt;-->
+<!--&lt;!&ndash;    <tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;    <tr th:each="contact : ${contacts}">&ndash;&gt;-->
+<!--&lt;!&ndash;        <td th:text="${contact.id}"></td>&ndash;&gt;-->
+<!--&lt;!&ndash;        <td th:text="${contact.name}"></td>&ndash;&gt;-->
+<!--&lt;!&ndash;        <td th:text="${contact.email}"></td>&ndash;&gt;-->
+<!--&lt;!&ndash;        <td th:text="${contact.massage}"></td>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <td>&ndash;&gt;-->
+<!--&lt;!&ndash;            <form method="post" th:action="@{/contact/delete/{id}(id=${contact.id})}">&ndash;&gt;-->
+<!--&lt;!&ndash;                <button type="submit">Delete</button>&ndash;&gt;-->
+<!--&lt;!&ndash;            </form>&ndash;&gt;-->
+<!--&lt;!&ndash;        </td>&ndash;&gt;-->
+<!--&lt;!&ndash;    </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;    </tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;</table>&ndash;&gt;-->
+<!--&lt;!&ndash;<a href="/contact/new">Add New Contact</a>&ndash;&gt;-->
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->
 <!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">-->
 <!--<head>-->
 <!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
 <!--    <title>Contact List</title>-->
-<!--    <link rel="stylesheet" href="/styles.css"> &lt;!&ndash; Подключение ваших стилей &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="/styles.css"> &lt;!&ndash; Подключение внешнего CSS-файла для стилей &ndash;&gt;-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            background-color: #f4f4f9;-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--        }-->
+<!--        .container {-->
+<!--            max-width: 800px;-->
+<!--            margin: 3rem auto;-->
+<!--            padding: 2rem;-->
+<!--            background-color: #ffffff;-->
+<!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--            border-radius: 8px;-->
+<!--        }-->
+<!--        h1 {-->
+<!--            font-size: 1.5rem;-->
+<!--            margin-bottom: 1rem;-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--        table {-->
+<!--            width: 100%;-->
+<!--            border-collapse: collapse;-->
+<!--            margin-top: 1rem;-->
+<!--        }-->
+<!--        th, td {-->
+<!--            border: 1px solid #ccc;-->
+<!--            padding: 0.5rem;-->
+<!--            text-align: left;-->
+<!--        }-->
+<!--        th {-->
+<!--            background-color: #f2f2f2;-->
+<!--        }-->
+<!--        tr:nth-child(even) {-->
+<!--            background-color: #f9f9f9;-->
+<!--        }-->
+<!--        tr:hover {-->
+<!--            background-color: #e9ecef;-->
+<!--        }-->
+<!--        .actions {-->
+<!--            display: flex;-->
+<!--            gap: 0.5rem;-->
+<!--        }-->
+<!--        .actions a {-->
+<!--            text-decoration: none;-->
+<!--            color: #007bff;-->
+<!--        }-->
+<!--        .actions a:hover {-->
+<!--            text-decoration: underline;-->
+<!--        }-->
+<!--    </style>-->
 <!--</head>-->
 <!--<body>-->
-<!--<h1>Contact List</h1>-->
-<!--<table>-->
-<!--    <thead>-->
-<!--    <tr>-->
-<!--        <th>ID</th>-->
-<!--        <th>Name</th>-->
-<!--        <th>Email</th>-->
-<!--        <th>massage</th>-->
-<!--        <th>Actions</th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--    <tr th:each="contact : ${contacts}">-->
-<!--        <td th:text="${contact.id}"></td>-->
-<!--        <td th:text="${contact.name}"></td>-->
-<!--        <td th:text="${contact.email}"></td>-->
-<!--        <td th:text="${contact.massage}"></td>-->
+<!--<div class="container">-->
+<!--    <h1>Contact List</h1>-->
+<!--    <table>-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>Name</th>-->
+<!--            <th>Email</th>-->
+<!--            <th>Message</th>-->
 
-<!--        <td>-->
-<!--            <form method="post" th:action="@{/contact/delete/{id}(id=${contact.id})}">-->
-<!--                <button type="submit">Delete</button>-->
-<!--            </form>-->
-<!--        </td>-->
-<!--    </tr>-->
-<!--    </tbody>-->
-<!--</table>-->
-<!--<a href="/contact/new">Add New Contact</a>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="contact : ${contacts}">-->
+<!--            <td th:text="${contact.name}">Name</td>-->
+<!--            <td th:text="${contact.email}">Email</td>-->
+<!--            <td th:text="${contact.massage}">Message</td>-->
+
+<!--            <td class="actions" sec:authorize="hasRole('ROLE_ADMIN')">-->
+<!--                <form th:action="@{/contact/delete/{id}(id=${contact.id})}" method="post">-->
+<!--                    <input type="hidden" name="_method" value="POST">-->
+<!--                    <button type="submit">Delete</button>-->
+<!--                </form>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--    <a href="/">Главная страница</a>-->
+<!--</div>-->
 <!--</body>-->
 <!--</html>-->
 <!DOCTYPE html>
@@ -45,84 +134,110 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
             margin: 0;
             padding: 0;
+            height: 100vh;
+            overflow: hidden;
         }
+
+        .parallax {
+            background-image: url('/pic/pass.jpg'); /* Путь к вашему изображению */
+            min-height: 100%;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+
         .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             max-width: 800px;
-            margin: 3rem auto;
             padding: 2rem;
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.8);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
+            text-align: center;
         }
+
         h1 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
             text-align: center;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 1rem;
         }
+
         th, td {
             border: 1px solid #ccc;
             padding: 0.5rem;
             text-align: left;
         }
+
         th {
             background-color: #f2f2f2;
         }
+
         tr:nth-child(even) {
             background-color: #f9f9f9;
         }
+
         tr:hover {
             background-color: #e9ecef;
         }
+
         .actions {
             display: flex;
             gap: 0.5rem;
         }
+
         .actions a {
             text-decoration: none;
             color: #007bff;
         }
+
         .actions a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
+<div class="parallax"></div>
 <div class="container">
-    <h1>Contact List</h1>
+    <h1>Отзывы нашей клиники</h1>
     <table>
         <thead>
         <tr>
+<!--            <th>ID</th>-->
             <th>Name</th>
             <th>Email</th>
             <th>Message</th>
-
+<!--            <th>Actions</th>-->
         </tr>
         </thead>
         <tbody>
         <tr th:each="contact : ${contacts}">
-            <td th:text="${contact.name}">Name</td>
-            <td th:text="${contact.email}">Email</td>
-            <td th:text="${contact.massage}">Message</td>
-
+<!--            <td th:text="${contact.id}"></td>-->
+            <td th:text="${contact.name}"></td>
+            <td th:text="${contact.email}"></td>
+            <td th:text="${contact.massage}"></td>
             <td class="actions" sec:authorize="hasRole('ROLE_ADMIN')">
                 <form th:action="@{/contact/delete/{id}(id=${contact.id})}" method="post">
                     <input type="hidden" name="_method" value="POST">
                     <button type="submit">Delete</button>
                 </form>
             </td>
-
         </tr>
         </tbody>
     </table>
-    <a href="/">Главная страница</a>
+    <a href="/contact/new">Добавить новый отзыв</a>
 </div>
 </body>
 </html>
