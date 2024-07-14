@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -14,8 +15,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            /*background-image: url("/pic/Default_modern_clinic_0-3.jpg");*/
-            background-image: url('/pic/Default_modern_clinic_0-3.jpg') ;
+            background-image: url('/pic/Default_modern_clinic_0-3.jpg');
         }
         .container {
             padding: 30px;
@@ -36,6 +36,7 @@
             margin-top: 1rem;
             border-collapse: collapse;
             border: 1px solid #ccc;
+            color: white;
         }
         th, td {
             padding: 8px;
@@ -46,11 +47,26 @@
             background-color: #52bcd3;
             color: white;
         }
+        .delete-btn {
+            background-color: #ff6347; /* Цвет кнопки */
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .delete-btn:hover {
+            background-color: #e74c3c; /* Цвет кнопки при наведении */
+        }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>Список записей к докторам</h1>
+    <h1>Список записей пациента к докторам</h1>
     <h2 th:text="'Пациент: ' + ${patient.firstName} + ' ' + ${patient.lastName}"></h2>
     <table>
         <thead>
@@ -60,6 +76,7 @@
             <th>Doctor specialization</th>
             <th>Дата и время</th>
             <th>Причина</th>
+            <th>Действия</th> <!-- Новая колонка для действий -->
         </tr>
         </thead>
         <tbody>
@@ -70,9 +87,17 @@
             <td th:text="${appointment.doctor.specialization}"></td>
             <td th:text="${#temporals.format(appointment.appointmentDateTime, 'dd.MM.yyyy HH:mm')}"></td>
             <td th:text="${appointment.reason}"></td>
+            <td>
+                <!-- Кнопка для удаления записи -->
+                <form th:action="@{/appointment/delete/{id}(id=${appointment.id})}" method="post">
+                    <button type="submit" class="delete-btn" onclick="return confirm('Вы уверены, что хотите удалить эту запись?')">Удалить</button>
+                </form>
+
+            </td>
         </tr>
         </tbody>
     </table>
 </div>
 </body>
 </html>
+

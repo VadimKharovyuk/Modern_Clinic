@@ -8,6 +8,7 @@ import com.example.spring_security.service.AppointmentService;
 import com.example.spring_security.service.DoctorService;
 import com.example.spring_security.service.PatientService;
 import com.example.spring_security.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -28,7 +29,6 @@ import java.util.Locale;
 
 @Controller
 @AllArgsConstructor
-@PreAuthorize("hasRole('USER')") // Предполагается, что пользователи с ролью USER имеют доступ к записи к доктору
 public class AppointmentController {
 
     private final DoctorService doctorService;
@@ -82,6 +82,15 @@ public class AppointmentController {
     }
 
 
+    @PostMapping("/appointment/delete/{id}")
+    public String deleteAppointmentById(@PathVariable Long id, HttpServletRequest request){
+        appointmentService.deleteAppointment(id);
+
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;
+//        return "redirect:/patient/dashboard"; // Перенаправление на страницу списка записей пациента
+
+    }
 
 }
 
