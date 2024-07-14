@@ -9,6 +9,7 @@ import com.example.spring_security.service.DoctorService;
 import com.example.spring_security.service.PatientService;
 import com.example.spring_security.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 @Controller
 @AllArgsConstructor
@@ -37,21 +42,26 @@ public class AppointmentController {
 
     @PostMapping("/appointment/save")
     public String saveAppointment(@RequestParam Long doctorId,
-                                  @RequestParam LocalDateTime appointmentDateTime,
+                                  @RequestParam String appointmentDateTime,
                                   @RequestParam String reason,
                                   Authentication authentication) {
-        // Получение текущего пациента
+        // Получение текущего пользователя
         User currentUser = userService.findByUsername(authentication.getName());
         Patient patient = patientService.findByUser(currentUser);
 
         // Получение выбранного доктора
         Doctor doctor = doctorService.getDoctorById(doctorId);
 
+        // Преобразование строки времени в LocalDateTime
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime time = LocalTime.parse(appointmentDateTime, formatter);
+        LocalDateTime dateTime = LocalDateTime.of(LocalDate.now(), time);
+
         // Создание новой записи
         Appointment appointment = new Appointment();
         appointment.setDoctor(doctor);
         appointment.setPatient(patient);
-        appointment.setAppointmentDateTime(appointmentDateTime);
+        appointment.setAppointmentDateTime(dateTime);
         appointment.setReason(reason);
 
         appointmentService.saveAppointment(appointment);
@@ -59,3 +69,4 @@ public class AppointmentController {
         return "redirect:/patient/dashboard";
     }
 }
+

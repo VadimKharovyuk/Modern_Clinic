@@ -87,4 +87,5 @@ VALUES
     ('doctor27', '$2a$10$WrltWp4xFAsyye2A32ZwJOMtPzNZvPPexV2fGAHHPgVX4YvllTJmC', 'doctor27@example.com', 'DOCTOR', false),
     ('user28', '$2a$10$Kb3F5d5XK8oA/6rj2f4r6eAlQ0C5aQCR60xT9mlW9Lb9WITvFFRi2', 'user28@example.com', 'USER', false),
     ('admin28', '$2a$10$wajX8N8g14nv5EM.9opOnus2H5eLcV/4UPdF8PqWcQKvFSiAK80Ge', 'admin28@example.com', 'ADMIN', false),
+    ('admin', '$2a$10$wajX8N8g14nv5EM.9opOnus2H5eLcV/4UPdF8PqWcQKvFSiAK80Ge', 'vadimKh17@gmail.com', 'ADMIN', false)
 
