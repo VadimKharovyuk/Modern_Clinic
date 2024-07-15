@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание рецепта</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Создание рецепта</h1>
+    <form th:action="@{/prescriptions/save}" method="post">
+        <input type="hidden" th:value="${doctor.id}" name="doctorId"/>
+        <input type="hidden" th:value="${patient.id}" name="patientId"/>
+        <label for="description">Описание:</label>
+        <input type="text" id="description" name="description" required/>
+        <label for="treatmentTime">Время лечения:</label>
+        <input type="text" id="treatmentTime" name="treatmentTime" required/>
+        <button type="submit">Сохранить</button>
+    </form>
+</div>
+</body>
+</html>

@@ -30,6 +30,10 @@ public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws
             .authorizeHttpRequests((req -> req
                     .requestMatchers("/login", "/", "/pic/**", "/forgot-password", "/register", "/doctor/list","/blocked","/categories/**","/doctors/profile/{doctorId}","/contact","/doctors").permitAll()
                     .requestMatchers("/doctor/account/**").hasRole("DOCTOR")
+                    .requestMatchers("/prescriptions/form/**").hasRole("DOCTOR")
+                    .requestMatchers("/prescriptions/save").hasRole("DOCTOR")
+
+
                     .requestMatchers("/doctor/**").hasRole("ADMIN")
                     .requestMatchers("/patient/list").hasRole("ADMIN")
                     .requestMatchers("/block-user/**").hasRole("ADMIN")

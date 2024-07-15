@@ -33,5 +33,7 @@ public class Doctor {
     @ManyToMany(mappedBy = "doctors")
     private List<Category> categories;
 
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+    private List<Prescription> prescriptions;
 
 }
