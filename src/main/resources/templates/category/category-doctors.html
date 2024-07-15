@@ -315,6 +315,53 @@
         a:hover {
             text-decoration: underline;
         }
+
+
+
+        .card-container {
+            position: relative;
+            width: 200px; /* ширина карты */
+            margin: 10px;
+        }
+
+        .card {
+            position: relative;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-hover {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            height: 50px;
+        }
+
+        .card:hover .card-hover {
+            display: flex;
+            opacity: 1;
+        }
+
     </style>
 </head>
 <body>
@@ -344,8 +391,17 @@
             <button type="submit">Add Doctor</button>
         </form>
     </div>
-
     <a href="/categories">Back to Categories</a>
+    <div class="card-container">
+        <div class="card">
+            <h3 th:text="${category.getCardName()}"></h3>
+            <div class="card-hover">
+                <h4 th:text="${category.getCardHover()}"></h4>
+            </div>
+        </div>
+    </div>
+
 </div>
+
 </body>
 </html>

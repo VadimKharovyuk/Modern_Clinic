@@ -38,5 +38,11 @@ public class DoctorService {
     public Doctor findByUser(User user) {
         return (Doctor) doctorRepository.findByUser(user).orElseThrow(() -> new RuntimeException("Doctor not found"));
     }
+    public List<String> getDistinctSpecializations() {
+        return doctorRepository.findDistinctSpecializations();
+    }
 
+    public List<Doctor> getDoctorsBySpecialization(String specialization) {
+        return doctorRepository.findBySpecialization(specialization);
+    }
 }

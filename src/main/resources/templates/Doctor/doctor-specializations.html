@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Doctor Specializations</title>
+</head>
+<body>
+<form action="/doctors" method="get">
+    <label for="specialization">Choose a specialization:</label>
+    <select id="specialization" name="specialization">
+        <option th:each="specialization : ${specializations}"
+                th:value="${specialization}"
+                th:text="${specialization}">Specialization</option>
+    </select>
+    <button type="submit">Search</button>
+</form>
+</body>
+</html>

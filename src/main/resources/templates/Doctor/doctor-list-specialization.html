@@ -1,0 +1,189 @@
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html xmlns:th="http://www.thymeleaf.org">&ndash;&gt;-->
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;    <title>Doctors</title>&ndash;&gt;-->
+<!--&lt;!&ndash;    <link rel="stylesheet" th:href="@{/css/styles.css}">&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<body>&ndash;&gt;-->
+<!--&lt;!&ndash;<h1>Doctors with Specialization: <span th:text="${param.specialization}">Specialization</span></h1>&ndash;&gt;-->
+<!--&lt;!&ndash;<ul>&ndash;&gt;-->
+<!--&lt;!&ndash;    <li th:each="doctor : ${doctors}">&ndash;&gt;-->
+<!--&lt;!&ndash;        <span th:text="${doctor.name}">Doctor Name</span> - &ndash;&gt;-->
+<!--&lt;!&ndash;        <span th:text="${doctor.specialization}">Specialization</span> - &ndash;&gt;-->
+<!--&lt;!&ndash;        <span th:text="${doctor.workingHours}">Working Hours</span>&ndash;&gt;-->
+<!--&lt;!&ndash;    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;</ul>&ndash;&gt;-->
+<!--&lt;!&ndash;<a href="/doctors/specializations">Back to Specializations</a>&ndash;&gt;-->
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Doctors</title>-->
+<!--    <link rel="stylesheet" th:href="@{/css/styles.css}">-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            margin: 0;-->
+<!--            padding: 20px;-->
+<!--            background-color: #f9f9f9;-->
+<!--        }-->
+
+<!--        h1 {-->
+<!--            color: #333;-->
+<!--            font-size: 24px;-->
+<!--        }-->
+
+<!--        ul {-->
+<!--            list-style-type: none;-->
+<!--            padding: 0;-->
+<!--        }-->
+
+<!--        li {-->
+<!--            margin: 10px 0;-->
+<!--            padding: 10px;-->
+<!--            background-color: #fff;-->
+<!--            border: 1px solid #ddd;-->
+<!--            border-radius: 5px;-->
+<!--        }-->
+
+<!--        li:hover {-->
+<!--            background-color: #f0f0f0;-->
+<!--        }-->
+
+<!--        a {-->
+<!--            color: #007bff;-->
+<!--            text-decoration: none;-->
+<!--        }-->
+
+<!--        a:hover {-->
+<!--            text-decoration: underline;-->
+<!--        }-->
+
+<!--        button {-->
+<!--            padding: 10px 15px;-->
+<!--            background-color: #007bff;-->
+<!--            color: #fff;-->
+<!--            border: none;-->
+<!--            border-radius: 5px;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+
+<!--        button:hover {-->
+<!--            background-color: #0056b3;-->
+<!--        }-->
+
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Doctors with Specialization: <span th:text="${param.specialization}">Specialization</span></h1>-->
+<!--<ul>-->
+<!--    <li th:each="doctor : ${doctors}">-->
+<!--        <a th:href="@{/doctors/profile/{id}(id=${doctor.id})}" th:text="${doctor.name}">Doctor Name</a> - -->
+<!--        <span th:text="${doctor.specialization}">Specialization</span> - -->
+<!--        <span th:text="${doctor.workingHours}">Working Hours</span>-->
+<!--    </li>-->
+<!--</ul>-->
+<!--<a href="/doctors/specializations">Back to Specializations</a>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Doctors</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-content {
+            text-align: center;
+        }
+
+        .card h2 {
+            font-size: 22px;
+            margin: 0 0 10px;
+        }
+
+        .card p {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #007bff;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Doctors with Specialization: <span th:text="${param.specialization}">Specialization</span></h1>
+    <div class="card-container" th:each="doctor : ${doctors}">
+        <div class="card">
+            <div class="card-content">
+                <h2><a th:href="@{/doctors/profile/{id}(id=${doctor.id})}" th:text="${doctor.name}">Doctor Name</a></h2>
+                <p><strong>Specialization:</strong> <span th:text="${doctor.specialization}">Specialization</span></p>
+                <p><strong>Working Hours:</strong> <span th:text="${doctor.workingHours}">Working Hours</span></p>
+            </div>
+        </div>
+    </div>
+    <a href="/" class="back-link">Back to home</a>
+</div>
+</body>
+</html>

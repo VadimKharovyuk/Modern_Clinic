@@ -23,6 +23,10 @@ public class Category {
     @Column(length = 1200)
     private String description ;
 
+    private String cardName;
+    private String cardHover;
+
+
     @ManyToMany
     @JoinTable(
             name = "category_doctor",

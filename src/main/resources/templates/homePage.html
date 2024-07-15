@@ -1,3 +1,275 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Моя Клиника</title>-->
+<!--    <link rel="stylesheet" href="styles.css"> &lt;!&ndash; Подключение внешнего CSS-файла для стилей &ndash;&gt;-->
+<!--    <style>-->
+<!--        /* Внутренние стили для демонстрации */-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            background-color: #f0f0f0;-->
+<!--        }-->
+<!--        nav {-->
+<!--            background-color: #000000;-->
+<!--            color: white;-->
+<!--            padding: 1rem;-->
+<!--            display: flex;-->
+<!--            justify-content: space-between;-->
+<!--            align-items: center;-->
+<!--        }-->
+<!--        nav ul {-->
+<!--            list-style: none;-->
+<!--            padding: 5px;-->
+<!--            display: flex;-->
+<!--            margin: 0;-->
+<!--        }-->
+<!--        nav ul li {-->
+<!--            margin: 0 1rem;-->
+<!--        }-->
+<!--        nav ul li a {-->
+<!--            color: #24efef;-->
+<!--            text-decoration: none;-->
+<!--        }-->
+<!--        nav ul li a:hover {-->
+<!--            text-decoration: underline;-->
+<!--            color: #15bfc5;-->
+<!--        }-->
+<!--        .hero {-->
+<!--            background-image: url('/pic/DefaultDocFrof.jpg'); /* Замените на путь к вашему фоновому изображению */-->
+<!--            background-size: cover;-->
+<!--            background-position: center;-->
+<!--            height: 100vh;-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            justify-content: center;-->
+<!--            align-items: center;-->
+<!--            text-align: center;-->
+<!--            color: white;-->
+<!--        }-->
+<!--        .hero h1 {-->
+<!--            font-size: 3.5rem;-->
+<!--            margin-bottom: 1rem;-->
+<!--        }-->
+<!--        .hero p {-->
+<!--            font-size: 1.5rem;-->
+<!--            margin-bottom: 1.5rem;-->
+<!--        }-->
+<!--        .services {-->
+<!--            padding: 4rem 0;-->
+<!--            background-color: #ffffff;-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--        .services h2 {-->
+<!--            font-size: 2.5rem;-->
+<!--            margin-bottom: 2rem;-->
+<!--        }-->
+<!--        .services ul {-->
+<!--            list-style: none;-->
+<!--            padding: 0;-->
+<!--            display: flex;-->
+<!--            justify-content: center;-->
+<!--            align-items: center;-->
+<!--        }-->
+<!--        .services li {-->
+<!--            margin: 0 1rem;-->
+<!--        }-->
+<!--        .contact {-->
+<!--            background-color: #f0f0f0;-->
+<!--            padding: 4rem 0;-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--        .contact form {-->
+<!--            max-width: 600px;-->
+<!--            margin: auto;-->
+<!--            padding: 2rem;-->
+<!--            background-color: #ffffff;-->
+<!--            box-shadow: 0 0 10px rgba(0,0,0,0.1);-->
+<!--        }-->
+<!--        .contact form input, .contact form textarea, .contact form button {-->
+<!--            display: block;-->
+<!--            width: 100%;-->
+<!--            padding: 0.75rem;-->
+<!--            margin-bottom: 1rem;-->
+<!--            border: 1px solid #ccc;-->
+<!--            font-size: 1rem;-->
+<!--        }-->
+<!--        .contact form button {-->
+<!--            background-color: #007bff;-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+<!--        .contact form button:hover {-->
+<!--            background-color: #0056b3;-->
+<!--        }-->
+<!--        footer {-->
+<!--            background-color: #333;-->
+<!--            color: #fff;-->
+<!--            text-align: center;-->
+<!--            padding: 1rem 0;-->
+<!--        }-->
+<!--        .account-info {-->
+<!--            padding: 4rem 0;-->
+<!--            background-color: #e9ecef;-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--        .account-info h2 {-->
+<!--            font-size: 2.5rem;-->
+<!--            margin-bottom: 2rem;-->
+<!--        }-->
+<!--        .account-info p {-->
+<!--            font-size: 1.2rem;-->
+<!--            margin-bottom: 1rem;-->
+<!--        }-->
+<!--        .dropdown-menu {-->
+<!--            display: none;-->
+<!--            position: absolute;-->
+<!--            background-color: #f9f9f9;-->
+<!--            min-width: 160px;-->
+<!--            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);-->
+<!--            z-index: 1;-->
+<!--        }-->
+<!--        .dropdown-menu a {-->
+<!--            color: black;-->
+<!--            padding: 12px 16px;-->
+<!--            text-decoration: none;-->
+<!--            display: block;-->
+<!--        }-->
+<!--        .dropdown-menu a:hover {background-color: #f1f1f1}-->
+<!--        li:hover .dropdown-menu {-->
+<!--            display: block;-->
+<!--        }-->
+<!--        .container {-->
+<!--            max-width: 600px;-->
+<!--            margin: 3rem auto;-->
+<!--            padding: 2rem;-->
+<!--            background-color: #ffffff;-->
+<!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--            border-radius: 8px;-->
+<!--        }-->
+<!--        h1 {-->
+<!--            font-size: 1.5rem;-->
+<!--            margin-bottom: 1rem;-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--        form {-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            gap: 1rem;-->
+<!--        }-->
+<!--        input[type="text"], input[type="email"], textarea, button {-->
+<!--            padding: 0.5rem;-->
+<!--            border: 1px solid #ccc;-->
+<!--            border-radius: 5px;-->
+<!--            font-size: 1rem;-->
+<!--        }-->
+<!--        textarea {-->
+<!--            height: 100px;-->
+<!--            resize: vertical;-->
+<!--        }-->
+<!--        button {-->
+<!--            background-color: #52bcd3;-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+<!--        button:hover {-->
+<!--            background-color: #0056b3;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<nav>-->
+<!--    <ul class="navbar-nav mr-auto">-->
+
+<!--    </ul>-->
+<!--    <ul>-->
+<!--        <li>-->
+<!--            <a href="/categories"> Услуги</a>-->
+<!--            <ul class="dropdown-menu">-->
+<!--                &lt;!&ndash; Динамически добавляем категории &ndash;&gt;-->
+<!--                <li th:each="category : ${categories}">-->
+<!--                    <a th:href="@{/categories/{id}/doctors(id=${category.id})}" th:text="${category.name}">Category Name</a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </li>-->
+
+
+<!--        <li><a href="/contact">Отзывы</a></li>-->
+<!--        <li><a href="/patient/form">Заполнить форму</a></li>-->
+<!--        <li><a href="/patient/dashboard">Личный аккаунт</a></li>-->
+<!--        <li><a href="/logout">Выйти</a></li>-->
+<!--    </ul>-->
+<!--</nav>-->
+
+<!--<section class="hero">-->
+<!--    <h1>Добро пожаловать в нашу клинику</h1>-->
+<!--    <p>Мы заботимся о вашем здоровье</p>-->
+<!--</section>-->
+
+<!--<section class="services">-->
+<!--    <div class="container">-->
+<!--        <h2>Наши услуги</h2>-->
+<!--        <ul>-->
+<!--            <li>Диагностика и лечение</li>-->
+<!--            <li>Хирургические операции</li>-->
+<!--            <li>Стоматология</li>-->
+<!--            <li>Детская педиатрия</li>-->
+<!--            <li>Медицинские консультации</li>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--</section>-->
+<!--<section class="account-info">-->
+<!--    <div class="container">-->
+<!--       <h2>Поиск докттора по спецыальности </h2>-->
+<!--        <form action="/doctors" method="get">-->
+<!--            <label for="specialization">Choose a specialization:</label>-->
+<!--            <select id="specialization" name="specialization">-->
+<!--                <option th:each="specialization : ${specializations}"-->
+<!--                        th:value="${specialization}"-->
+<!--                        th:text="${specialization}">Specialization</option>-->
+<!--            </select>-->
+<!--            <button type="submit">Search</button>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</section>-->
+
+
+<!--<section class="account-info">-->
+<!--    <div class="container">-->
+<!--        <h2>Заполните информацию о себе</h2>-->
+<!--        <p>Пожалуйста, перейдите к заполнению вашей анкеты, чтобы мы могли лучше вас обслуживать.</p>-->
+<!--        <a href="/patient/form"><button>Заполнить анкету</button></a>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!--<section class="contact">-->
+<!--    <div class="container">-->
+<!--        <h2>Свяжитесь с нами</h2>-->
+<!--        <form action="/contact/save" method="post">-->
+<!--            <label for="name">Name:</label>-->
+<!--            <input type="text" id="name" name="name" placeholder="Enter your name" required>-->
+
+<!--            <label for="email">Email:</label>-->
+<!--            <input type="email" id="email" name="email" placeholder="Enter your email" required>-->
+
+<!--            <label for="massage">Message:</label>-->
+<!--            <textarea id="massage" name="massage" placeholder="Enter your message" required></textarea>-->
+
+<!--            <button type="submit">Submit</button>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!--<footer>-->
+<!--    <p>&copy; 2024 Моя Клиника. Все права защищены.</p>-->
+<!--</footer>-->
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,24 +330,57 @@
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
         }
-        .services {
+        .services-account-info {
+            display: flex;
+            justify-content: space-around;
             padding: 4rem 0;
             background-color: #ffffff;
-            text-align: center;
         }
-        .services h2 {
+        .services, .account-info {
+            width: 45%;
+            padding: 2rem;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .services h2, .account-info h2 {
             font-size: 2.5rem;
             margin-bottom: 2rem;
+            text-align: center;
         }
         .services ul {
             list-style: none;
             padding: 0;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
         }
         .services li {
-            margin: 0 1rem;
+            margin: 0.5rem 0;
+        }
+        .account-info form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .account-info label {
+            text-align: left;
+            margin-bottom: 0.5rem;
+        }
+        .account-info select, .account-info button {
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .account-info button {
+            backgroundcolor: #24efef;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .account-info button:hover {
+            background-color: #0056b3;
         }
         .contact {
             background-color: #f0f0f0;
@@ -112,19 +417,6 @@
             text-align: center;
             padding: 1rem 0;
         }
-        .account-info {
-            padding: 4rem 0;
-            background-color: #e9ecef;
-            text-align: center;
-        }
-        .account-info h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-        }
-        .account-info p {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
         .dropdown-menu {
             display: none;
             position: absolute;
@@ -148,7 +440,7 @@
             margin: 3rem auto;
             padding: 2rem;
             background-color: #ffffff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
             border-radius: 8px;
         }
         h1 {
@@ -197,8 +489,6 @@
                 </li>
             </ul>
         </li>
-
-
         <li><a href="/contact">Отзывы</a></li>
         <li><a href="/patient/form">Заполнить форму</a></li>
         <li><a href="/patient/dashboard">Личный аккаунт</a></li>
@@ -211,27 +501,42 @@
     <p>Мы заботимся о вашем здоровье</p>
 </section>
 
-<section class="services">
+<div class="services-account-info">
+    <section class="services">
+        <div class="container">
+            <h2>Наши услуги</h2>
+            <ul>
+                <li>Диагностика и лечение</li>
+                <li>Хирургические операции</li>
+                <li>Стоматология</li>
+                <li>Детская педиатрия</li>
+                <li>Медицинские консультации</li>
+            </ul>
+        </div>
+    </section>
+    <section class="account-info">
+        <div class="container">
+            <h2>Поиск доктора по специализации</h2>
+            <form action="/doctors" method="get">
+                <label for="specialization">Choose a specialization:</label>
+                <select id="specialization" name="specialization">
+                    <option th:each="specialization : ${specializations}"
+                            th:value="${specialization}"
+                            th:text="${specialization}">Specialization</option>
+                </select>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </section>
+</div>
+
+<section class="account-info">
     <div class="container">
-        <h2>Наши услуги</h2>
-        <ul>
-            <li>Диагностика и лечение</li>
-            <li>Хирургические операции</li>
-            <li>Стоматология</li>
-            <li>Детская педиатрия</li>
-            <li>Медицинские консультации</li>
-        </ul>
+        <h2>Заполните информацию о себе</h2>
+        <p>Пожалуйста, перейдите к заполнению вашей анкеты, чтобы мы могли лучше вас обслуживать.</p>
+        <a href="/patient/form"><button>Заполнить анкету</button></a>
     </div>
 </section>
-
-
-<!--<section class="account-info">-->
-<!--    <div class="container">-->
-<!--        <h2>Заполните информацию о себе</h2>-->
-<!--        <p>Пожалуйста, перейдите к заполнению вашей анкеты, чтобы мы могли лучше вас обслуживать.</p>-->
-<!--        <a href="/patient/form"><button>Заполнить анкету</button></a>-->
-<!--    </div>-->
-<!--</section>-->
 
 <section class="contact">
     <div class="container">
@@ -240,19 +545,20 @@
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" placeholder="Enter your name" required>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
-            <label for="massage">Message:</label>
-            <textarea id="massage" name="massage" placeholder="Enter your message" required></textarea>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
-            <button type="submit">Submit</button>
-        </form>
-    </div>
-</section>
+                        <label for="massage">Message:</label>
+                        <textarea id="massage" name="massage" placeholder="Enter your message" required></textarea>
 
-<footer>
-    <p>&copy; 2024 Моя Клиника. Все права защищены.</p>
-</footer>
-</body>
-</html>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </section>
+
+            <footer>
+                <p>&copy; 2024 Моя Клиника. Все права защищены.</p>
+            </footer>
+            </body>
+            </html>

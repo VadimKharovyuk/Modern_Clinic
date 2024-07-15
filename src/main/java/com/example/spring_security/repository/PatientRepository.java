@@ -22,3 +22,5 @@ public interface PatientRepository extends JpaRepository<Patient,Long> {
         "THEN 1 ELSE 0 END) BETWEEN :minAge AND :maxAge")
 List<Patient> findPatientsByAgeRange(@Param("minAge") int minAge, @Param("maxAge") int maxAge);
 }
+
+

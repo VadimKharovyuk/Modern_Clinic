@@ -2,6 +2,7 @@ package com.example.spring_security.controller;
 import com.example.spring_security.model.Category;
 import com.example.spring_security.model.Contact;
 import com.example.spring_security.service.CategoryService;
+import com.example.spring_security.service.DoctorService;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.example.spring_security.model.User;
@@ -19,15 +20,17 @@ import java.util.List;
 @AllArgsConstructor
 public class HomeController {
     private final CategoryService categoryService;
+    private final DoctorService doctorService;
 
     @GetMapping("/")
     public String home(Model model) {
         // Получение всех категорий из сервиса (замените на ваш метод получения категорий)
         List<Category> categories = categoryService.getAllCategories();
-
+        List<String> specializations = doctorService.getDistinctSpecializations();
         // Передача списка категорий в модель для отображения на странице
         model.addAttribute("categories", categories);
         model.addAttribute("contact",new Contact());
+        model.addAttribute("specializations", specializations);
 
         return "homePage"; // Название вашего шаблона Thymeleaf
     }

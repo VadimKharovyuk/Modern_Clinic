@@ -7,12 +7,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 @AllArgsConstructor
@@ -84,6 +82,21 @@ public String viewDoctorAccount(Model model, Principal principal) {
         Doctor doctor = doctorService.getDoctorById(doctorId);
         model.addAttribute("doctor", doctor);
         return "Doctor/doctorFrofile";
+    }
+
+
+//    @GetMapping("/doctors/specializations")
+//    public String getSpecializations(Model model) {
+//        List<String> specializations = doctorService.getDistinctSpecializations();
+//        model.addAttribute("specializations", specializations);
+//        return "Doctor/doctor-specializations";
+//    }
+
+    @GetMapping("/doctors")
+    public String getDoctorsBySpecialization(@RequestParam("specialization") String specialization, Model model) {
+        List<Doctor> doctors = doctorService.getDoctorsBySpecialization(specialization);
+        model.addAttribute("doctors", doctors);
+        return "Doctor/doctor-list-specialization";
     }
 
 
