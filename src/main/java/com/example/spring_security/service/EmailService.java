@@ -22,4 +22,14 @@ public class EmailService {
         // Отправляем сообщение
         emailSender.send(message);
     }
+    public void sendEmail(String recipientEmail, String subject, String text) {
+        // Создаем сообщение
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(recipientEmail);
+        message.setSubject(subject);
+        message.setText(text);
+
+        // Отправляем сообщение
+        emailSender.send(message);
+    }
 }

@@ -4,10 +4,7 @@ import com.example.spring_security.model.Appointment;
 import com.example.spring_security.model.Doctor;
 import com.example.spring_security.model.Patient;
 import com.example.spring_security.model.User;
-import com.example.spring_security.service.AppointmentService;
-import com.example.spring_security.service.DoctorService;
-import com.example.spring_security.service.PatientService;
-import com.example.spring_security.service.UserService;
+import com.example.spring_security.service.*;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -35,6 +32,7 @@ public class AppointmentController {
     private final PatientService patientService;
     private final AppointmentService appointmentService;
     private final UserService userService;
+
 
     @GetMapping("/appointment/form")
     public String showAppointmentForm(Model model) {
@@ -65,6 +63,10 @@ public class AppointmentController {
         appointment.setPatient(patient);
         appointment.setAppointmentDateTime(dateTime);
         appointment.setReason(reason);
+
+
+        // Сохранение новой записи и отправка email
+        appointmentService.createAndNotifyAppointment(doctorId, patient, dateTime, reason, currentUser.getEmail());
 
         appointmentService.saveAppointment(appointment);
 
