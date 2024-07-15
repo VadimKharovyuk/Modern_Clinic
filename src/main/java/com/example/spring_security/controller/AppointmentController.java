@@ -64,10 +64,8 @@ public class AppointmentController {
         appointment.setAppointmentDateTime(dateTime);
         appointment.setReason(reason);
 
-
         // Сохранение новой записи и отправка email
         appointmentService.createAndNotifyAppointment(doctorId, patient, dateTime, reason, currentUser.getEmail());
-
         appointmentService.saveAppointment(appointment);
 
         return "redirect:/patient/dashboard";
@@ -87,11 +85,8 @@ public class AppointmentController {
     @PostMapping("/appointment/delete/{id}")
     public String deleteAppointmentById(@PathVariable Long id, HttpServletRequest request){
         appointmentService.deleteAppointment(id);
-
         String referer = request.getHeader("Referer");
         return "redirect:" + referer;
-//        return "redirect:/patient/dashboard"; // Перенаправление на страницу списка записей пациента
-
     }
 
 }

@@ -51,6 +51,7 @@ public class AppointmentService {
         return appointmentRepository.findByPatient(patient);
     }
 
+
 public void createAndNotifyAppointment(Long doctorId, Patient patient, LocalDateTime dateTime, String reason, String recipientEmail) {
     // Получение выбранного доктора
     Doctor doctor = doctorService.getDoctorById(doctorId);
@@ -62,8 +63,7 @@ public void createAndNotifyAppointment(Long doctorId, Patient patient, LocalDate
     appointment.setAppointmentDateTime(dateTime);
     appointment.setReason(reason);
 
-    // Сохранение записи
-    saveAppointment(appointment);
+
 
     // Формирование и отправка email
     String subject = "Подтверждение записи на прием";
