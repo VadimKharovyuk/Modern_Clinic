@@ -24,14 +24,16 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        // Получение всех категорий из сервиса (замените на ваш метод получения категорий)
+
         List<Category> categories = categoryService.getAllCategories();
         List<String> specializations = doctorService.getDistinctSpecializations();
+
+
         // Передача списка категорий в модель для отображения на странице
         model.addAttribute("categories", categories);
         model.addAttribute("contact",new Contact());
         model.addAttribute("specializations", specializations);
 
-        return "homePage"; // Название вашего шаблона Thymeleaf
+        return "homePage"; //
     }
 }
