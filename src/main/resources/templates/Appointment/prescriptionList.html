@@ -75,7 +75,7 @@
             <th>Description</th>
             <th>Treatment Time</th>
             <th>Created Date Time</th>
-            <th>Действия</th> <!-- Новая колонка для действий -->
+<!--            <th>Действия</th> &lt;!&ndash; Новая колонка для действий &ndash;&gt;-->
         </tr>
         </thead>
         <tbody>
@@ -88,9 +88,9 @@
             <td th:text="${#temporals.format(prescription.createdDateTime, 'dd.MM.yyyy HH:mm')}"></td>
             <td>
                 <!-- Кнопка для удаления рецепта -->
-                <form th:action="@{/prescriptions/delete/{id}(id=${prescription.id})}" method="post">
-                    <button type="submit" class="delete-btn" onclick="return confirm('Вы уверены, что хотите удалить этот рецепт?')">Удалить</button>
-                </form>
+<!--                <form th:action="@{/prescriptions/delete/{id}(id=${prescription.id})}" method="post">-->
+<!--                    <button type="submit" class="delete-btn" onclick="return confirm('Вы уверены, что хотите удалить этот рецепт?')">Удалить</button>-->
+<!--                </form>-->
             </td>
         </tr>
         </tbody>

@@ -191,10 +191,15 @@
             <td>
                 <a th:href="@{/prescriptions/form(doctorId=${doctor.id}, patientId=${appointment.patient.id})}" class="btn">Создать рецепт</a>
             </td>
+            <td> <!-- Ссылка для перехода к форме заполнения диагноза -->
+                <a th:href="@{/diagnosis/form(doctorId=${doctor.id}, patientId=${appointment.patient.id})}" class="btn">Создать диагноз</a>
+            </td>
         </tr>
         </tbody>
     </table>
+
     <div>
+        <a th:href="@{/diagnoses/list}" class="btn">Список всех диагнозов</a>
         <a href="/prescriptions/list"> Список рецептов </a>
     </div>
 </div>

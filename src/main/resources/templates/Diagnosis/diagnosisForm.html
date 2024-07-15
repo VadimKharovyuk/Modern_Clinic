@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Создание рецепта</title>
+    <title>Создание диагноза</title>
     <link rel="stylesheet" th:href="@{/styles.css}">
     <style>
         body {
@@ -37,7 +37,7 @@
             font-weight: bold;
             text-align: left;
         }
-        input[type="text"] {
+        input[type="text"], textarea {
             padding: 10px;
             margin-bottom: 20px;
             border: 1px solid #ccc;
@@ -60,14 +60,12 @@
 </head>
 <body>
 <div class="container">
-    <h1>Создание рецепта</h1>
-    <form th:action="@{/prescriptions/save}" method="post">
+    <h1>Создание диагноза</h1>
+    <form th:action="@{/diagnosis/save}" method="post">
         <input type="hidden" th:value="${doctor.id}" name="doctorId"/>
         <input type="hidden" th:value="${patient.id}" name="patientId"/>
-        <label for="description">Описание:</label>
-        <input type="text" id="description" name="description" required/>
-        <label for="treatmentTime">Время лечения:</label>
-        <input type="text" id="treatmentTime" name="treatmentTime" required/>
+        <label for="description">Описание диагноза:</label>
+        <textarea id="description" name="description" required></textarea>
         <button type="submit">Сохранить</button>
     </form>
 </div>

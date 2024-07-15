@@ -1,0 +1,272 @@
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html xmlns:th="http://www.thymeleaf.org">&ndash;&gt;-->
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;  <meta charset="UTF-8">&ndash;&gt;-->
+<!--&lt;!&ndash;  <meta name="viewport" content="width=device-width, initial-scale=1.0">&ndash;&gt;-->
+<!--&lt;!&ndash;  <title>Список диагнозов</title>&ndash;&gt;-->
+<!--&lt;!&ndash;  <link rel="stylesheet" th:href="@{/styles.css}">&ndash;&gt;-->
+<!--&lt;!&ndash;  <style>&ndash;&gt;-->
+<!--&lt;!&ndash;    body {&ndash;&gt;-->
+<!--&lt;!&ndash;      font-family: Arial, sans-serif;&ndash;&gt;-->
+<!--&lt;!&ndash;      background-color: #f8f9fa;&ndash;&gt;-->
+<!--&lt;!&ndash;      display: flex;&ndash;&gt;-->
+<!--&lt;!&ndash;      justify-content: center;&ndash;&gt;-->
+<!--&lt;!&ndash;      align-items: center;&ndash;&gt;-->
+<!--&lt;!&ndash;      margin: 0;&ndash;&gt;-->
+<!--&lt;!&ndash;      padding: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+<!--&lt;!&ndash;    .container {&ndash;&gt;-->
+<!--&lt;!&ndash;      background-color: #ffffff;&ndash;&gt;-->
+<!--&lt;!&ndash;      padding: 30px;&ndash;&gt;-->
+<!--&lt;!&ndash;      border-radius: 8px;&ndash;&gt;-->
+<!--&lt;!&ndash;      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);&ndash;&gt;-->
+<!--&lt;!&ndash;      width: 800px;&ndash;&gt;-->
+<!--&lt;!&ndash;      text-align: center;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+<!--&lt;!&ndash;    table {&ndash;&gt;-->
+<!--&lt;!&ndash;      width: 100%;&ndash;&gt;-->
+<!--&lt;!&ndash;      border-collapse: collapse;&ndash;&gt;-->
+<!--&lt;!&ndash;      margin: 20px 0;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+<!--&lt;!&ndash;    th, td {&ndash;&gt;-->
+<!--&lt;!&ndash;      padding: 12px;&ndash;&gt;-->
+<!--&lt;!&ndash;      border: 1px solid #ddd;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+<!--&lt;!&ndash;    th {&ndash;&gt;-->
+<!--&lt;!&ndash;      background-color: #007bff;&ndash;&gt;-->
+<!--&lt;!&ndash;      color: #ffffff;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+<!--&lt;!&ndash;    td {&ndash;&gt;-->
+<!--&lt;!&ndash;      text-align: left;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+<!--&lt;!&ndash;    .btn {&ndash;&gt;-->
+<!--&lt;!&ndash;      padding: 5px 10px;&ndash;&gt;-->
+<!--&lt;!&ndash;      background-color: #4CAF50;&ndash;&gt;-->
+<!--&lt;!&ndash;      color: white;&ndash;&gt;-->
+<!--&lt;!&ndash;      text-decoration: none;&ndash;&gt;-->
+<!--&lt;!&ndash;      border-radius: 5px;&ndash;&gt;-->
+<!--&lt;!&ndash;      text-align: center;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+<!--&lt;!&ndash;    .btn:hover {&ndash;&gt;-->
+<!--&lt;!&ndash;      background-color: #45a049;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+<!--&lt;!&ndash;    .btn-delete {&ndash;&gt;-->
+<!--&lt;!&ndash;      background-color: #ff0000;&ndash;&gt;-->
+<!--&lt;!&ndash;      color: white;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+<!--&lt;!&ndash;    .btn-delete:hover {&ndash;&gt;-->
+<!--&lt;!&ndash;      background-color: #cc0000;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+<!--&lt;!&ndash;  </style>&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<body>&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="container">&ndash;&gt;-->
+<!--&lt;!&ndash;  <h1>Список диагнозов</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;  <table>&ndash;&gt;-->
+<!--&lt;!&ndash;    <thead>&ndash;&gt;-->
+<!--&lt;!&ndash;    <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;      <th>ID Диагноза</th>&ndash;&gt;-->
+<!--&lt;!&ndash;      <th>Описание</th>&ndash;&gt;-->
+<!--&lt;!&ndash;      <th>Дата</th>&ndash;&gt;-->
+<!--&lt;!&ndash;      <th>Действие</th>&ndash;&gt;-->
+<!--&lt;!&ndash;    </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;    </thead>&ndash;&gt;-->
+<!--&lt;!&ndash;    <tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;    <tr th:each="diagnosis : ${diagnoses}">&ndash;&gt;-->
+<!--&lt;!&ndash;      <td th:text="${diagnosis.id}"></td>&ndash;&gt;-->
+<!--&lt;!&ndash;      <td th:text="${diagnosis.description}"></td>&ndash;&gt;-->
+<!--&lt;!&ndash;      <td th:text="${#dates.format(diagnosis.createdDateTime, 'dd-MM-yyyy HH:mm')}"></td>&ndash;&gt;-->
+<!--&lt;!&ndash;      <td>&ndash;&gt;-->
+<!--&lt;!&ndash;        <form th:action="@{/diagnoses/delete/{id}(id=${diagnosis.id})}" method="post">&ndash;&gt;-->
+<!--&lt;!&ndash;          <button type="submit" class="btn btn-delete">Удалить</button>&ndash;&gt;-->
+<!--&lt;!&ndash;        </form>&ndash;&gt;-->
+<!--&lt;!&ndash;      </td>&ndash;&gt;-->
+<!--&lt;!&ndash;    </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;    </tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;  </table>&ndash;&gt;-->
+<!--&lt;!&ndash;  <a th:href="@{/doctor/account}" class="btn">Назад к аккаунту доктора</a>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--  <title>Список диагнозов</title>-->
+<!--  <link rel="stylesheet" th:href="@{/styles.css}">-->
+<!--  <style>-->
+<!--    body {-->
+<!--      font-family: Arial, sans-serif;-->
+<!--      background-color: #f8f9fa;-->
+<!--      display: flex;-->
+<!--      justify-content: center;-->
+<!--      align-items: center;-->
+<!--      margin: 0;-->
+<!--      padding: 20px;-->
+<!--    }-->
+<!--    .container {-->
+<!--      background-color: #ffffff;-->
+<!--      padding: 30px;-->
+<!--      border-radius: 8px;-->
+<!--      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--      width: 800px;-->
+<!--      text-align: center;-->
+<!--    }-->
+<!--    table {-->
+<!--      width: 100%;-->
+<!--      border-collapse: collapse;-->
+<!--      margin: 20px 0;-->
+<!--    }-->
+<!--    th, td {-->
+<!--      padding: 12px;-->
+<!--      border: 1px solid #ddd;-->
+<!--    }-->
+<!--    th {-->
+<!--      background-color: #007bff;-->
+<!--      color: #ffffff;-->
+<!--    }-->
+<!--    td {-->
+<!--      text-align: left;-->
+<!--    }-->
+<!--    .btn {-->
+<!--      padding: 5px 10px;-->
+<!--      background-color: #4CAF50;-->
+<!--      color: white;-->
+<!--      text-decoration: none;-->
+<!--      border-radius: 5px;-->
+<!--      text-align: center;-->
+<!--    }-->
+<!--    .btn:hover {-->
+<!--      background-color: #45a049;-->
+<!--    }-->
+<!--    .btn-delete {-->
+<!--      background-color: #ff0000;-->
+<!--      color: white;-->
+<!--    }-->
+<!--    .btn-delete:hover {-->
+<!--      background-color: #cc0000;-->
+<!--    }-->
+<!--  </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="container">-->
+<!--  <h1>Список диагнозов</h1>-->
+<!--  <table>-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--      <th>ID Диагноза</th>-->
+<!--      <th>Описание</th>-->
+<!--      <th>Дата</th>-->
+<!--      <th>Действие</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr th:each="diagnosis : ${diagnoses}">-->
+<!--      <td th:text="${diagnosis.id}"></td>-->
+<!--      <td th:text="${diagnosis.description}"></td>-->
+<!--      <td th:text="${#temporals.format(diagnosis.createdDateTime, 'dd-MM-yyyy HH:mm')}"></td>-->
+<!--      <td>-->
+<!--        <form th:action="@{/diagnoses/delete/{id}(id=${diagnosis.id})}" method="post">-->
+<!--          <button type="submit" class="btn btn-delete">Удалить</button>-->
+<!--        </form>-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--  </table>-->
+<!--  <a th:href="@{/doctor/account}" class="btn">Назад к аккаунту доктора</a>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Список диагнозов</title>
+  <link rel="stylesheet" th:href="@{/styles.css}">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 800px;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: #007bff;
+      color: #ffffff;
+    }
+    td {
+      text-align: left;
+    }
+    .btn {
+      padding: 5px 10px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      text-align: center;
+    }
+    .btn:hover {
+      background-color: #45a049;
+    }
+    .btn-delete {
+      background-color: #ff0000;
+      color: white;
+    }
+    .btn-delete:hover {
+      background-color: #cc0000;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Список диагнозов</h1>
+  <table>
+    <thead>
+    <tr>
+      <th>Доктор</th>
+      <th>Фамилия пациента</th>
+      <th>Описание</th>
+      <th>Дата</th>
+      <th>Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="diagnosis : ${diagnoses}">
+      <td th:text="${diagnosis.doctor.name}"></td>
+      <td th:text="${diagnosis.patient.lastName}"></td>
+      <td th:text="${diagnosis.description}"></td>
+      <td th:text="${#temporals.format(diagnosis.createdDateTime, 'dd-MM-yyyy HH:mm')}"></td>
+      <td>
+        <form th:action="@{/diagnoses/delete/{id}(id=${diagnosis.id})}" method="post">
+          <button type="submit" class="btn btn-delete">Удалить</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <a th:href="@{/doctor/account}" class="btn">Назад к аккаунту доктора</a>
+</div>
+</body>
+</html>

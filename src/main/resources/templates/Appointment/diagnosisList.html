@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список диагнозов</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Список диагнозов</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Доктор</th>
+            <th>Дата</th>
+            <th>Описание</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="diagnosis : ${diagnoses}">
+            <td th:text="${diagnosis.doctor.name}">Доктор</td>
+            <td th:text="${diagnosis.createdDateTime}">Дата</td>
+            <td th:text="${diagnosis.description}">Описание</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

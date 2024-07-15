@@ -12,10 +12,9 @@ import java.time.LocalDateTime;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
 @Getter
-public class Prescription {
-    //Рецепт
+@Setter
+public class Diagnosis {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,9 +30,8 @@ public class Prescription {
     @Column(nullable = false)
     private String description;
 
-    @Column(nullable = false)
-    private String treatmentTime;
-
     @CreationTimestamp
     private LocalDateTime createdDateTime;
+
+
 }
