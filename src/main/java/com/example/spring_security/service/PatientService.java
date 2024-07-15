@@ -1,6 +1,7 @@
 package com.example.spring_security.service;
 
 import com.example.spring_security.model.Patient;
+import com.example.spring_security.model.Prescription;
 import com.example.spring_security.model.User;
 import com.example.spring_security.repository.PatientRepository;
 import lombok.AllArgsConstructor;
@@ -42,10 +43,11 @@ public class PatientService {
        return patientRepository.findByFirstNameContainingIgnoreCase(name);
     }
 
-//    public List<Patient> findPatientsOlderThan(LocalDate maxDate) {
-//        return patientRepository.findPatientsOlderThan(maxDate);
-//    }
+
 public List<Patient> getPatientsByAgeRange(int minAge, int maxAge) {
     return patientRepository.findPatientsByAgeRange(minAge, maxAge);
 }
+
+
     }
+

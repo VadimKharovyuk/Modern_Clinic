@@ -30,4 +30,12 @@ public class PrescriptionService {
         return prescriptionRepository.findById(id).orElseThrow(() -> new RuntimeException("Prescription not found"));
     }
 
+
+    public List<Prescription> getAllPrescriptionsForDoctor(Doctor doctor) {
+        return prescriptionRepository.findByDoctor(doctor);
+    }
+
+    public List<Prescription> getAllPrescriptionsForPatient(Long patientId) {
+        return prescriptionRepository.findByPatientId(patientId);
+    }
 }

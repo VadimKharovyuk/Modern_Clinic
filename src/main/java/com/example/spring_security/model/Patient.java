@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "patients")
@@ -36,4 +37,9 @@ public class Patient {
 
     private String allergies;
     private String emergencyContact;
+
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+    private List<Prescription> prescriptions;
+
+
 }

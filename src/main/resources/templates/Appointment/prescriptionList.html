@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список рецептов пациента</title>
+    <link rel="stylesheet" href="/styles.css"> <!-- Подключение внешнего CSS-файла для стилей -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('/pic/Default_modern_clinic_0-3.jpg');
+        }
+        .container {
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgb(15, 224, 191);
+            width: 800px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: white;
+        }
+        table {
+            width: 100%;
+            margin-top: 1rem;
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+            color: white;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #52bcd3;
+            color: white;
+        }
+        .delete-btn {
+            background-color: #ff6347; /* Цвет кнопки */
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .delete-btn:hover {
+            background-color: #e74c3c; /* Цвет кнопки при наведении */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Список рецептов пациента</h1>
+    <h2 th:text="'Пациент: ' + ${patient.firstName} + ' ' + ${patient.lastName}"></h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Doctor</th>
+            <th>Description</th>
+            <th>Treatment Time</th>
+            <th>Created Date Time</th>
+            <th>Действия</th> <!-- Новая колонка для действий -->
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Использование Thymeleaf для итерации по списку prescriptions -->
+        <tr th:each="prescription : ${prescriptions}">
+            <td th:text="${prescription.id}"></td>
+            <td th:text="${prescription.doctor.name}"></td>
+            <td th:text="${prescription.description}"></td>
+            <td th:text="${prescription.treatmentTime}"></td>
+            <td th:text="${#temporals.format(prescription.createdDateTime, 'dd.MM.yyyy HH:mm')}"></td>
+            <td>
+                <!-- Кнопка для удаления рецепта -->
+                <form th:action="@{/prescriptions/delete/{id}(id=${prescription.id})}" method="post">
+                    <button type="submit" class="delete-btn" onclick="return confirm('Вы уверены, что хотите удалить этот рецепт?')">Удалить</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

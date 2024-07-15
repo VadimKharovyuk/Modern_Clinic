@@ -34,6 +34,5 @@ public class Prescription {
     private String treatmentTime;
 
     @CreationTimestamp
-    @Column(updatable = false)
     private LocalDateTime createdDateTime;
 }
