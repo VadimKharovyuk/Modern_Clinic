@@ -129,12 +129,165 @@
 <!--</div>-->
 <!--</body>-->
 <!--</html>-->
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Список диагнозов</title>-->
+<!--    <link rel="stylesheet" th:href="@{/styles.css}">-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            background-color: #f8f9fa;-->
+<!--            padding: 20px;-->
+<!--        }-->
+<!--        .container {-->
+<!--            max-width: 800px;-->
+<!--            margin: auto;-->
+<!--            background-color: #ffffff;-->
+<!--            padding: 20px;-->
+<!--            border-radius: 8px;-->
+<!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--        }-->
+<!--        h1 {-->
+<!--            text-align: center;-->
+<!--            color: #333;-->
+<!--        }-->
+<!--        table {-->
+<!--            width: 100%;-->
+<!--            border-collapse: collapse;-->
+<!--            margin-top: 20px;-->
+<!--        }-->
+<!--        th, td {-->
+<!--            padding: 10px;-->
+<!--            text-align: left;-->
+<!--            border-bottom: 1px solid #ddd;-->
+<!--        }-->
+<!--        th {-->
+<!--            background-color: #007bff;-->
+<!--            color: white;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="container">-->
+<!--    <h1>Список диагнозов</h1>-->
+<!--&lt;!&ndash;    &lt;!&ndash; Добавляем кнопку для скачивания PDF &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    <a class="btn btn-primary" th:href="@{/patients/{patientId}/diagnoses/pdf(patientId=${patientId})}" target="_blank">Скачать PDF</a>&ndash;&gt;-->
+
+<!--    <table>-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>Доктор</th>-->
+<!--            <th>Дата</th>-->
+<!--            <th>Описание</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="diagnosis : ${diagnoses}">-->
+<!--            <td th:text="${diagnosis.doctor.name}">Доктор</td>-->
+<!--            <td th:text="${diagnosis.createdDateTime}">Дата</td>-->
+<!--            <td th:text="${diagnosis.description}">Описание</td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Список диагнозов</title>-->
+<!--    <link rel="stylesheet" th:href="@{/styles.css}">-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            background-color: #f8f9fa;-->
+<!--            padding: 20px;-->
+<!--        }-->
+<!--        .container {-->
+<!--            max-width: 800px;-->
+<!--            margin: auto;-->
+<!--            background-color: #ffffff;-->
+<!--            padding: 20px;-->
+<!--            border-radius: 8px;-->
+<!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--        }-->
+<!--        h1 {-->
+<!--            text-align: center;-->
+<!--            color: #333;-->
+<!--        }-->
+<!--        table {-->
+<!--            width: 100%;-->
+<!--            border-collapse: collapse;-->
+<!--            margin-top: 20px;-->
+<!--        }-->
+<!--        th, td {-->
+<!--            padding: 10px;-->
+<!--            text-align: left;-->
+<!--            border-bottom: 1px solid #ddd;-->
+<!--        }-->
+<!--        th {-->
+<!--            background-color: #007bff;-->
+<!--            color: white;-->
+<!--        }-->
+<!--        .btn {-->
+<!--            display: inline-block;-->
+<!--            padding: 10px 20px;-->
+<!--            margin-bottom: 20px;-->
+<!--            font-size: 16px;-->
+<!--            font-weight: bold;-->
+<!--            color: #fff;-->
+<!--            background-color: #007bff;-->
+<!--            border: none;-->
+<!--            border-radius: 4px;-->
+<!--            text-align: center;-->
+<!--            text-decoration: none;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+<!--        .btn:hover {-->
+<!--            background-color: #0056b3;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="container">-->
+<!--    <h1>Список диагнозов</h1>-->
+<!--    <a class="btn" th:href="@{/patients/{patientId}/diagnoses/pdf(patientId=${patientId})}" target="_blank">Скачать PDF</a>-->
+
+<!--    <table>-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>Доктор</th>-->
+<!--            <th>Дата</th>-->
+<!--            <th>Описание</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="diagnosis : ${diagnoses}">-->
+<!--            <td th:text="${diagnosis.doctor.name}">Доктор</td>-->
+<!--            <td th:text="${diagnosis.createdDateTime}">Дата</td>-->
+<!--            <td th:text="${diagnosis.description}">Описание</td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Список диагнозов</title>
+    <title>List of Diagnoses</title>
     <link rel="stylesheet" th:href="@{/styles.css}">
     <style>
         body {
@@ -168,27 +321,43 @@
             background-color: #007bff;
             color: white;
         }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>Список диагнозов</h1>
-<!--    &lt;!&ndash; Добавляем кнопку для скачивания PDF &ndash;&gt;-->
-<!--    <a class="btn btn-primary" th:href="@{/patients/{patientId}/diagnoses/pdf(patientId=${patientId})}" target="_blank">Скачать PDF</a>-->
+    <h1>List of Diagnoses</h1>
+    <a class="btn" th:href="@{/patients/{patientId}/diagnoses/pdf(patientId=${patientId})}" target="_blank">Download PDF</a>
 
     <table>
         <thead>
         <tr>
-            <th>Доктор</th>
-            <th>Дата</th>
-            <th>Описание</th>
+            <th>Doctor</th>
+            <th>Date</th>
+            <th>Description</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="diagnosis : ${diagnoses}">
-            <td th:text="${diagnosis.doctor.name}">Доктор</td>
-            <td th:text="${diagnosis.createdDateTime}">Дата</td>
-            <td th:text="${diagnosis.description}">Описание</td>
+            <td th:text="${diagnosis.doctor.name}">Doctor</td>
+            <td th:text="${diagnosis.createdDateTime}">Date</td>
+            <td th:text="${diagnosis.description}">Description</td>
         </tr>
         </tbody>
     </table>

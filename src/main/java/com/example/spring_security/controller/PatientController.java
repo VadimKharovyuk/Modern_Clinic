@@ -1,28 +1,26 @@
 package com.example.spring_security.controller;
-
 import com.example.spring_security.model.Appointment;
+import com.example.spring_security.model.Diagnosis;
 import com.example.spring_security.model.Patient;
 import com.example.spring_security.model.User;
 import com.example.spring_security.service.AppointmentService;
-import com.example.spring_security.service.PatientPDFExporter;
+import com.example.spring_security.service.DiagnosisService;
+import com.example.spring_security.service.PDF.PdfService;
 import com.example.spring_security.service.PatientService;
 import com.example.spring_security.service.UserService;
-import com.lowagie.text.DocumentException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
-import org.springframework.security.access.AccessDeniedException;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-import java.time.LocalDate;
+import java.io.ByteArrayInputStream;
 import java.util.List;
-
 @Controller
 @AllArgsConstructor
 public class PatientController {
@@ -30,6 +28,7 @@ public class PatientController {
     private final UserService userService;
     private final PatientService patientService;
     private final AppointmentService appointmentService;
+    private final DiagnosisService diagnosisService;
 
 
     @GetMapping("/patient/dashboard/account")
@@ -121,8 +120,6 @@ public class PatientController {
 
 
 
-    // Метод для отображения формы обновления данных пациента
-
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable("id") Long id, Model model) {
         Patient patient = patientService.getPatientById(id);
@@ -141,6 +138,8 @@ public class PatientController {
         patientService.saveOrUpdatePatient(updatedPatient);
         return "redirect:/patient/dashboard";
     }
+
+
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/patients/search")
     public String showSearchForm() {
@@ -171,15 +170,24 @@ public class PatientController {
 
 
 
-    @GetMapping("/patients/export/pdf/{id}")
-    public void exportToPDF(@PathVariable("id") Long id, HttpServletResponse response) throws DocumentException, IOException {
-        response.setContentType("application/pdf");
-        String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=patient_" + id + ".pdf";
-        response.setHeader(headerKey, headerValue);
+   private final PdfService pdfService;
 
-        Patient patient = patientService.findById(id);
-        PatientPDFExporter exporter = new PatientPDFExporter(List.of(patient));
-        exporter.export(response);
+    @GetMapping("/patients/{patientId}/diagnoses/pdf")
+    public ResponseEntity<InputStreamResource> getDiagnosesPdf(@PathVariable Long patientId) {
+        // Получаем список диагнозов для указанного пациента
+        List<Diagnosis> diagnoses = diagnosisService.getDiagnosesByPatientId(patientId);
+
+        // Генерируем PDF из списка диагнозов
+        ByteArrayInputStream bis = pdfService.generateDiagnosisListPdf(diagnoses);
+
+        // Настройка HTTP-ответа для возврата PDF
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=diagnoses.pdf");
+
+        return ResponseEntity.ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(bis));
     }
+
 }

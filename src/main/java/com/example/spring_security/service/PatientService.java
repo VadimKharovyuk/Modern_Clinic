@@ -48,12 +48,6 @@ public class PatientService {
 public List<Patient> getPatientsByAgeRange(int minAge, int maxAge) {
     return patientRepository.findPatientsByAgeRange(minAge, maxAge);
 }
-    public List<Patient> listAll() {
-        return patientRepository.findAll(Sort.by("lastName").ascending());
-    }
 
-    public Patient findById(Long id) {
-       return patientRepository.findById(id).orElseThrow();
-    }
 }
 

@@ -1,5 +1,4 @@
 package com.example.spring_security.controller;
-
 import com.example.spring_security.model.Appointment;
 import com.example.spring_security.model.Doctor;
 import com.example.spring_security.model.Patient;
@@ -7,8 +6,7 @@ import com.example.spring_security.model.User;
 import com.example.spring_security.service.*;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.access.prepost.PreAuthorize;
+import java.util.List;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,13 +14,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Locale;
+
 
 @Controller
 @AllArgsConstructor
@@ -88,6 +84,11 @@ public class AppointmentController {
         String referer = request.getHeader("Referer");
         return "redirect:" + referer;
     }
+
+
+
+
+
 
 }
 

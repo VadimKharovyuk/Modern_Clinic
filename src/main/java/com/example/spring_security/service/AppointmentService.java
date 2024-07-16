@@ -89,4 +89,5 @@ public void createAndNotifyAppointment(Long doctorId, Patient patient, LocalDate
     emailService.sendEmail(recipientEmail, subject, message);
 }
 
+
 }
