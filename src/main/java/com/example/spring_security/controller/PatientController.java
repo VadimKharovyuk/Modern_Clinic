@@ -4,9 +4,12 @@ import com.example.spring_security.model.Appointment;
 import com.example.spring_security.model.Patient;
 import com.example.spring_security.model.User;
 import com.example.spring_security.service.AppointmentService;
+import com.example.spring_security.service.PatientPDFExporter;
 import com.example.spring_security.service.PatientService;
 import com.example.spring_security.service.UserService;
+import com.lowagie.text.DocumentException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -161,5 +165,21 @@ public class PatientController {
         model.addAttribute("minAge", minAge);
         model.addAttribute("maxAge", maxAge);
         return "Patient/Search_Patients";
+    }
+
+
+
+
+
+    @GetMapping("/patients/export/pdf/{id}")
+    public void exportToPDF(@PathVariable("id") Long id, HttpServletResponse response) throws DocumentException, IOException {
+        response.setContentType("application/pdf");
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=patient_" + id + ".pdf";
+        response.setHeader(headerKey, headerValue);
+
+        Patient patient = patientService.findById(id);
+        PatientPDFExporter exporter = new PatientPDFExporter(List.of(patient));
+        exporter.export(response);
     }
 }

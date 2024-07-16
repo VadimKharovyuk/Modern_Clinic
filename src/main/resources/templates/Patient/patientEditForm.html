@@ -42,6 +42,7 @@
 <body>
 <div class="container">
     <h1>Редактирование данных пациента</h1>
+
     <form th:action="@{/update}" method="post" th:object="${patient}">
         <input type="hidden" th:field="*{id}">
 
@@ -79,7 +80,8 @@
         <input type="text" id="emergencyContact" name="emergencyContact" th:field="*{emergencyContact}" required>
 
         <button type="submit">Сохранить изменения</button>
-    </form>
+    </form><br>
+    <a class="btn btn-primary" th:href="@{/patients/export/pdf/{id}(id=${patient.id})}" target="_blank">Скачать данные пациента PDF</a>
 </div>
 </body>
 </html>

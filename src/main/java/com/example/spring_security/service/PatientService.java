@@ -6,6 +6,7 @@ import com.example.spring_security.model.User;
 import com.example.spring_security.repository.PatientRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -47,7 +48,12 @@ public class PatientService {
 public List<Patient> getPatientsByAgeRange(int minAge, int maxAge) {
     return patientRepository.findPatientsByAgeRange(minAge, maxAge);
 }
-
-
+    public List<Patient> listAll() {
+        return patientRepository.findAll(Sort.by("lastName").ascending());
     }
+
+    public Patient findById(Long id) {
+       return patientRepository.findById(id).orElseThrow();
+    }
+}
 
