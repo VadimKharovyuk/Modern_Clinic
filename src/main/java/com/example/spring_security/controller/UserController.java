@@ -57,7 +57,7 @@ public class UserController {
     public String unblockUser(@PathVariable Long userId) {
         userService.unblockUser(userId);
         entityManager.clear(); // Очистка кэша сущностей Hibernate
-        return "redirect:/userList"; // Перенаправление на страницу администратора после разблокировки
+        return "redirect:/userList";
     }
 
 

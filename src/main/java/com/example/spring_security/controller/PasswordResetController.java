@@ -1,5 +1,4 @@
 package com.example.spring_security.controller;
-
 import com.example.spring_security.model.User;
 import com.example.spring_security.repository.UserRepository;
 import com.example.spring_security.service.EmailService;

@@ -1,29 +1,16 @@
 package com.example.spring_security.controller;
-
 import com.example.spring_security.model.Diagnosis;
 import com.example.spring_security.model.Doctor;
 import com.example.spring_security.model.Patient;
-import com.example.spring_security.model.User;
-import com.example.spring_security.repository.DiagnosisRepository;
 import com.example.spring_security.service.*;
-
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.security.Principal;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @AllArgsConstructor

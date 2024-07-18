@@ -29,6 +29,7 @@ public class PatientController {
     private final PatientService patientService;
     private final AppointmentService appointmentService;
     private final DiagnosisService diagnosisService;
+    private final PdfService pdfService;
 
 
     @GetMapping("/patient/dashboard/account")
@@ -165,12 +166,6 @@ public class PatientController {
         model.addAttribute("maxAge", maxAge);
         return "Patient/Search_Patients";
     }
-
-
-
-
-
-   private final PdfService pdfService;
 
     @GetMapping("/patients/{patientId}/diagnoses/pdf")
     public ResponseEntity<InputStreamResource> getDiagnosesPdf(@PathVariable Long patientId) {
