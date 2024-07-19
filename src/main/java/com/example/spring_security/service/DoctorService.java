@@ -5,8 +5,11 @@ import com.example.spring_security.model.User;
 import com.example.spring_security.repository.DoctorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,16 +18,18 @@ import java.util.Optional;
 public class DoctorService {
 
     private final DoctorRepository doctorRepository;
+    private final RedisTemplate redisTemplate;
 
 
 
     public List<Doctor> getAllDoctors() {
         return doctorRepository.findAll();
     }
-
+    @Cacheable(value = "getDoctorById", key = "#id")
     public Doctor getDoctorById(Long id) {
         return doctorRepository.findById(id).orElseThrow();
     }
+
 
     public Doctor saveDoctor(Doctor doctor) {
         return doctorRepository.save(doctor);
