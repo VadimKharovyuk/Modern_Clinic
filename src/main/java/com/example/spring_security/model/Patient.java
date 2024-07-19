@@ -1,5 +1,6 @@
 package com.example.spring_security.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,18 +17,21 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Patient  {
+public class Patient implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     private String firstName;
     private String lastName;
+    @JsonIgnore
     private LocalDate dateOfBirth;
     private String gender;
     private String address;
@@ -38,7 +42,7 @@ public class Patient  {
 
     private String allergies;
     private String emergencyContact;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
     private List<Prescription> prescriptions;
 

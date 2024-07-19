@@ -23,9 +23,10 @@ public class Diagnosis implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "doctor_id", nullable = false)
-
     private Doctor doctor;
 
+
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "patient_id", nullable = false)
     private Patient patient;

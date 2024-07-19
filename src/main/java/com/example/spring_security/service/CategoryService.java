@@ -8,6 +8,7 @@ import com.example.spring_security.repository.DoctorRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,6 +26,8 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
+
+    @Cacheable(value = "getCategoryById", key = "#id")
     public Category getCategoryById(Long id) {
         return categoryRepository.findById(id).orElse(null);
     }
