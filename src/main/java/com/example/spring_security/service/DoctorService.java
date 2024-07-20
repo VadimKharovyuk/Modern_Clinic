@@ -5,6 +5,7 @@ import com.example.spring_security.model.User;
 import com.example.spring_security.repository.DoctorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -18,20 +19,20 @@ import java.util.Optional;
 public class DoctorService {
 
     private final DoctorRepository doctorRepository;
-    private final RedisTemplate redisTemplate;
-
+    private final CacheManager cacheManager;
 
 
     public List<Doctor> getAllDoctors() {
         return doctorRepository.findAll();
     }
+
     @Cacheable(value = "getDoctorById", key = "#id")
     public Doctor getDoctorById(Long id) {
         return doctorRepository.findById(id).orElseThrow();
     }
 
-
     public Doctor saveDoctor(Doctor doctor) {
+        cacheManager.getCache("getPatientById").evict(doctor.getId());
         return doctorRepository.save(doctor);
     }
 
@@ -43,7 +44,8 @@ public class DoctorService {
     public Doctor findByUser(User user) {
         return (Doctor) doctorRepository.findByUser(user).orElseThrow(() -> new RuntimeException("Doctor not found"));
     }
-    public List<String> getDistinctSpecializations(  ) {
+
+    public List<String> getDistinctSpecializations() {
         return doctorRepository.findDistinctSpecializations();
     }
 

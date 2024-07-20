@@ -13,8 +13,6 @@ public interface PatientRepository extends JpaRepository<Patient,Long> {
     Patient findByUser(User user);
     List<Patient> findByFirstNameContainingIgnoreCase(String firstName);
 
-//    @Query("SELECT p FROM Patient p WHERE p.dateOfBirth <= :maxDate")
-//    List<Patient> findPatientsOlderThan(@Param("maxDate") LocalDate maxDate);
 @Query("SELECT p FROM Patient p WHERE " +
         "YEAR(CURRENT_DATE) - YEAR(p.dateOfBirth) - " +
         "(CASE WHEN MONTH(CURRENT_DATE) < MONTH(p.dateOfBirth) " +

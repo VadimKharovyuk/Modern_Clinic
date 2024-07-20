@@ -1,11 +1,3 @@
-CREATE TABLE contact (
-                         id BIGINT PRIMARY KEY AUTO_INCREMENT,
-                         name VARCHAR(255),
-                         email VARCHAR(255),
-                         massage TEXT
-);
--- Примеры вставки данных в таблицу contact
-
 -- Пример 1
 INSERT INTO contact (name, email, massage) VALUES ('John Doe', 'john.doe@example.com', 'This is a test message.');
 

@@ -6,6 +6,7 @@ import com.example.spring_security.model.User;
 import com.example.spring_security.repository.PatientRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -19,17 +20,21 @@ import java.util.Optional;
 public class PatientService {
 
     private final PatientRepository patientRepository;
+    private final CacheManager cacheManager;
 
 
     public List<Patient> getAllPatients() {
         return patientRepository.findAll();
     }
+
+
    @Cacheable(value = "getPatientById" ,key = "#id")
     public Patient getPatientById(Long id) {
         return patientRepository.findById(id).orElseThrow();
     }
 
     public Patient saveOrUpdatePatient(Patient patient) {
+        cacheManager.getCache("getPatientById").evict(patient.getId());
         return patientRepository.save(patient);
     }
 
@@ -40,6 +45,7 @@ public class PatientService {
     public Patient findByUser(User user) {
         return patientRepository.findByUser(user);
     }
+
     @Cacheable(value = "findPatientByName", key = "#name")
     public List<Patient> findPatientByName(String name){
        return patientRepository.findByFirstNameContainingIgnoreCase(name);
